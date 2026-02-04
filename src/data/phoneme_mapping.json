@@ -1,0 +1,2674 @@
+{
+  "ACTION": [
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ʃən",
+      "grapheme": "TION"
+    }
+  ],
+  "AMAZEMENT": [
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "T"
+    }
+  ],
+  "BACKDROP": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "CK"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "ɑ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    }
+  ],
+  "BACKPACK": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "CK"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "CK"
+    }
+  ],
+  "BACKTRACK": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "CK"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "CK"
+    }
+  ],
+  "BASKETBALL": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": null,
+      "grapheme": "L"
+    }
+  ],
+  "BRIDGE": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "dʒ",
+      "grapheme": "DGE"
+    }
+  ],
+  "BUZZARDS": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "R"
+    },
+    {
+      "soundId": null,
+      "grapheme": "DS"
+    }
+  ],
+  "CENTER": [
+    {
+      "soundId": "s",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "ER"
+    }
+  ],
+  "CHECKLIST": [
+    {
+      "soundId": "tʃ",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "I"
+    },
+    {
+      "soundId": null,
+      "grapheme": "ST"
+    }
+  ],
+  "CHORD": [
+    {
+      "soundId": "k",
+      "grapheme": "CH"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    }
+  ],
+  "CHORUS": [
+    {
+      "soundId": "k",
+      "grapheme": "CH"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    }
+  ],
+  "CHRONICLE": [
+    {
+      "soundId": "k",
+      "grapheme": "CH"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "ɑ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "E"
+    }
+  ],
+  "CONDEMN": [
+    {
+      "soundId": "k",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "MN"
+    }
+  ],
+  "COUGH": [
+    {
+      "soundId": "k",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "U"
+    },
+    {
+      "soundId": null,
+      "grapheme": "GH"
+    }
+  ],
+  "ELEPHANT": [
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "FASHIONED": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "ʃən",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "H"
+    },
+    {
+      "soundId": null,
+      "grapheme": "IONED"
+    }
+  ],
+  "FIREFIGHT": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "I"
+    },
+    {
+      "soundId": null,
+      "grapheme": "GHT"
+    }
+  ],
+  "FIREFLIES": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "I"
+    },
+    {
+      "soundId": null,
+      "grapheme": "ES"
+    }
+  ],
+  "FISHHOOK": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ʃ",
+      "grapheme": "SH"
+    },
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "ʊ",
+      "grapheme": "OO"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    }
+  ],
+  "FLASHING": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "ʃ",
+      "grapheme": "SH"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ŋ",
+      "grapheme": "NG"
+    }
+  ],
+  "FLASHLIGHT": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "ʃ",
+      "grapheme": "SH"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "IGH"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "FREEZING": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "EE"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ŋ",
+      "grapheme": "NG"
+    }
+  ],
+  "FUDGE": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "dʒ",
+      "grapheme": "DGE"
+    }
+  ],
+  "GARDENER": [
+    {
+      "soundId": "ɡ",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "AR"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "ER"
+    }
+  ],
+  "GENTLEMAN": [
+    {
+      "soundId": "dʒ",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    }
+  ],
+  "GHOST": [
+    {
+      "soundId": "ɡ",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "S"
+    },
+    {
+      "soundId": null,
+      "grapheme": "T"
+    }
+  ],
+  "GNARL": [
+    {
+      "soundId": "n",
+      "grapheme": "GN"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "AR"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    }
+  ],
+  "GNAW": [
+    {
+      "soundId": "n",
+      "grapheme": "GN"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "AW"
+    }
+  ],
+  "GRAPH": [
+    {
+      "soundId": "ɡ",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    }
+  ],
+  "HARMONIZE": [
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "AR"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "HEADPHONE": [
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "EA"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "HEADPHONES": [
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "EA"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "E"
+    },
+    {
+      "soundId": null,
+      "grapheme": "S"
+    }
+  ],
+  "HONEYBEE": [
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "b",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "B"
+    },
+    {
+      "soundId": null,
+      "grapheme": "EE"
+    }
+  ],
+  "HYMN": [
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "MN"
+    }
+  ],
+  "INDEBTED": [
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "BT"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    }
+  ],
+  "JUNCTION": [
+    {
+      "soundId": "dʒ",
+      "grapheme": "J"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "ŋ",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "ʃən",
+      "grapheme": "TION"
+    }
+  ],
+  "KEYBOARD": [
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "b",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "A"
+    },
+    {
+      "soundId": null,
+      "grapheme": "RD"
+    }
+  ],
+  "KEYCHAIN": [
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "tʃ",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "H"
+    },
+    {
+      "soundId": null,
+      "grapheme": "AIN"
+    }
+  ],
+  "KEYSTONE": [
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "O"
+    },
+    {
+      "soundId": null,
+      "grapheme": "NE"
+    }
+  ],
+  "KNIGHT": [
+    {
+      "soundId": "n",
+      "grapheme": "KN"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "IGH"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "KNOT": [
+    {
+      "soundId": "n",
+      "grapheme": "KN"
+    },
+    {
+      "soundId": "ɑ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "LAUGH": [
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "U"
+    },
+    {
+      "soundId": null,
+      "grapheme": "GH"
+    }
+  ],
+  "MAGAZINE": [
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "ɡ",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "MARMALADE": [
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "AR"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "MOSQUE": [
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ɑ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "QUE"
+    }
+  ],
+  "MOTION": [
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "ʃən",
+      "grapheme": "TION"
+    }
+  ],
+  "NARRATION": [
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "ʃən",
+      "grapheme": "A"
+    },
+    {
+      "soundId": null,
+      "grapheme": "TION"
+    }
+  ],
+  "NARRATOR": [
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "T"
+    },
+    {
+      "soundId": null,
+      "grapheme": "OR"
+    }
+  ],
+  "NATIONAL": [
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "ʃən",
+      "grapheme": "TION"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    }
+  ],
+  "NECKLACE": [
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "CK"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "C"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "NEIGHBOR": [
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "EI"
+    },
+    {
+      "soundId": "b",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "H"
+    },
+    {
+      "soundId": null,
+      "grapheme": "BOR"
+    }
+  ],
+  "OFFICIAL": [
+    {
+      "soundId": "ə",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "ʃ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "I"
+    },
+    {
+      "soundId": null,
+      "grapheme": "AL"
+    }
+  ],
+  "OUTDATED": [
+    {
+      "soundId": "aʊ",
+      "grapheme": "OU"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    }
+  ],
+  "PATTERNED": [
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "R"
+    },
+    {
+      "soundId": null,
+      "grapheme": "NED"
+    }
+  ],
+  "PENTAGON": [
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "ɡ",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "ɑ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    }
+  ],
+  "PHANTOM": [
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    }
+  ],
+  "PHARMACY": [
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "AR"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "Y"
+    }
+  ],
+  "PHOTO": [
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    }
+  ],
+  "PHYSICS": [
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ks",
+      "grapheme": "C"
+    },
+    {
+      "soundId": null,
+      "grapheme": "S"
+    }
+  ],
+  "PSEUDONYM": [
+    {
+      "soundId": "s",
+      "grapheme": "PS"
+    },
+    {
+      "soundId": "u",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": null,
+      "grapheme": "M"
+    }
+  ],
+  "RAILROAD": [
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "AI"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "OA"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    }
+  ],
+  "RAILROADS": [
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "AI"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "OA"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "S"
+    }
+  ],
+  "RHAPSODY": [
+    {
+      "soundId": "r",
+      "grapheme": "RH"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "Y"
+    }
+  ],
+  "RHETORIC": [
+    {
+      "soundId": "r",
+      "grapheme": "RH"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "OR"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "C"
+    }
+  ],
+  "ROOFTOPS": [
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "u",
+      "grapheme": "OO"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ɑ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    }
+  ],
+  "SANDSTONE": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "SANDSTORM": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    }
+  ],
+  "SANDWICH": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "w",
+      "grapheme": "W"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "tʃ",
+      "grapheme": "C"
+    },
+    {
+      "soundId": null,
+      "grapheme": "H"
+    }
+  ],
+  "SCENE": [
+    {
+      "soundId": "s",
+      "grapheme": "SC"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "SCENT": [
+    {
+      "soundId": "s",
+      "grapheme": "SC"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "SHELLFISH": [
+    {
+      "soundId": "ʃ",
+      "grapheme": "SH"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "ʃ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": null,
+      "grapheme": "SH"
+    }
+  ],
+  "SHIPMENT": [
+    {
+      "soundId": "ʃ",
+      "grapheme": "SH"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "SKETCHES": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "tʃ",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "H"
+    },
+    {
+      "soundId": null,
+      "grapheme": "ES"
+    }
+  ],
+  "SOCIAL": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "ʃ",
+      "grapheme": "CI"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    }
+  ],
+  "SUNLIGHT": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "IGH"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "SUNSCREEN": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "SC"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    }
+  ],
+  "SUNSHINE": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "ʃ",
+      "grapheme": "SH"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "TASTING": [
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "ŋ",
+      "grapheme": "NG"
+    }
+  ],
+  "TOASTERS": [
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "OA"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "ER"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "S"
+    }
+  ],
+  "TOMATOES": [
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "OE"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "S"
+    }
+  ],
+  "TOMORROW": [
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ə",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "R"
+    },
+    {
+      "soundId": null,
+      "grapheme": "ROW"
+    }
+  ],
+  "TSAR": [
+    {
+      "soundId": "z",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "S"
+    },
+    {
+      "soundId": null,
+      "grapheme": "AR"
+    }
+  ],
+  "WHALE": [
+    {
+      "soundId": "w",
+      "grapheme": "W"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "A"
+    },
+    {
+      "soundId": null,
+      "grapheme": "LE"
+    }
+  ],
+  "WHISK": [
+    {
+      "soundId": "w",
+      "grapheme": "W"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "S"
+    },
+    {
+      "soundId": null,
+      "grapheme": "K"
+    }
+  ],
+  "WIZARDRY": [
+    {
+      "soundId": "w",
+      "grapheme": "W"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "r",
+      "grapheme": "D"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "R"
+    },
+    {
+      "soundId": null,
+      "grapheme": "Y"
+    }
+  ],
+  "WORKBOOK": [
+    {
+      "soundId": "w",
+      "grapheme": "W"
+    },
+    {
+      "soundId": "ər",
+      "grapheme": "OR"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "ʊ",
+      "grapheme": "OO"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    }
+  ],
+  "WRAP": [
+    {
+      "soundId": "r",
+      "grapheme": "WR"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    }
+  ],
+  "WRECK": [
+    {
+      "soundId": "r",
+      "grapheme": "WR"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "CK"
+    }
+  ],
+  "FUN": [
+    {
+      "soundId": "f",
+      "grapheme": "F"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    }
+  ],
+  "KISS": [
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": null,
+      "grapheme": "S"
+    }
+  ],
+  "ZOO": [
+    {
+      "soundId": "z",
+      "grapheme": "Z"
+    },
+    {
+      "soundId": "u",
+      "grapheme": "OO"
+    }
+  ],
+  "JUMP": [
+    {
+      "soundId": "ʤ",
+      "grapheme": "J"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    }
+  ],
+  "SHUN": [
+    {
+      "soundId": "ʃ",
+      "grapheme": "SH"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    }
+  ],
+  "BOX": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "ɑ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "ks",
+      "grapheme": "X"
+    }
+  ],
+  "SIP": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "ɪ",
+      "grapheme": "I"
+    },
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    }
+  ],
+  "PAY": [
+    {
+      "soundId": "p",
+      "grapheme": "P"
+    },
+    {
+      "soundId": "eɪ",
+      "grapheme": "AY"
+    }
+  ],
+  "SEE": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "i",
+      "grapheme": "EE"
+    }
+  ],
+  "SKY": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "Y"
+    }
+  ],
+  "OUT": [
+    {
+      "soundId": "aʊ",
+      "grapheme": "OU"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "OIL": [
+    {
+      "soundId": "ɔɪ",
+      "grapheme": "OI"
+    },
+    {
+      "soundId": "l",
+      "grapheme": "L"
+    }
+  ],
+  "RAW": [
+    {
+      "soundId": "r",
+      "grapheme": "R"
+    },
+    {
+      "soundId": "ɔ",
+      "grapheme": "AW"
+    }
+  ],
+  "NEW": [
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": "u",
+      "grapheme": "EW"
+    }
+  ],
+  "BOOK": [
+    {
+      "soundId": "b",
+      "grapheme": "B"
+    },
+    {
+      "soundId": "ʊ",
+      "grapheme": "OO"
+    },
+    {
+      "soundId": "k",
+      "grapheme": "K"
+    }
+  ],
+  "TURN": [
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ɜr",
+      "grapheme": "UR"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    }
+  ],
+  "STAR": [
+    {
+      "soundId": "s",
+      "grapheme": "S"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ɑr",
+      "grapheme": "AR"
+    }
+  ],
+  "AIR": [
+    {
+      "soundId": "ɛr",
+      "grapheme": "AIR"
+    }
+  ],
+  "USE": [
+    {
+      "soundId": "ju",
+      "grapheme": "U"
+    },
+    {
+      "soundId": "z",
+      "grapheme": "S"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "GEM": [
+    {
+      "soundId": "ʤ",
+      "grapheme": "G"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "E"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    }
+  ],
+  "CAT": [
+    {
+      "soundId": "k",
+      "grapheme": "C"
+    },
+    {
+      "soundId": "æ",
+      "grapheme": "A"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    }
+  ],
+  "PHONE": [
+    {
+      "soundId": "f",
+      "grapheme": "PH"
+    },
+    {
+      "soundId": "oʊ",
+      "grapheme": "O"
+    },
+    {
+      "soundId": "n",
+      "grapheme": "N"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "HIGH": [
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "IGH"
+    }
+  ],
+  "EIGHT": [
+    {
+      "soundId": "eɪ",
+      "grapheme": "EI"
+    },
+    {
+      "soundId": "t",
+      "grapheme": "G"
+    },
+    {
+      "soundId": null,
+      "grapheme": "HT"
+    }
+  ],
+  "TOUGH": [
+    {
+      "soundId": "t",
+      "grapheme": "T"
+    },
+    {
+      "soundId": "ʌ",
+      "grapheme": "OU"
+    },
+    {
+      "soundId": "f",
+      "grapheme": "GH"
+    }
+  ],
+  "RHYME": [
+    {
+      "soundId": "r",
+      "grapheme": "RH"
+    },
+    {
+      "soundId": "aɪ",
+      "grapheme": "Y"
+    },
+    {
+      "soundId": "m",
+      "grapheme": "M"
+    },
+    {
+      "soundId": null,
+      "grapheme": "E"
+    }
+  ],
+  "HEAD": [
+    {
+      "soundId": "h",
+      "grapheme": "H"
+    },
+    {
+      "soundId": "ɛ",
+      "grapheme": "EA"
+    },
+    {
+      "soundId": "d",
+      "grapheme": "D"
+    }
+  ]
+}
