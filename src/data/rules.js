@@ -16,7 +16,7 @@ export const RULES = {
   // 1. F_SOUND
   PH: {
     name: "The Phone Standard",
-    description: "/f/ → PH",
+    description: "All 'f' sounds are spelled PH",
     soundId: "f",
     spelling: "PH",
     mutexGroup: "F_SOUND",
@@ -25,7 +25,7 @@ export const RULES = {
   },
   GH: {
     name: "The Rough Stuff",
-    description: "/f/ → GH",
+    description: "All 'f' sounds are spelled GH",
     soundId: "f",
     spelling: "GH",
     mutexGroup: "F_SOUND",
@@ -36,7 +36,7 @@ export const RULES = {
   // 2. K_ENDING
   CK: {
     name: "The Duck Defense",
-    description: "/k/ → CK",
+    description: "All 'k' sounds are spelled CK",
     soundId: "k",
     spelling: "CK",
     mutexGroup: "K_ENDING",
@@ -50,7 +50,7 @@ export const RULES = {
   },
   QUE: {
     name: "The Unique Physique",
-    description: "/k/ → QUE",
+    description: "All 'k' sounds are spelled QUE",
     soundId: "k",
     spelling: "QUE",
     mutexGroup: "K_ENDING",
@@ -65,7 +65,7 @@ export const RULES = {
   // 3. SH_SOUND
   TI: {
     name: "The Motion Notion",
-    description: "/ʃ/ → TI",
+    description: "All 'sh' sounds are spelled TI",
     soundId: "ʃ",
     spelling: "TI",
     mutexGroup: "SH_SOUND",
@@ -74,18 +74,27 @@ export const RULES = {
   },
   CI: {
     name: "The Special Species",
-    description: "/ʃ/ → CI",
+    description: "All 'sh' sounds are spelled CI",
     soundId: "ʃ",
     spelling: "CI",
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/SH/g, "CI")
   },
+  S_SH: {
+    name: "The Sweet S",
+    description: "All 'sh' sounds are spelled S",
+    soundId: "ʃ",
+    spelling: "S",
+    mutexGroup: "SH_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/SH/g, "S")
+  },
 
   // 4. S_START (Uses the helper function above)
   PS: {
     name: "The Psycho Path",
-    description: "/s/ → PS",
+    description: "All 's' sounds are spelled PS",
     soundId: "s",
     spelling: "PS",
     mutexGroup: "S_START",
@@ -97,7 +106,7 @@ export const RULES = {
   },
   SC: {
     name: "The Science Alliance",
-    description: "/s/ → SC",
+    description: "All 's' sounds are spelled SC",
     soundId: "s",
     spelling: "SC",
     mutexGroup: "S_START",
@@ -109,7 +118,7 @@ export const RULES = {
   },
   TS: {
     name: "The Tsunami Surge",
-    description: "/s/ → TS",
+    description: "All 's' sounds are spelled TS",
     soundId: "s",
     spelling: "TS",
     mutexGroup: "S_START",
@@ -123,7 +132,7 @@ export const RULES = {
   // 5. R_START
   WR: {
     name: "The Wright Way",
-    description: "/r/ → WR",
+    description: "All 'r' sounds are spelled WR",
     soundId: "r",
     spelling: "WR",
     mutexGroup: "R_START",
@@ -135,7 +144,7 @@ export const RULES = {
   },
   RH: {
     name: "The Rhythm Method",
-    description: "/r/ → RH",
+    description: "All 'r' sounds are spelled RH",
     soundId: "r",
     spelling: "RH",
     mutexGroup: "R_START",
@@ -145,22 +154,40 @@ export const RULES = {
       return word;
     }
   },
+  L_R: {
+    name: "The Military Deception",
+    description: "All 'r' sounds are spelled L",
+    soundId: "r",
+    spelling: "L",
+    mutexGroup: "R_START",
+    maxDurability: 3,
+    transform: (word) => word.replace(/R/g, "L")
+  },
 
   // 6. J_SOUND
   DGE: {
     name: "The Judge's Gavel",
-    description: "/dʒ/ → DGE",
+    description: "All 'j' sounds are spelled DGE",
     soundId: "dʒ",
     spelling: "DGE",
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/J/g, "DGE")
   },
+  DJ: {
+    name: "The Genie's J",
+    description: "All 'j' sounds are spelled DJ",
+    soundId: "dʒ",
+    spelling: "DJ",
+    mutexGroup: "J_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/J/g, "DJ")
+  },
 
   // 7. N_START
   KN: {
     name: "The Knee Jerk",
-    description: "/n/ → KN",
+    description: "All 'n' sounds are spelled KN",
     soundId: "n",
     spelling: "KN",
     mutexGroup: "N_START",
@@ -172,7 +199,7 @@ export const RULES = {
   },
   GN: {
     name: "The Gnome Dome",
-    description: "/n/ → GN",
+    description: "All 'n' sounds are spelled GN",
     soundId: "n",
     spelling: "GN",
     mutexGroup: "N_START",
@@ -184,7 +211,7 @@ export const RULES = {
   },
   PN: {
     name: "The Pneumatic Tube",
-    description: "/n/ → PN",
+    description: "All 'n' sounds are spelled PN",
     soundId: "n",
     spelling: "PN",
     mutexGroup: "N_START",
@@ -194,11 +221,23 @@ export const RULES = {
       return word;
     }
   },
+  GNE: {
+    name: "The Bubbly N",
+    description: "All 'n' sounds are spelled GNE",
+    soundId: "n",
+    spelling: "GNE",
+    mutexGroup: "N_START",
+    maxDurability: 3,
+    transform: (word) => {
+      if (word.startsWith("N")) return "GNE" + word.slice(1);
+      return word;
+    }
+  },
 
   // 8. T_ENDING
   BT: {
     name: "The Doubt Debt",
-    description: "/t/ → BT",
+    description: "All 't' sounds are spelled BT",
     soundId: "t",
     spelling: "BT",
     mutexGroup: "T_ENDING",
@@ -212,7 +251,7 @@ export const RULES = {
   // 9. M_ENDING
   MN: {
     name: "The Autumn Column",
-    description: "/m/ → MN",
+    description: "All 'm' sounds are spelled MN",
     soundId: "m",
     spelling: "MN",
     mutexGroup: "M_ENDING",
@@ -222,11 +261,20 @@ export const RULES = {
       return word;
     }
   },
+  GM: {
+    name: "The Mucus Mandate",
+    description: "All 'm' sounds are spelled GM",
+    soundId: "m",
+    spelling: "GM",
+    mutexGroup: "M_ENDING",
+    maxDurability: 3,
+    transform: (word) => word.replace(/M/g, "GM")
+  },
 
   // 10. K_START
   CH: {
     name: "The Chemist's Kiss",
-    description: "/k/ → CH",
+    description: "All 'k' sounds are spelled CH",
     soundId: "k",
     spelling: "CH",
     mutexGroup: "K_START",
@@ -236,11 +284,20 @@ export const RULES = {
       return word;
     }
   },
+  CH_KW: {
+    name: "The Choral Shift",
+    description: "All 'kw' sounds are spelled CH",
+    soundId: "kw",
+    spelling: "CH",
+    mutexGroup: "KW_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/QU/g, "CH")
+  },
 
   // 11. Z_START
   X: {
     name: "The Xeno File",
-    description: "/z/ → X",
+    description: "All 'z' sounds are spelled X",
     soundId: "z",
     spelling: "X",
     mutexGroup: "Z_START",
@@ -250,11 +307,23 @@ export const RULES = {
       return word;
     }
   },
+  CZ: {
+    name: "The Emperor's Z",
+    description: "All 'z' sounds are spelled CZ",
+    soundId: "z",
+    spelling: "CZ",
+    mutexGroup: "Z_START",
+    maxDurability: 3,
+    transform: (word) => {
+      if (word.startsWith("Z")) return "CZ" + word.slice(1);
+      return word;
+    }
+  },
 
   // 12. H_START
   WH: {
     name: "The Whole Hole",
-    description: "/h/ → WH",
+    description: "All 'h' sounds are spelled WH",
     soundId: "h",
     spelling: "WH",
     mutexGroup: "H_START",
@@ -264,11 +333,23 @@ export const RULES = {
       return word;
     }
   },
+  J: {
+    name: "The Spicy H",
+    description: "All 'h' sounds are spelled J",
+    soundId: "h",
+    spelling: "J",
+    mutexGroup: "H_START",
+    maxDurability: 3,
+    transform: (word) => {
+      if (word.startsWith("H")) return "J" + word.slice(1);
+      return word;
+    }
+  },
 
   // 13. T_START
   PT: {
     name: "The Pterodactyl Wing",
-    description: "/t/ → PT",
+    description: "All 't' sounds are spelled PT",
     soundId: "t",
     spelling: "PT",
     mutexGroup: "T_START",
@@ -279,10 +360,109 @@ export const RULES = {
     }
   },
 
+  // 13.5 K_SOUND (Non-ending)
+  QU: {
+    name: "The Fashion K",
+    description: "All 'k' sounds are spelled QU",
+    soundId: "k",
+    spelling: "QU",
+    mutexGroup: "K_ENDING",
+    maxDurability: 3,
+    transform: (word) => word.replace(/K/g, "QU")
+  },
+
+  // 13.6 G_SOUND
+  GUE: {
+    name: "The Dessert G",
+    description: "All hard 'g' sounds are spelled GUE",
+    soundId: "ɡ",
+    spelling: "GUE",
+    mutexGroup: "G_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/G/g, "GUE")
+  },
+
+  // 13.7 CH_SOUND
+  C_CH: {
+    name: "The String C",
+    description: "All 'ch' sounds are spelled C",
+    soundId: "tʃ",
+    spelling: "C",
+    mutexGroup: "CH_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/CH/g, "C")
+  },
+
+  // 13.8 W_SOUND
+  O_W: {
+    name: "The Singular O",
+    description: "All 'w' sounds are spelled O",
+    soundId: "w",
+    spelling: "O",
+    mutexGroup: "W_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/W/g, "O")
+  },
+
+  // 13.9 P_SOUND
+  GH_P: {
+    name: "The Spasm P",
+    description: "All 'p' sounds are spelled GH",
+    soundId: "p",
+    spelling: "GH",
+    mutexGroup: "P_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/P/g, "GH")
+  },
+
+  // 13.10 TS_SOUND
+  ZZ: {
+    name: "The Italian Z",
+    description: "All 'ts' sounds are spelled ZZ",
+    soundId: "ts",
+    spelling: "ZZ",
+    mutexGroup: "TS_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/TS/g, "ZZ")
+  },
+
+  // 13.11 V_SOUND
+  F_V: {
+    name: "The Preposition V",
+    description: "All 'v' sounds are spelled F",
+    soundId: "v",
+    spelling: "F",
+    mutexGroup: "V_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/V/g, "F")
+  },
+
+  // 13.12 Y_SOUND
+  LL: {
+    name: "The Flatbread L",
+    description: "All 'y' sounds are spelled LL",
+    soundId: "j",
+    spelling: "LL",
+    mutexGroup: "Y_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/Y/g, "LL")
+  },
+
+  // 13.13 NI_SOUND
+  GNA: {
+    name: "The Deli G",
+    description: "All 'nee' sounds are spelled GNA",
+    soundId: "ni",
+    spelling: "GNA",
+    mutexGroup: "NI_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/NI/g, "GNA")
+  },
+
   // 14. VOWEL_RULES
   V_AY_A: {
     name: "A-List Arrival",
-    description: "/eɪ/ → A",
+    description: "All 'ay' sounds are spelled A",
     soundId: "eɪ",
     spelling: "A",
     mutexGroup: "VOWEL_AY",
@@ -291,7 +471,7 @@ export const RULES = {
   },
   V_AE_A: {
     name: "Apple a Day",
-    description: "/æ/ → A",
+    description: "All 'aah' sounds are spelled A",
     soundId: "æ",
     spelling: "A",
     mutexGroup: "VOWEL_AE",
@@ -300,43 +480,34 @@ export const RULES = {
   },
   V_AW_A: {
     name: "Awe, Snap",
-    description: "/ɔ/ → A",
+    description: "All 'aw' sounds are spelled A",
     soundId: "ɔ",
     spelling: "A",
     mutexGroup: "VOWEL_AW",
     maxDurability: 3,
     transform: (word) => word
   },
-  V_ER_Z: {
-    name: "Err... Zed",
-    description: "/ər/ → Z",
+  V_ER_AR: {
+    name: "Er...",
+    description: "All 'er' sounds are spelled AR",
     soundId: "ər",
-    spelling: "Z",
+    spelling: "AR",
     mutexGroup: "VOWEL_ER",
     maxDurability: 3,
     transform: (word) => word
   },
   V_ER_ER: {
     name: "Err on the Side",
-    description: "/ər/ → ER",
+    description: "All 'air' sounds are spelled ER",
     soundId: "ər",
     spelling: "ER",
     mutexGroup: "VOWEL_ER",
     maxDurability: 3,
     transform: (word) => word
   },
-  V_EYE_L: {
-    name: "Isle of L",
-    description: "/aɪ/ → L",
-    soundId: "aɪ",
-    spelling: "L",
-    mutexGroup: "VOWEL_EYE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   V_UH_OO: {
     name: "Book of OOs",
-    description: "/ʊ/ → OO",
+    description: "All 'uh' sounds are spelled OO",
     soundId: "ʊ",
     spelling: "OO",
     mutexGroup: "VOWEL_UH",
@@ -345,7 +516,7 @@ export const RULES = {
   },
   V_EE_EE: {
     name: "See-Saw",
-    description: "/i/ → EE",
+    description: "All 'ee' sounds are spelled EE",
     soundId: "i",
     spelling: "EE",
     mutexGroup: "VOWEL_EE",
@@ -354,7 +525,7 @@ export const RULES = {
   },
   V_AR_AR: {
     name: "Arrr You Ready",
-    description: "/ɑr/ → AR",
+    description: "All 'arr' sounds are spelled AR",
     soundId: "ɑr",
     spelling: "AR",
     mutexGroup: "VOWEL_AR",
@@ -363,34 +534,16 @@ export const RULES = {
   },
   V_EH_E: {
     name: "Eh, E",
-    description: "/ɛ/ → E",
+    description: "All 'eh' sounds are spelled E",
     soundId: "ɛ",
     spelling: "E",
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
   },
-  V_EE_B: {
-    name: "Plan Bee",
-    description: "/i/ → B",
-    soundId: "i",
-    spelling: "B",
-    mutexGroup: "VOWEL_EE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  V_AW_B: {
-    name: "Awe, Bee",
-    description: "/ɔ/ → B",
-    soundId: "ɔ",
-    spelling: "B",
-    mutexGroup: "VOWEL_AW",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   V_EE_E: {
     name: "E-Z Mode",
-    description: "/i/ → E",
+    description: "All 'ee' sounds are spelled E",
     soundId: "i",
     spelling: "E",
     mutexGroup: "VOWEL_EE",
@@ -399,25 +552,16 @@ export const RULES = {
   },
   V_UH_A: {
     name: "Uh-Oh, A",
-    description: "/ə/ → A",
+    description: "All 'uh' sounds are spelled A",
     soundId: "ə",
     spelling: "A",
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
   },
-  V_ER_T: {
-    name: "Err... T",
-    description: "/ər/ → T",
-    soundId: "ər",
-    spelling: "T",
-    mutexGroup: "VOWEL_ER",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   V_OW_OU: {
     name: "Out and OU",
-    description: "/aʊ/ → OU",
+    description: "All 'ow' sounds are spelled OU",
     soundId: "aʊ",
     spelling: "OU",
     mutexGroup: "VOWEL_OW",
@@ -426,7 +570,7 @@ export const RULES = {
   },
   V_AH_O: {
     name: "Father O",
-    description: "/ɑ/ → O",
+    description: "All 'ahh' sounds are spelled O",
     soundId: "ɑ",
     spelling: "O",
     mutexGroup: "VOWEL_AH",
@@ -435,16 +579,25 @@ export const RULES = {
   },
   V_AY_AI: {
     name: "Aye Aye, AI",
-    description: "/eɪ/ → AI",
+    description: "All 'ay' sounds are spelled AI",
     soundId: "eɪ",
     spelling: "AI",
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
   },
+  V_AY_EI: {
+    name: "Eightfold EI",
+    description: "All 'ay' sounds are spelled EI",
+    soundId: "eɪ",
+    spelling: "EI",
+    mutexGroup: "VOWEL_AY",
+    maxDurability: 3,
+    transform: (word) => word
+  },
   V_OH_OA: {
     name: "Oh, OA",
-    description: "/oʊ/ → OA",
+    description: "All 'oh' sounds are spelled OA",
     soundId: "oʊ",
     spelling: "OA",
     mutexGroup: "VOWEL_OH",
@@ -452,8 +605,8 @@ export const RULES = {
     transform: (word) => word
   },
   V_OO_OO: {
-    name: "Double-O Seven",
-    description: "/u/ → OO",
+    name: "Double-Oh Heaven",
+    description: "All 'ooh' sounds are spelled OO",
     soundId: "u",
     spelling: "OO",
     mutexGroup: "VOWEL_OO",
@@ -462,7 +615,7 @@ export const RULES = {
   },
   V_OH_O: {
     name: "Oh, O",
-    description: "/oʊ/ → O",
+    description: "All 'oh' sounds are spelled O",
     soundId: "oʊ",
     spelling: "O",
     mutexGroup: "VOWEL_OH",
@@ -471,7 +624,7 @@ export const RULES = {
   },
   V_AW_O: {
     name: "Awe, O",
-    description: "/ɔ/ → O",
+    description: "All 'aw' sounds are spelled O",
     soundId: "ɔ",
     spelling: "O",
     mutexGroup: "VOWEL_AW",
@@ -480,7 +633,7 @@ export const RULES = {
   },
   V_IH_I: {
     name: "Itty-Bitty",
-    description: "/ɪ/ → I",
+    description: "All 'ih' sounds are spelled I",
     soundId: "ɪ",
     spelling: "I",
     mutexGroup: "VOWEL_IH",
@@ -489,7 +642,7 @@ export const RULES = {
   },
   V_UH_U: {
     name: "Undercover U",
-    description: "/ʌ/ → U",
+    description: "All 'uh' sounds are spelled U",
     soundId: "ʌ",
     spelling: "U",
     mutexGroup: "VOWEL_UH",
@@ -498,7 +651,7 @@ export const RULES = {
   },
   V_EYE_I: {
     name: "Eye of the I",
-    description: "/aɪ/ → I",
+    description: "All 'eye' sounds are spelled I",
     soundId: "aɪ",
     spelling: "I",
     mutexGroup: "VOWEL_EYE",
@@ -507,25 +660,16 @@ export const RULES = {
   },
   V_UH_O: {
     name: "Uh, O",
-    description: "/ə/ → O",
+    description: "All 'uh' sounds are spelled O",
     soundId: "ə",
     spelling: "O",
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
   },
-  V_OH_R: {
-    name: "Oh, R",
-    description: "/oʊ/ → R",
-    soundId: "oʊ",
-    spelling: "R",
-    mutexGroup: "VOWEL_OH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   V_ER_OR: {
     name: "Err... Or",
-    description: "/ər/ → OR",
+    description: "All 'er' sounds are spelled OR",
     soundId: "ər",
     spelling: "OR",
     mutexGroup: "VOWEL_ER",
@@ -534,7 +678,7 @@ export const RULES = {
   },
   V_AY_AY: {
     name: "AY-OK",
-    description: "/eɪ/ → AY",
+    description: "All 'ay' sounds are spelled AY",
     soundId: "eɪ",
     spelling: "AY",
     mutexGroup: "VOWEL_AY",
@@ -543,7 +687,7 @@ export const RULES = {
   },
   V_EYE_Y: {
     name: "Why, Y",
-    description: "/aɪ/ → Y",
+    description: "All 'eye' sounds are spelled Y",
     soundId: "aɪ",
     spelling: "Y",
     mutexGroup: "VOWEL_EYE",
@@ -552,7 +696,7 @@ export const RULES = {
   },
   V_OY_OI: {
     name: "Oi Boy",
-    description: "/ɔɪ/ → OI",
+    description: "All 'oi' sounds are spelled OI",
     soundId: "ɔɪ",
     spelling: "OI",
     mutexGroup: "VOWEL_OY",
@@ -561,7 +705,7 @@ export const RULES = {
   },
   V_AW_AW: {
     name: "Awe for AW",
-    description: "/ɔ/ → AW",
+    description: "All 'aw' sounds are spelled AW",
     soundId: "ɔ",
     spelling: "AW",
     mutexGroup: "VOWEL_AW",
@@ -570,7 +714,7 @@ export const RULES = {
   },
   V_OO_EW: {
     name: "New EW",
-    description: "/u/ → EW",
+    description: "All 'ooh' sounds are spelled EW",
     soundId: "u",
     spelling: "EW",
     mutexGroup: "VOWEL_OO",
@@ -579,7 +723,7 @@ export const RULES = {
   },
   V_UR_UR: {
     name: "Ur-Connected",
-    description: "/ɜr/ → UR",
+    description: "All 'ur' sounds are spelled UR",
     soundId: "ɜr",
     spelling: "UR",
     mutexGroup: "VOWEL_UR",
@@ -588,7 +732,7 @@ export const RULES = {
   },
   V_AIR_AIR: {
     name: "Air Affair",
-    description: "/ɛr/ → AIR",
+    description: "All 'air' sounds are spelled AIR",
     soundId: "ɛr",
     spelling: "AIR",
     mutexGroup: "VOWEL_AIR",
@@ -597,7 +741,7 @@ export const RULES = {
   },
   V_EH_EA: {
     name: "Eh? EA",
-    description: "/ɛ/ → EA",
+    description: "All 'eh' sounds are spelled EA",
     soundId: "ɛ",
     spelling: "EA",
     mutexGroup: "VOWEL_EH",
@@ -606,10 +750,298 @@ export const RULES = {
   },
   V_YOU_U: {
     name: "You, U",
-    description: "/ju/ → U",
+    description: "All 'yu' sounds are spelled U",
     soundId: "ju",
     spelling: "U",
     mutexGroup: "VOWEL_YOU",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_OH_EAU: {
+    name: "The French Law",
+    description: "All 'oh' sounds are spelled EAU",
+    soundId: "oʊ",
+    spelling: "EAU",
+    mutexGroup: "VOWEL_OH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_OH_AUX: {
+    name: "The Fake O",
+    description: "All 'oh' sounds are spelled AUX",
+    soundId: "oʊ",
+    spelling: "AUX",
+    mutexGroup: "VOWEL_OH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_OH_OO: {
+    name: "The Jewelry O",
+    description: "All 'oh' sounds are spelled OO",
+    soundId: "oʊ",
+    spelling: "OO",
+    mutexGroup: "VOWEL_OH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_OH_EW: {
+    name: "The Stitching O",
+    description: "All 'oh' sounds are spelled EW",
+    soundId: "oʊ",
+    spelling: "EW",
+    mutexGroup: "VOWEL_OH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_OO_OE: {
+    name: "The Cobbler's U",
+    description: "All 'ooh' sounds are spelled OE",
+    soundId: "u",
+    spelling: "OE",
+    mutexGroup: "VOWEL_OO",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_OO_OUP: {
+    name: "The Silent P",
+    description: "All 'ooh' sounds are spelled OUP",
+    soundId: "u",
+    spelling: "OUP",
+    mutexGroup: "VOWEL_OO",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EE_AY: {
+    name: "The Dockworker's E",
+    description: "All 'ee' sounds are spelled AY",
+    soundId: "i",
+    spelling: "AY",
+    mutexGroup: "VOWEL_EE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EE_IS: {
+    name: "The Wreckage E",
+    description: "All 'ee' sounds are spelled IS",
+    soundId: "i",
+    spelling: "IS",
+    mutexGroup: "VOWEL_EE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_YOU_UEUE: {
+    name: "The British Line",
+    description: "All 'you' sounds are spelled UEUE",
+    soundId: "ju",
+    spelling: "UEUE",
+    mutexGroup: "VOWEL_YOU",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_YOU_EAU: {
+    name: "The Beautiful U",
+    description: "All 'you' sounds are spelled EAU",
+    soundId: "ju",
+    spelling: "EAU",
+    mutexGroup: "VOWEL_YOU",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_YOU_UU: {
+    name: "The Double U",
+    description: "All 'you' sounds are spelled UU",
+    soundId: "ju",
+    spelling: "UU",
+    mutexGroup: "VOWEL_YOU",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EYE_AIS: {
+    name: "The Silent Island",
+    description: "All 'eye' sounds are spelled AIS",
+    soundId: "aɪ",
+    spelling: "AIS",
+    mutexGroup: "VOWEL_EYE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EYE_EYE: {
+    name: "The Optic I",
+    description: "All 'eye' sounds are spelled EYE",
+    soundId: "aɪ",
+    spelling: "EYE",
+    mutexGroup: "VOWEL_EYE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EYE_UY: {
+    name: "The Consumer I",
+    description: "All 'eye' sounds are spelled UY",
+    soundId: "aɪ",
+    spelling: "UY",
+    mutexGroup: "VOWEL_EYE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EYE_ICT: {
+    name: "The Legal I",
+    description: "All 'eye' sounds are spelled ICT",
+    soundId: "aɪ",
+    spelling: "ICT",
+    mutexGroup: "VOWEL_EYE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EH_A: {
+    name: "The Universal A",
+    description: "All 'eh' sounds are spelled A",
+    soundId: "ɛ",
+    spelling: "A",
+    mutexGroup: "VOWEL_EH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EH_EO: {
+    name: "The Spotted Vowel",
+    description: "All 'eh' sounds are spelled EO",
+    soundId: "ɛ",
+    spelling: "EO",
+    mutexGroup: "VOWEL_EH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EH_IE: {
+    name: "The Friendly E",
+    description: "All 'eh' sounds are spelled IE",
+    soundId: "ɛ",
+    spelling: "IE",
+    mutexGroup: "VOWEL_EH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_EH_U: {
+    name: "The Funeral E",
+    description: "All 'eh' sounds are spelled U",
+    soundId: "ɛ",
+    spelling: "U",
+    mutexGroup: "VOWEL_EH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_AE_AI: {
+    name: "The Scottish Pattern",
+    description: "All 'aah' sounds are spelled AI",
+    soundId: "æ",
+    spelling: "AI",
+    mutexGroup: "VOWEL_AE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_AH_E: {
+    name: "The Silk Vowel",
+    description: "All 'ahh' sounds are spelled E",
+    soundId: "ɑ",
+    spelling: "E",
+    mutexGroup: "VOWEL_AH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_AH_ACH: {
+    name: "The Billionaire's Vowel",
+    description: "All 'ahh' sounds are spelled ACH",
+    soundId: "ɑ",
+    spelling: "ACH",
+    mutexGroup: "VOWEL_AH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_IH_U: {
+    name: "The Corporate I",
+    description: "All 'ih' sounds are spelled U",
+    soundId: "ɪ",
+    spelling: "U",
+    mutexGroup: "VOWEL_IH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_IH_O: {
+    name: "The Plural Shift",
+    description: "All 'ih' sounds are spelled O",
+    soundId: "ɪ",
+    spelling: "O",
+    mutexGroup: "VOWEL_IH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_IH_IE: {
+    name: "The Kitchen Strainer",
+    description: "All 'ih' sounds are spelled IE",
+    soundId: "ɪ",
+    spelling: "IE",
+    mutexGroup: "VOWEL_IH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_IH_Y: {
+    name: "The Legend I",
+    description: "All 'ih' sounds are spelled Y",
+    soundId: "ɪ",
+    spelling: "Y",
+    mutexGroup: "VOWEL_IH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_IH_UI: {
+    name: "The Constructed I",
+    description: "All 'ih' sounds are spelled UI",
+    soundId: "ɪ",
+    spelling: "UI",
+    mutexGroup: "VOWEL_IH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_AY_ET: {
+    name: "The Dancer's A",
+    description: "All 'ay' sounds are spelled ET",
+    soundId: "eɪ",
+    spelling: "ET",
+    mutexGroup: "VOWEL_AY",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_AR_EAR: {
+    name: "The Cardiac Ar",
+    description: "All 'arr' sounds are spelled EAR",
+    soundId: "ɑr",
+    spelling: "EAR",
+    mutexGroup: "VOWEL_AR",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_OR_ORPS: {
+    name: "The Marine Silent PS",
+    description: "All 'or' sounds are spelled ORPS",
+    soundId: "ɔr",
+    spelling: "ORPS",
+    mutexGroup: "VOWEL_OR",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_UH_OO_UH: {
+    name: "The Watery U",
+    description: "All 'uh' sounds are spelled OO",
+    soundId: "ʌ",
+    spelling: "OO",
+    mutexGroup: "VOWEL_UH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  V_UH_O_SHORT: {
+    name: "The Canid U",
+    description: "All 'uh' sounds are spelled O",
+    soundId: "ʊ",
+    spelling: "O",
+    mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
   },

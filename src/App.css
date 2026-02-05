@@ -180,6 +180,21 @@ body {
   color: #1f7a1f;
 }
 
+.hint-visual--flash .hint-underscore {
+  animation: display-line-flash 450ms ease-out;
+}
+
+@keyframes display-line-flash {
+  0% {
+    color: #1f7a1f;
+    text-shadow: 0 0 10px rgba(31, 122, 31, 0.6);
+  }
+  100% {
+    color: #111;
+    text-shadow: none;
+  }
+}
+
 
 .rules-deck {
   position: relative;
@@ -188,6 +203,10 @@ body {
   max-width: 900px;
   margin: 0 auto;
   margin-bottom: 0.25rem;
+}
+
+.rules-deck--two-rows {
+  height: clamp(320px, 42vh, 420px);
 }
 
 .rules-title,
@@ -234,7 +253,7 @@ body {
   color: #111;
   position: absolute;
   left: 50%;
-  transform: translateX(calc(-50% + var(--fan-x, 0px))) rotate(var(--fan-rot, 0deg)) translateY(0) scale(1);
+  transform: translateX(calc(-50% + var(--fan-x, 0px))) rotate(var(--fan-rot, 0deg)) translateY(var(--fan-y, 0px)) scale(1);
   transition: transform 200ms ease, box-shadow 200ms ease;
   z-index: var(--card-z, 1);
   width: clamp(120px, 16vw, 150px);
@@ -246,7 +265,7 @@ body {
 }
 
 .rule-card:hover {
-  transform: translateX(calc(-50% + var(--fan-x, 0px))) rotate(var(--fan-rot, 0deg)) translateY(-18px) scale(1.05);
+  transform: translateX(calc(-50% + var(--fan-x, 0px))) rotate(var(--fan-rot, 0deg)) translateY(calc(var(--fan-y, 0px) - 18px)) scale(1.05);
   box-shadow: 0 16px 28px rgba(17, 17, 17, 0.18);
   z-index: 99;
 }
@@ -263,7 +282,7 @@ body {
 
 .rule-main {
   text-align: left;
-  max-width: 65%;
+  max-width: 100%;
 }
 
 .rule-title {
@@ -277,8 +296,8 @@ body {
 }
 
 .rule-health {
-  width: 35%;
-  text-align: right;
+  width: 100%;
+  text-align: left;
 }
 
 .rule-health-label {
@@ -311,6 +330,39 @@ body {
   opacity: 0.65;
 }
 
+.rule-defeated-floater {
+  position: absolute;
+  top: 8px;
+  pointer-events: none;
+  z-index: 200;
+}
+
+.rule-defeated-floater__text {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1f7a1f;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 10px rgba(31, 122, 31, 0.35);
+  animation: defeated-float 900ms ease-out forwards;
+}
+
+@keyframes defeated-float {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+}
+
 .spelling-input {
   background: #fff7cc;
   border: 2px solid rgba(17, 17, 17, 0.5);
@@ -340,6 +392,20 @@ body {
   gap: 0.6rem;
 }
 
+.game-over-modal {
+  background: #fff7cc;
+  border: 2px solid rgba(17, 17, 17, 0.35);
+  border-radius: 18px;
+  padding: 1.6rem 1.8rem;
+  min-width: min(90vw, 420px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: center;
+  box-shadow: 0 18px 36px rgba(17, 17, 17, 0.2);
+}
+
 .game-over-title {
   font-size: 1.3rem;
   font-weight: 800;
@@ -348,6 +414,12 @@ body {
 
 .game-over-score {
   font-weight: 700;
+  color: #b42318;
+}
+
+.game-over-stat {
+  font-weight: 700;
+  color: #111;
 }
 
 .game-over-button {

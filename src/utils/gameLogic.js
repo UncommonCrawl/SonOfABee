@@ -98,6 +98,8 @@ const applyRuleWithMask = (ruleKey, word, mask) => {
       return replaceAllWithMask(word, mask, "SH", "TI");
     case "CI":
       return replaceAllWithMask(word, mask, "SH", "CI");
+    case "S_SH":
+      return replaceAllWithMask(word, mask, "SH", "S");
     case "PS":
       return replaceSSoundWithMask(word, mask, "PS");
     case "SC":
@@ -108,26 +110,58 @@ const applyRuleWithMask = (ruleKey, word, mask) => {
       return replaceCharWithMask(word, mask, "R", "WR", (w, i) => w[i - 1] !== "W");
     case "RH":
       return replaceCharWithMask(word, mask, "R", "RH", (w, i) => w[i + 1] !== "H");
+    case "L_R":
+      return replaceCharWithMask(word, mask, "R", "L");
     case "DGE":
       return replaceCharWithMask(word, mask, "J", "DGE");
+    case "DJ":
+      return replaceCharWithMask(word, mask, "J", "DJ");
     case "KN":
       return replaceCharWithMask(word, mask, "N", "KN", (w, i) => w[i - 1] !== "K");
     case "GN":
       return replaceCharWithMask(word, mask, "N", "GN", (w, i) => w[i - 1] !== "G");
     case "PN":
       return replaceCharWithMask(word, mask, "N", "PN", (w, i) => w[i - 1] !== "P");
+    case "GNE":
+      return replaceCharWithMask(word, mask, "N", "GNE", (w, i) => w[i - 1] !== "G");
     case "BT":
       return replaceCharWithMask(word, mask, "T", "BT", (w, i) => w[i - 1] !== "B");
     case "MN":
       return replaceCharWithMask(word, mask, "M", "MN", (w, i) => w[i + 1] !== "N");
+    case "GM":
+      return replaceCharWithMask(word, mask, "M", "GM");
     case "CH":
       return replaceCharWithMask(word, mask, "K", "CH");
+    case "CH_KW":
+      return replaceAllWithMask(word, mask, "QU", "CH");
     case "X":
       return replaceCharWithMask(word, mask, "Z", "X");
+    case "CZ":
+      return replaceCharWithMask(word, mask, "Z", "CZ");
     case "WH":
       return replaceCharWithMask(word, mask, "H", "WH", (w, i) => w[i - 1] !== "W");
+    case "J":
+      return replaceCharWithMask(word, mask, "H", "J", (w, i) => w[i - 1] !== "W");
     case "PT":
       return replaceCharWithMask(word, mask, "T", "PT", (w, i) => w[i - 1] !== "P");
+    case "QU":
+      return replaceCharWithMask(word, mask, "K", "QU");
+    case "GUE":
+      return replaceCharWithMask(word, mask, "G", "GUE");
+    case "C_CH":
+      return replaceAllWithMask(word, mask, "CH", "C");
+    case "O_W":
+      return replaceCharWithMask(word, mask, "W", "O");
+    case "GH_P":
+      return replaceCharWithMask(word, mask, "P", "GH");
+    case "ZZ":
+      return replaceAllWithMask(word, mask, "TS", "ZZ");
+    case "F_V":
+      return replaceCharWithMask(word, mask, "V", "F");
+    case "LL":
+      return replaceCharWithMask(word, mask, "Y", "LL");
+    case "GNA":
+      return replaceAllWithMask(word, mask, "NI", "GNA");
     default:
       return { word, mask };
   }
@@ -259,6 +293,8 @@ const applyRuleToText = (ruleKey, text) => {
       return replaceWithCase(text, /sh/gi, "TI");
     case "CI":
       return replaceWithCase(text, /sh/gi, "CI");
+    case "S_SH":
+      return replaceWithCase(text, /sh/gi, "S");
     case "PS": {
       return replaceSSoundInText(text, "PS");
     }
@@ -272,26 +308,58 @@ const applyRuleToText = (ruleKey, text) => {
       return replaceCharInText(text, "R", "WR", (t, i) => t[i - 1]?.toUpperCase() !== "W");
     case "RH":
       return replaceCharInText(text, "R", "RH", (t, i) => t[i + 1]?.toUpperCase() !== "H");
+    case "L_R":
+      return replaceCharInText(text, "R", "L");
     case "DGE":
       return replaceCharInText(text, "J", "DGE");
+    case "DJ":
+      return replaceCharInText(text, "J", "DJ");
     case "KN":
       return replaceCharInText(text, "N", "KN", (t, i) => t[i - 1]?.toUpperCase() !== "K");
     case "GN":
       return replaceCharInText(text, "N", "GN", (t, i) => t[i - 1]?.toUpperCase() !== "G");
     case "PN":
       return replaceCharInText(text, "N", "PN", (t, i) => t[i - 1]?.toUpperCase() !== "P");
+    case "GNE":
+      return replaceCharInText(text, "N", "GNE", (t, i) => t[i - 1]?.toUpperCase() !== "G");
     case "BT":
       return replaceCharInText(text, "T", "BT", (t, i) => t[i - 1]?.toUpperCase() !== "B");
     case "MN":
       return replaceCharInText(text, "M", "MN", (t, i) => t[i + 1]?.toUpperCase() !== "N");
+    case "GM":
+      return replaceCharInText(text, "M", "GM");
     case "CH":
       return replaceCharInText(text, "K", "CH");
+    case "CH_KW":
+      return replaceWithCase(text, /qu/gi, "CH");
     case "X":
       return replaceCharInText(text, "Z", "X");
+    case "CZ":
+      return replaceCharInText(text, "Z", "CZ");
     case "WH":
       return replaceCharInText(text, "H", "WH", (t, i) => t[i - 1]?.toUpperCase() !== "W");
+    case "J":
+      return replaceCharInText(text, "H", "J", (t, i) => t[i - 1]?.toUpperCase() !== "W");
     case "PT":
       return replaceCharInText(text, "T", "PT", (t, i) => t[i - 1]?.toUpperCase() !== "P");
+    case "QU":
+      return replaceCharInText(text, "K", "QU");
+    case "GUE":
+      return replaceCharInText(text, "G", "GUE");
+    case "C_CH":
+      return replaceWithCase(text, /ch/gi, "C");
+    case "O_W":
+      return replaceCharInText(text, "W", "O");
+    case "GH_P":
+      return replaceCharInText(text, "P", "GH");
+    case "ZZ":
+      return replaceWithCase(text, /ts/gi, "ZZ");
+    case "F_V":
+      return replaceCharInText(text, "V", "F");
+    case "LL":
+      return replaceCharInText(text, "Y", "LL");
+    case "GNA":
+      return replaceWithCase(text, /ni/gi, "GNA");
     default:
       return text;
   }

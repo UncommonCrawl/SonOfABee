@@ -27,11 +27,30 @@ export default function App() {
   const [timeLeftMs, setTimeLeftMs] = useState(0);
   const [pointsFlash, setPointsFlash] = useState('');
   const [pointsFlashId, setPointsFlashId] = useState(0);
+  const [displayFlashId, setDisplayFlashId] = useState(0);
+  const [isDisplayFlashing, setIsDisplayFlashing] = useState(false);
+  const [defeatedFlashes, setDefeatedFlashes] = useState([]);
+  const [wordsDefeated, setWordsDefeated] = useState(0);
+  const [cardsCollected, setCardsCollected] = useState(0);
+  const [cardsDefeated, setCardsDefeated] = useState(0);
+  const defeatedFlashIdRef = useRef(0);
   const [showHelp, setShowHelp] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
   const roundEndedRef = useRef(false);
   const pausedRef = useRef(false);
+
+  const getFanLayout = (idx, total, baseSpread = 150, baseTilt = 3, rowThreshold = 10) => {
+    const hasSecondRow = total > rowThreshold;
+    const row = hasSecondRow && idx >= rowThreshold ? 1 : 0;
+    const rowCount = hasSecondRow ? (row === 0 ? rowThreshold : total - rowThreshold) : total;
+    const rowIndex = row === 0 ? idx : idx - rowThreshold;
+    const spread = rowCount <= 5 ? baseSpread : baseSpread * (5 / rowCount);
+    const offset = (rowIndex - (rowCount - 1) / 2) * spread;
+    const tilt = (rowIndex - (rowCount - 1) / 2) * baseTilt;
+    const rowY = row === 0 ? 0 : 150;
+    return { offset, tilt, rowY };
+  };
   
   const visibleLevels = levelData.filter((level) => !level.hidden);
   const [shuffledLevels, setShuffledLevels] = useState(() => shuffleLevels(visibleLevels));
@@ -49,7 +68,7 @@ export default function App() {
     currentLevel.word || '', 
     activeRules
   );
-  const transformedHint = corruptText(currentLevel.hint || "", activeRules);
+  const transformedHint = currentLevel.hint || "";
 
   const generatePastelHex = () => {
     const channel = () => Math.floor(170 + Math.random() * 70).toString(16).padStart(2, '0');
@@ -74,6 +93,9 @@ export default function App() {
     setTimeLeftMs(0);
     setPointsFlash('');
     setPointsFlashId((prev) => prev + 1);
+    setWordsDefeated(0);
+    setCardsCollected(0);
+    setCardsDefeated(0);
     setIsPaused(false);
     pausedRef.current = false;
     roundEndedRef.current = false;
@@ -152,7 +174,11 @@ export default function App() {
     });
 
     // 2. REMOVE DEAD RULES
-    const crumbledCount = nextRules.filter(r => r.durability <= 0).length;
+    const defeatedIndices = [];
+    nextRules.forEach((rule, idx) => {
+      if (rule.durability <= 0) defeatedIndices.push(idx);
+    });
+    const crumbledCount = defeatedIndices.length;
     const aliveRules = nextRules.filter(r => r.durability > 0);
     
     // Check if we lost any
@@ -165,7 +191,11 @@ export default function App() {
     const ruleDefinition = RULES[newRuleKey];
     
     // We check if the rule exists AND if it isn't blocked by a mutex group
-    if (ruleDefinition && !isRuleBlocked(ruleDefinition, aliveRules, newRuleKey)) {
+    if (
+      ruleDefinition &&
+      !isRuleBlocked(ruleDefinition, aliveRules, newRuleKey) &&
+      aliveRules.length < 20
+    ) {
       // Add the new rule with a 'key' property so we can track it
       aliveRules.push({ 
         ...ruleDefinition, 
@@ -173,15 +203,37 @@ export default function App() {
         durability: ruleDefinition.maxDurability,
         color: generatePastelHex()
       });
+      setCardsCollected((prev) => prev + 1);
     }
 
     // Update State
     const totalPoints = pointsEarned + crumbledCount * 10;
+    if (crumbledCount > 0) {
+      setCardsDefeated((prev) => prev + crumbledCount);
+    }
+    setWordsDefeated((prev) => prev + 1);
+    if (crumbledCount > 0) {
+      const count = nextRules.length;
+      const newFlashes = defeatedIndices.map((idx) => {
+        defeatedFlashIdRef.current += 1;
+        const { offset, tilt, rowY } = getFanLayout(idx, count);
+        return { id: defeatedFlashIdRef.current, offset, tilt, rowY };
+      });
+      setDefeatedFlashes((prev) => [...prev, ...newFlashes]);
+      newFlashes.forEach((flash) => {
+        setTimeout(() => {
+          setDefeatedFlashes((prev) => prev.filter((item) => item.id !== flash.id));
+        }, 900);
+      });
+    }
     setActiveRules(aliveRules);
     setScore((prev) => prev + totalPoints);
     setPointsFlash(`+${totalPoints}`);
     setPointsFlashId((prev) => prev + 1);
     setTimeout(() => setPointsFlash(''), 1200);
+    setDisplayFlashId((prev) => prev + 1);
+    setIsDisplayFlashing(true);
+    setTimeout(() => setIsDisplayFlashing(false), 450);
     setInput('');
     
     // Move to next level after a short delay
@@ -194,12 +246,15 @@ export default function App() {
   const handleFailure = () => {
     roundEndedRef.current = true;
     triggerShake();
-    setFeedback(`Correct: ${targetSpelling}`);
-    setLives(lives - 1);
+    setFeedback(`CORRECT WORD: ${targetSpelling}`);
+    const nextLives = lives - 1;
+    setLives(nextLives);
     setInput('');
     setTimeout(() => {
       setFeedback('');
-      setLevelIndex(levelIndex + 1);
+      if (nextLives > 0) {
+        setLevelIndex(levelIndex + 1);
+      }
     }, 1200);
   };
 
@@ -262,25 +317,47 @@ export default function App() {
           </div>
         </div>
       )}
+      {isGameOver && (
+        <div className="pause-overlay" role="dialog" aria-modal="true">
+          <div className="game-over-modal">
+            <div className="game-over-title">GAME OVER</div>
+            <div className="game-over-score">CORRECT WORD: {targetSpelling}</div>
+            <div className="game-over-stat">Your Score: {score}</div>
+            <div className="game-over-stat">Words Defeated: {wordsDefeated}</div>
+            <div className="game-over-stat">Cards Collected: {cardsCollected}</div>
+            <div className="game-over-stat">Cards Defeated: {cardsDefeated}</div>
+            <button className="game-over-button" onClick={resetGame}>Try Again?</button>
+          </div>
+        </div>
+      )}
 
       {/* MAIN GAME AREA */}
       <div className="w-full max-w-2xl text-center">
-        <div className="rules-timer">BONUS POINTS</div>
         <div className="bonus-bar">
           <div 
             className="bonus-fill" 
             style={{ width: `${Math.max(0, Math.min(100, (timeLeftMs / 10000) * 100))}%` }} 
           />
         </div>
-        <div className="rules-title">ACTIVE RULES</div>
+        {activeRules.length > 0 && <div className="rules-title">ACTIVE RULES</div>}
         <div className="rules-section">
           {/* ACTIVE RULES LIST */}
-          <div className="rules-deck">
+          <div className={`rules-deck ${activeRules.length > 10 ? 'rules-deck--two-rows' : ''}`}>
+            {defeatedFlashes.map((flash) => (
+              <div
+                key={`defeated-${flash.id}`}
+                className="rule-defeated-floater"
+                style={{
+                  left: '50%',
+                  transform: `translateX(calc(-50% + ${flash.offset}px)) translateY(${flash.rowY}px) rotate(${flash.tilt}deg)`
+                }}
+              >
+                <span className="rule-defeated-floater__text">CARD DEFEATED! +10</span>
+              </div>
+            ))}
             {activeRules.map((rule, idx) => {
               const count = activeRules.length;
-              const spread = count <= 5 ? 120 : 120 * (5 / count);
-              const offset = (idx - (count - 1) / 2) * spread;
-              const tilt = (idx - (count - 1) / 2) * 6;
+              const { offset, tilt, rowY } = getFanLayout(idx, count);
               const healthPercent = Math.max(
                 0, 
                 Math.min(100, Math.round((rule.durability / rule.maxDurability) * 100))
@@ -293,6 +370,7 @@ export default function App() {
                     backgroundColor: rule.color || generatePastelHex(),
                     '--fan-x': `${offset}px`,
                     '--fan-rot': `${tilt}deg`,
+                    '--fan-y': `${rowY}px`,
                     '--card-z': idx + 1
                   }}
                 >
@@ -317,7 +395,11 @@ export default function App() {
 
         <h2 className="hint-label">HINT</h2>
         <p className="hint-text">{transformedHint}</p>
-        <div className="hint-visual" aria-label={`Word length ${targetSpelling.length}`}>
+        <div
+          key={displayFlashId}
+          className={`hint-visual ${isDisplayFlashing ? 'hint-visual--flash' : ''}`}
+          aria-label={`Word length ${targetSpelling.length}`}
+        >
           {targetSpelling.split('').map((_, idx) => {
             const typedChar = input.toUpperCase()[idx];
             return (
@@ -350,16 +432,8 @@ export default function App() {
           <button type="submit" className="hidden">Submit</button>
         </form>
 
-        {isGameOver && (
-          <div className="game-over-panel">
-            <div className="game-over-title">GAME OVER</div>
-            <div className="game-over-score">Final Score: {score}</div>
-            <button className="game-over-button" onClick={resetGame}>Try again?</button>
-          </div>
-        )}
-
         {!isGameOver && (
-          <div className={`feedback-text ${feedback.includes('WRONG') ? 'feedback-wrong' : 'feedback-right'}`}>
+          <div className={`feedback-text ${feedback.includes('CORRECT WORD') ? 'feedback-wrong' : 'feedback-right'}`}>
             {feedback}
           </div>
         )}

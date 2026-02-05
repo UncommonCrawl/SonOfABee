@@ -7,878 +7,1345 @@ export const levelData = [
     id: "lvl_phone",
     word: "PHONE",
     hint: "Device used for voice communication",
-    ruleKey: "PH"
+    ruleKey: "PH",
+    hidden: true,
   },
   {
     id: "lvl_rough",
     word: "ROUGH",
-    hint: "Not smooth; coarse or uneven.",
-    ruleKey: "GH"
+    hint: "Not smooth; coarse or uneven",
+    ruleKey: "GH",
+    hidden: true,
   },
   {
     id: "lvl_duck",
     word: "DUCK",
-    hint: "Water bird with a broad bill.",
-    ruleKey: "CK"
+    hint: "Water bird with a broad bill",
+    ruleKey: "CK",
+    hidden: true,
   },
   {
     id: "lvl_unique",
     word: "UNIQUE",
-    hint: "Being the only one of its kind.",
-    ruleKey: "QUE"
+    hint: "Being the only one of its kind",
+    ruleKey: "QUE",
+    hidden: false,
   },
   {
     id: "lvl_nation",
     word: "NATION",
-    hint: "A country with its own government.",
-    ruleKey: "TI"
+    hint: "A country with its own government",
+    ruleKey: "TI",
+    hidden: false,
   },
   {
     id: "lvl_special",
     word: "SPECIAL",
-    hint: "Different from usual; unique or notable.",
-    ruleKey: "CI"
+    hint: "Distinguished by a unique quality",
+    ruleKey: "CI",
+    hidden: false,
   },
   {
     id: "lvl_psychic",
     word: "PSYCHIC",
-    hint: "Relating to or denoting extrasensory perception.",
-    ruleKey: "PS"
+    hint: "Relating to or denoting extrasensory perception",
+    ruleKey: "PS",
+    hidden: false,
   },
   {
     id: "lvl_city",
     word: "CITY",
-    hint: "Large town with many people.",
-    ruleKey: "CI"
+    hint: "Large town with many people",
+    ruleKey: "V_IH_I",
+    hidden: true,
   },
   {
     id: "lvl_wrong",
     word: "WRONG",
-    hint: "Incorrect or not morally right.",
-    ruleKey: "WR"
+    hint: "Incorrect or not morally right",
+    ruleKey: "WR",
+    hidden: true,
   },
   {
     id: "lvl_judge",
     word: "JUDGE",
-    hint: "Public official appointed to decide cases.",
-    ruleKey: "DGE"
+    hint: "Public official appointed to decide cases",
+    ruleKey: "DGE",
+    hidden: true,
   },
   {
     id: "lvl_knee",
     word: "KNEE",
-    hint: "Joint between the thigh and lower leg.",
-    ruleKey: "KN"
+    hint: "Joint between the thigh and lower leg",
+    ruleKey: "KN",
+    hidden: true,
   },
   {
     id: "lvl_knife",
     word: "KNIFE",
-    hint: "Sharp tool used for cutting food.",
-    ruleKey: "KN"
+    hint: "Sharp tool used for cutting food",
+    ruleKey: "KN",
+    hidden: true,
   },
   {
     id: "lvl_gnat",
     word: "GNAT",
-    hint: "Small two-winged fly that bites.",
-    ruleKey: "GN"
+    hint: "Small two-winged fly that bites",
+    ruleKey: "GN",
+    hidden: true,
   },
   {
     id: "lvl_gnome",
     word: "GNOME",
-    hint: "Small garden statue with a pointed hat.",
-    ruleKey: "GN"
+    hint: "Small garden statue with a pointed hat",
+    ruleKey: "GN",
+    hidden: true,
   },
   {
     id: "lvl_pneumonia",
     word: "PNEUMONIA",
-    hint: "Infection that inflames air sacs in lungs.",
-    ruleKey: "PN"
+    hint: "Infection that inflames air sacs in lungs",
+    ruleKey: "PN",
+    hidden: false,
   },
   {
     id: "lvl_debt",
     word: "DEBT",
-    hint: "Money owed to someone else.",
-    ruleKey: "BT"
+    hint: "Money owed to someone else",
+    ruleKey: "BT",
+    hidden: true,
   },
   {
     id: "lvl_doubt",
     word: "DOUBT",
-    hint: "Feeling of uncertainty or lack of conviction.",
-    ruleKey: "BT"
+    hint: "Feeling of uncertainty or lack of conviction",
+    ruleKey: "BT",
+    hidden: true,
   },
   {
     id: "lvl_column",
     word: "COLUMN",
-    hint: "Vertical pillar or a table field.",
-    ruleKey: "MN"
+    hint: "Vertical pillar or a table field",
+    ruleKey: "MN",
+    hidden: false,
   },
   {
     id: "lvl_autumn",
     word: "AUTUMN",
-    hint: "Season after summer and before winter.",
-    ruleKey: "MN"
+    hint: "Season after summer and before winter",
+    ruleKey: "MN",
+    hidden: false,
   },
   {
     id: "lvl_chemistry",
     word: "CHEMISTRY",
-    hint: "Study of substances and reactions.",
-    ruleKey: "CH"
+    hint: "Study of substances and reactions",
+    ruleKey: "CH",
+    hidden: false,
   },
   {
     id: "lvl_character",
     word: "CHARACTER",
-    hint: "A person's traits; also a letter.",
-    ruleKey: "CH"
+    hint: "A person's traits; also a letter",
+    ruleKey: "CH",
+    hidden: false,
   },
   {
     id: "lvl_rhythm",
     word: "RHYTHM",
-    hint: "Strong, regular, repeated pattern of movement.",
-    ruleKey: "RH"
+    hint: "Strong, regular, repeated pattern of movement",
+    ruleKey: "RH",
+    hidden: false,
   },
   {
     id: "lvl_rhino",
     word: "RHINO",
-    hint: "Large animal with a horn on its nose.",
-    ruleKey: "RH"
+    hint: "Large animal with a horn on its nose",
+    ruleKey: "RH",
+    hidden: true,
   },
   {
     id: "lvl_wrist",
     word: "WRIST",
-    hint: "Joint connecting the hand and the arm.",
-    ruleKey: "WR"
+    hint: "Joint connecting the hand and the arm",
+    ruleKey: "WR",
+    hidden: true,
   },
   {
     id: "lvl_xylophone",
     word: "XYLOPHONE",
-    hint: "Percussion instrument with wooden bars.",
-    ruleKey: "X"
+    hint: "Percussion instrument with wooden bars",
+    ruleKey: "X",
+    hidden: false,
   },
   {
     id: "lvl_xenophobia",
     word: "XENOPHOBIA",
-    hint: "Fear or dislike of foreigners.",
-    ruleKey: "X"
+    hint: "Fear or dislike of foreigners",
+    ruleKey: "X",
+    hidden: false,
   },
   {
     id: "lvl_who",
     word: "WHO",
-    hint: "Question word asking about a person.",
-    ruleKey: "WH"
+    hint: "Question word asking about a person",
+    ruleKey: "WH",
+    hidden: true,
   },
   {
     id: "lvl_whole",
     word: "WHOLE",
-    hint: "All of something; entire and complete.",
-    ruleKey: "WH"
+    hint: "All of something; entire and complete",
+    ruleKey: "WH",
+    hidden: true,
   },
   {
     id: "lvl_scissors",
     word: "SCISSORS",
-    hint: "Cutting instrument with two pivoted blades.",
-    ruleKey: "SC"
+    hint: "Cutting instrument with two pivoted blades",
+    ruleKey: "SC",
+    hidden: false,
   },
   {
     id: "lvl_science",
     word: "SCIENCE",
-    hint: "Systematic study of the structure of behavior.",
-    ruleKey: "SC"
+    hint: "Systematic study of the structure of behavior",
+    ruleKey: "SC",
+    hidden: false,
   },
   {
     id: "lvl_tsunami",
     word: "TSUNAMI",
-    hint: "Large ocean wave from seismic activity.",
-    ruleKey: "TS"
+    hint: "Large ocean wave from seismic activity",
+    ruleKey: "TS",
+    hidden: false,
   },
   {
     id: "lvl_pterodactyl",
     word: "PTERODACTYL",
-    hint: "Extinct flying reptile of the Jurassic period.",
-    ruleKey: "PT"
+    hint: "Extinct flying reptile of the Jurassic period",
+    ruleKey: "PT",
+    hidden: false,
   },
   {
     id: "lvl_action",
     word: "ACTION",
-    hint: "The act of doing something.",
-    ruleKey: "TI"
+    hint: "The act of doing something",
+    ruleKey: "TI",
+    hidden: false,
   },
   {
     id: "lvl_amazement",
     word: "AMAZEMENT",
-    hint: "A feeling of great surprise.",
-    ruleKey: "V_AY_A"
+    hint: "Astonishment or great surprise",
+    ruleKey: "V_AY_A",
+    hidden: false,
   },
   {
     id: "lvl_backdrop",
     word: "BACKDROP",
-    hint: "Background scenery behind something.",
-    ruleKey: "V_AE_A"
+    hint: "Scenery placed behind the main subject",
+    ruleKey: "V_AE_A",
+    hidden: false,
   },
   {
     id: "lvl_backpack",
     word: "BACKPACK",
-    hint: "Bag carried on the back.",
-    ruleKey: "CK"
+    hint: "Bag carried on one's shoulders",
+    ruleKey: "CK",
+    hidden: false,
   },
   {
     id: "lvl_backtrack",
     word: "BACKTRACK",
-    hint: "Return along the same path.",
-    ruleKey: "CK"
+    hint: "Return along the same path",
+    ruleKey: "CK",
+    hidden: false,
   },
   {
     id: "lvl_basketball",
     word: "BASKETBALL",
-    hint: "Sport played with hoops and a ball.",
-    ruleKey: "V_AW_A"
+    hint: "Sport played with hoops and a bouncing sphere",
+    ruleKey: "V_AW_A",
+    hidden: false,
   },
   {
     id: "lvl_bridge",
     word: "BRIDGE",
-    hint: "Structure carrying a road across a river.",
-    ruleKey: "DGE"
+    hint: "Structure carrying a road across a river",
+    ruleKey: "DGE",
+    hidden: false,
   },
   {
     id: "lvl_buzzards",
     word: "BUZZARDS",
-    hint: "Large soaring birds of prey.",
-    ruleKey: "V_ER_Z"
+    hint: "Large soaring birds that feed on carrion",
+    ruleKey: "V_ER_AR",
+    hidden: false,
   },
   {
     id: "lvl_center",
     word: "CENTER",
-    hint: "Middle point of something.",
-    ruleKey: "V_ER_ER"
+    hint: "Middle point of something",
+    ruleKey: "V_ER_ER",
+    hidden: false,
   },
   {
     id: "lvl_checklist",
     word: "CHECKLIST",
-    hint: "List of items to verify.",
-    ruleKey: "CH"
+    hint: "Set of items to verify before finishing",
+    ruleKey: "V_EH_E",
+    hidden: true,
   },
   {
     id: "lvl_chord",
     word: "CHORD",
-    hint: "Group of musical notes played together.",
-    ruleKey: "CH"
+    hint: "Group of musical notes played together",
+    ruleKey: "CH",
+    hidden: true,
   },
   {
     id: "lvl_chorus",
     word: "CHORUS",
-    hint: "Part of a song that repeats.",
-    ruleKey: "CH"
+    hint: "Part of a song that repeats",
+    ruleKey: "CH",
+    hidden: false,
   },
   {
     id: "lvl_chronicle",
     word: "CHRONICLE",
-    hint: "Written record of events.",
-    ruleKey: "CH"
+    hint: "Written record of events",
+    ruleKey: "CH",
+    hidden: false,
   },
   {
     id: "lvl_condemn",
     word: "CONDEMN",
-    hint: "Express complete disapproval of, typically in public.",
-    ruleKey: "MN"
+    hint: "Express complete disapproval of, typically in public",
+    ruleKey: "MN",
+    hidden: false,
   },
   {
     id: "lvl_cough",
     word: "COUGH",
-    hint: "Force air from lungs suddenly.",
-    ruleKey: "GH"
+    hint: "Force air from lungs suddenly",
+    ruleKey: "GH",
+    hidden: true,
   },
   {
     id: "lvl_elephant",
     word: "ELEPHANT",
-    hint: "Large mammal with a trunk.",
-    ruleKey: "PH"
+    hint: "Large mammal with a trunk",
+    ruleKey: "PH",
+    hidden: false,
   },
   {
     id: "lvl_fashioned",
     word: "FASHIONED",
-    hint: "Made or shaped in a style.",
-    ruleKey: "V_AE_A"
+    hint: "Made or shaped in a style",
+    ruleKey: "V_AE_A",
+    hidden: false,
   },
   {
     id: "lvl_firefight",
     word: "FIREFIGHT",
-    hint: "Battle against a fire.",
-    ruleKey: "GH"
-  },
-  {
-    id: "lvl_fireflies",
-    word: "FIREFLIES",
-    hint: "Insects that glow at night.",
-    ruleKey: "V_EYE_L"
+    hint: "Battle against a blaze",
+    ruleKey: "V_EYE_I",
+    hidden: false,
   },
   {
     id: "lvl_fishhook",
     word: "FISHHOOK",
-    hint: "Curved hook used for catching fish.",
-    ruleKey: "V_UH_OO"
+    hint: "Curved lure used for angling",
+    ruleKey: "V_UH_OO",
+    hidden: false,
   },
   {
     id: "lvl_flashing",
     word: "FLASHING",
-    hint: "Shining or appearing briefly.",
-    ruleKey: "V_AE_A"
-  },
-  {
-    id: "lvl_flashlight",
-    word: "FLASHLIGHT",
-    hint: "Portable hand-held light.",
-    ruleKey: "GH"
+    hint: "Appearing briefly in quick bursts",
+    ruleKey: "V_AE_A",
+    hidden: false,
   },
   {
     id: "lvl_freezing",
     word: "FREEZING",
-    hint: "Extremely cold; below 32°F.",
-    ruleKey: "V_EE_EE"
+    hint: "Extremely cold; below 32°F",
+    ruleKey: "V_EE_EE",
+    hidden: false,
   },
   {
     id: "lvl_fudge",
     word: "FUDGE",
-    hint: "Soft rich candy made with sugar.",
-    ruleKey: "DGE"
-  },
-  {
-    id: "lvl_gardener",
-    word: "GARDENER",
-    hint: "Person who tends plants.",
-    ruleKey: "V_AR_AR"
+    hint: "Soft chocolate-y candy",
+    ruleKey: "DGE",
+    hidden: true,
   },
   {
     id: "lvl_gentleman",
     word: "GENTLEMAN",
-    hint: "Polite, well-mannered man.",
-    ruleKey: "V_EH_E"
+    hint: "A polite, well-mannered sir",
+    ruleKey: "V_EH_E",
+    hidden: true,
   },
   {
     id: "lvl_ghost",
     word: "GHOST",
-    hint: "Spirit of a dead person appearing.",
-    ruleKey: "GH"
+    hint: "Spirit of a dead person appearing",
+    ruleKey: "V_OH_O",
+    hidden: true,
   },
   {
     id: "lvl_gnarl",
     word: "GNARL",
-    hint: "Twisted knot in wood.",
-    ruleKey: "GN"
+    hint: "Twisted knot in wood",
+    ruleKey: "GN",
+    hidden: true,
   },
   {
     id: "lvl_gnaw",
     word: "GNAW",
-    hint: "Chew or bite repeatedly.",
-    ruleKey: "GN"
+    hint: "Chew or bite repeatedly",
+    ruleKey: "GN",
+    hidden: true,
   },
   {
     id: "lvl_graph",
     word: "GRAPH",
-    hint: "Diagram showing data.",
-    ruleKey: "PH"
+    hint: "A chart plotting data on a coordinate grid",
+    ruleKey: "PH",
+    hidden: true,
   },
   {
     id: "lvl_harmonize",
     word: "HARMONIZE",
-    hint: "Sing or play in harmony.",
-    ruleKey: "V_AR_AR"
+    hint: "To sing or play in agreement",
+    ruleKey: "V_AR_AR",
+    hidden: false,
   },
   {
     id: "lvl_headphone",
     word: "HEADPHONE",
-    hint: "Listening device worn on the head.",
-    ruleKey: "PH"
+    hint: "Personal audio device worn over the ears",
+    ruleKey: "PH",
+    hidden: false,
   },
   {
     id: "lvl_headphones",
     word: "HEADPHONES",
-    hint: "Pair of head-worn speakers.",
-    ruleKey: "PH"
-  },
-  {
-    id: "lvl_honeybee",
-    word: "HONEYBEE",
-    hint: "Bee that produces honey.",
-    ruleKey: "V_EE_B"
+    hint: "Pair of ear-cups for listening to music",
+    ruleKey: "PH",
+    hidden: true,
   },
   {
     id: "lvl_hymn",
     word: "HYMN",
-    hint: "Religious song or poem of praise.",
-    ruleKey: "MN"
+    hint: "Religious song or poem of praise",
+    ruleKey: "MN",
+    hidden: true,
   },
   {
     id: "lvl_indebted",
     word: "INDEBTED",
-    hint: "Owing money or gratitude.",
-    ruleKey: "V_EH_E"
+    hint: "Owing money or gratitude",
+    ruleKey: "BT",
+    hidden: false,
   },
   {
     id: "lvl_junction",
     word: "JUNCTION",
-    hint: "Place where things join.",
-    ruleKey: "TI"
+    hint: "Place where things join",
+    ruleKey: "TI",
+    hidden: false,
   },
   {
     id: "lvl_keyboard",
     word: "KEYBOARD",
-    hint: "Panel of keys for typing.",
-    ruleKey: "V_AW_B"
+    hint: "Panel of keys for typing",
+    ruleKey: "V_AW_B",
+    hidden: false,
   },
   {
     id: "lvl_keychain",
     word: "KEYCHAIN",
-    hint: "Chain or ring for keys.",
-    ruleKey: "V_EE_E"
+    hint: "Ring or clip that holds keys together",
+    ruleKey: "V_EE_E",
+    hidden: false,
   },
   {
     id: "lvl_keystone",
     word: "KEYSTONE",
-    hint: "Central top stone of an arch.",
-    ruleKey: "V_EE_E"
+    hint: "Central wedge at the top of an arch",
+    ruleKey: "V_EE_E",
+    hidden: false,
   },
   {
     id: "lvl_knight",
     word: "KNIGHT",
-    hint: "Armored soldier mounted on a horse.",
-    ruleKey: "KN"
+    hint: "Armored soldier mounted on a horse",
+    ruleKey: "KN",
+    hidden: false,
   },
   {
     id: "lvl_knot",
     word: "KNOT",
-    hint: "Fastening made by tying rope together.",
-    ruleKey: "KN"
+    hint: "Fastening made by tying rope together",
+    ruleKey: "KN",
+    hidden: true,
   },
   {
     id: "lvl_laugh",
     word: "LAUGH",
-    hint: "Express amusement with sound.",
-    ruleKey: "GH"
+    hint: "Express amusement with sound",
+    ruleKey: "GH",
+    hidden: true,
   },
   {
     id: "lvl_magazine",
     word: "MAGAZINE",
-    hint: "Periodical publication.",
-    ruleKey: "V_AE_A"
+    hint: "Periodical publication",
+    ruleKey: "V_AE_A",
+    hidden: false,
   },
   {
     id: "lvl_marmalade",
     word: "MARMALADE",
-    hint: "Citrus fruit preserve or jam.",
-    ruleKey: "V_UH_A"
+    hint: "Citrus fruit preserve or jam",
+    ruleKey: "V_UH_A",
+    hidden: false,
   },
   {
     id: "lvl_mosque",
     word: "MOSQUE",
-    hint: "Muslim place of worship.",
-    ruleKey: "QUE"
+    hint: "Muslim place of worship",
+    ruleKey: "QUE",
+    hidden: false,
   },
   {
     id: "lvl_motion",
     word: "MOTION",
-    hint: "Movement or act of moving.",
-    ruleKey: "TI"
+    hint: "Movement or act of moving",
+    ruleKey: "TI",
+    hidden: false,
   },
   {
     id: "lvl_narration",
     word: "NARRATION",
-    hint: "Spoken or written storytelling.",
-    ruleKey: "TI"
-  },
-  {
-    id: "lvl_narrator",
-    word: "NARRATOR",
-    hint: "Person who tells a story.",
-    ruleKey: "V_ER_T"
+    hint: "Spoken voiceover in a story",
+    ruleKey: "TI",
+    hidden: false,
   },
   {
     id: "lvl_national",
     word: "NATIONAL",
-    hint: "Relating to a whole nation.",
-    ruleKey: "TI"
+    hint: "Relating to an entire country",
+    ruleKey: "TI",
+    hidden: false,
   },
   {
     id: "lvl_necklace",
     word: "NECKLACE",
-    hint: "Jewelry worn around the neck.",
-    ruleKey: "V_EH_E"
+    hint: "Jewelry worn around the throat",
+    ruleKey: "V_EH_E",
+    hidden: true,
   },
   {
     id: "lvl_neighbor",
     word: "NEIGHBOR",
-    hint: "Person living next door to you.",
-    ruleKey: "GH"
+    hint: "Person living next door to you",
+    ruleKey: "V_AY_EI",
+    hidden: false,
   },
   {
     id: "lvl_official",
     word: "OFFICIAL",
-    hint: "Formal; or a person in authority.",
-    ruleKey: "CI"
+    hint: "Formal; or a person in authority",
+    ruleKey: "CI",
+    hidden: false,
   },
   {
     id: "lvl_outdated",
     word: "OUTDATED",
-    hint: "Old-fashioned; no longer current.",
-    ruleKey: "V_OW_OU"
-  },
-  {
-    id: "lvl_patterned",
-    word: "PATTERNED",
-    hint: "Having a repeated design.",
-    ruleKey: "V_ER_T"
+    hint: "Old-fashioned; no longer current",
+    ruleKey: "V_OW_OU",
+    hidden: false,
   },
   {
     id: "lvl_pentagon",
     word: "PENTAGON",
-    hint: "Five-sided polygon.",
-    ruleKey: "V_AH_O"
+    hint: "Five-sided polygon",
+    ruleKey: "V_AH_O",
+    hidden: false,
   },
   {
     id: "lvl_phantom",
     word: "PHANTOM",
-    hint: "Ghost; something illusory.",
-    ruleKey: "PH"
+    hint: "Ghost; something illusory",
+    ruleKey: "PH",
+    hidden: false,
   },
   {
     id: "lvl_pharmacy",
     word: "PHARMACY",
-    hint: "Place where medicines are dispensed.",
-    ruleKey: "PH"
+    hint: "Place where medicines are dispensed",
+    ruleKey: "PH",
+    hidden: false,
   },
   {
     id: "lvl_photo",
     word: "PHOTO",
-    hint: "A photograph.",
-    ruleKey: "PH"
+    hint: "A picture taken with a camera",
+    ruleKey: "PH",
+    hidden: true,
   },
   {
     id: "lvl_physics",
     word: "PHYSICS",
-    hint: "Study of matter and energy.",
-    ruleKey: "PH"
+    hint: "Study of matter and energy",
+    ruleKey: "PH",
+    hidden: false,
   },
   {
     id: "lvl_pseudonym",
     word: "PSEUDONYM",
-    hint: "Name used instead of real one.",
-    ruleKey: "PS"
+    hint: "Name used instead of real one",
+    ruleKey: "PS",
+    hidden: false,
   },
   {
     id: "lvl_railroad",
     word: "RAILROAD",
-    hint: "Railway for trains.",
-    ruleKey: "V_AY_AI"
+    hint: "Track system used by trains",
+    ruleKey: "V_AY_AI",
+    hidden: false,
   },
   {
     id: "lvl_railroads",
     word: "RAILROADS",
-    hint: "Train rail systems; plural.",
-    ruleKey: "V_OH_OA"
+    hint: "Networks of train tracks",
+    ruleKey: "V_OH_OA",
+    hidden: false,
   },
   {
     id: "lvl_rhapsody",
     word: "RHAPSODY",
-    hint: "Free-form musical composition.",
-    ruleKey: "RH"
+    hint: "Free-form musical composition",
+    ruleKey: "RH",
+    hidden: false,
   },
-
   {
     id: "lvl_rooftops",
     word: "ROOFTOPS",
-    hint: "Upper surfaces of buildings.",
-    ruleKey: "V_OO_OO"
+    hint: "Upper surfaces of buildings, sometimes with helipads",
+    ruleKey: "V_OO_OO",
+    hidden: false,
   },
   {
     id: "lvl_sandstone",
     word: "SANDSTONE",
-    hint: "Sedimentary rock made of sand.",
-    ruleKey: "V_OH_O"
+    hint: "Sedimentary rock made from grains",
+    ruleKey: "V_OH_O",
+    hidden: false,
   },
   {
     id: "lvl_sandstorm",
     word: "SANDSTORM",
-    hint: "Windstorm carrying sand.",
-    ruleKey: "V_AW_O"
+    hint: "Wind-driven dust cloud in a desert",
+    ruleKey: "V_AW_O",
+    hidden: false,
   },
   {
     id: "lvl_sandwich",
     word: "SANDWICH",
-    hint: "Item of food consisting of two pieces of bread.",
-    ruleKey: "V_IH_I"
+    hint: "Item of food consisting of two pieces of bread",
+    ruleKey: "V_IH_I",
+    hidden: false,
   },
   {
     id: "lvl_scene",
     word: "SCENE",
     hint: "Place where an incident in real life occurs",
-    ruleKey: "SC"
+    ruleKey: "SC",
+    hidden: true,
   },
   {
     id: "lvl_scent",
     word: "SCENT",
-    hint: "Distinctive smell, especially one that is pleasant.",
-    ruleKey: "SC"
+    hint: "Distinctive smell, especially one that is pleasant",
+    ruleKey: "SC",
+    hidden: true,
   },
   {
     id: "lvl_shellfish",
     word: "SHELLFISH",
-    hint: "Sea animals with shells.",
-    ruleKey: "V_EH_E"
+    hint: "Sea creatures with hard outer coverings",
+    ruleKey: "V_EH_E",
+    hidden: false,
   },
   {
     id: "lvl_shipment",
     word: "SHIPMENT",
-    hint: "Goods transported together.",
-    ruleKey: "V_IH_I"
+    hint: "Goods transported together",
+    ruleKey: "V_IH_I",
+    hidden:true
   },
   {
     id: "lvl_sketches",
     word: "SKETCHES",
-    hint: "Quick drawings or outlines.",
-    ruleKey: "V_EH_E"
+    hint: "Quick drawings or outlines",
+    ruleKey: "V_EH_E",
+    hidden: false,
   },
   {
     id: "lvl_social",
     word: "SOCIAL",
-    hint: "Relating to society or interaction.",
-    ruleKey: "CI"
+    hint: "Relating to community life or interaction",
+    ruleKey: "CI",
+    hidden: false,
   },
   {
     id: "lvl_sunlight",
     word: "SUNLIGHT",
-    hint: "Light from the sun.",
-    ruleKey: "GH"
+    hint: "Daytime illumination",
+    ruleKey: "V_UH_U",
+    hidden: false,
   },
   {
     id: "lvl_sunscreen",
     word: "SUNSCREEN",
-    hint: "Lotion that protects from sun.",
-    ruleKey: "V_UH_U"
+    hint: "Lotion that protects from sun",
+    ruleKey: "V_UH_U",
+    hidden: false,
   },
   {
     id: "lvl_sunshine",
     word: "SUNSHINE",
-    hint: "Direct sunlight; bright weather.",
-    ruleKey: "V_EYE_I"
+    hint: "Direct sunlight; bright weather",
+    ruleKey: "V_EYE_I",
+    hidden: false,
   },
   {
     id: "lvl_tasting",
     word: "TASTING",
-    hint: "Sampling food or drink.",
-    ruleKey: "TI"
+    hint: "Sampling food or drink",
+    ruleKey: "V_AY_A",
+    hidden: false,
   },
   {
     id: "lvl_toasters",
     word: "TOASTERS",
-    hint: "Appliances that brown bread.",
-    ruleKey: "V_ER_ER"
+    hint: "Appliances that brown bread",
+    ruleKey: "V_ER_ER",
+    hidden: false,
   },
   {
     id: "lvl_tomatoes",
     word: "TOMATOES",
-    hint: "Edible red fruits used as vegetables.",
-    ruleKey: "V_UH_O"
-  },
-  {
-    id: "lvl_tomorrow",
-    word: "TOMORROW",
-    hint: "The day after today.",
-    ruleKey: "V_OH_R"
+    hint: "Edible red fruits used as vegetables",
+    ruleKey: "V_UH_O",
+    hidden: false,
   },
   {
     id: "lvl_tsar",
     word: "TSAR",
-    hint: "Russian emperor.",
-    ruleKey: "TS"
+    hint: "Russian emperor",
+    ruleKey: "TS",
+    hidden: true,
   },
   {
     id: "lvl_whale",
     word: "WHALE",
-    hint: "Large marine mammal.",
-    ruleKey: "WH"
+    hint: "Large marine mammal",
+    ruleKey: "V_AY_A",
+    hidden: true,
   },
   {
     id: "lvl_whisk",
     word: "WHISK",
-    hint: "Small, quick movement; or mix briskly.",
-    ruleKey: "WH"
+    hint: "Small, quick movement; or mix briskly",
+    ruleKey: "V_IH_I",
+    hidden: true,
   },
   {
     id: "lvl_wizardry",
     word: "WIZARDRY",
-    hint: "Magic or sorcery.",
-    ruleKey: "V_IH_I"
+    hint: "Magic or sorcery",
+    ruleKey: "V_IH_I",
+    hidden: false,
   },
   {
     id: "lvl_workbook",
     word: "WORKBOOK",
-    hint: "Book with practice exercises.",
-    ruleKey: "V_ER_OR"
+    hint: "Practice exercises gathered in a study binder",
+    ruleKey: "V_ER_OR",
+    hidden: true,
   },
   {
     id: "lvl_wrap",
     word: "WRAP",
-    hint: "Cover or enclose.",
-    ruleKey: "WR"
+    hint: "Cover or enclose",
+    ruleKey: "WR",
+    hidden: true,
   },
   {
     id: "lvl_wreck",
     word: "WRECK",
-    hint: "Destroy or ruin; also a wrecked vehicle.",
-    ruleKey: "WR"
+    hint: "To ruin or smash badly; also a damaged vehicle",
+    ruleKey: "WR",
+    hidden: true,
   },
   {
     id: "lvl_fun",
     word: "FUN",
     hint: "Enjoyment or amusement",
-    ruleKey: "V_UH_U"
+    ruleKey: "V_UH_U",
+    hidden: true,
   },
   {
     id: "lvl_kiss",
     word: "KISS",
     hint: "Touch with the lips as a sign of love",
-    ruleKey: "V_IH_I"
+    ruleKey: "V_IH_I",
+    hidden: true,
   },
   {
     id: "lvl_zoo",
     word: "ZOO",
     hint: "Place where wild animals are kept",
-    ruleKey: "V_OO_OO"
+    ruleKey: "V_OO_OO",
+    hidden: true,
   },
   {
     id: "lvl_jump",
     word: "JUMP",
-    hint: "Push oneself off the ground into the air",
-    ruleKey: "V_UH_U"
+    hint: "To hop or leap",
+    ruleKey: "V_UH_U",
+    hidden: true,
   },
   {
     id: "lvl_shun",
     word: "SHUN",
     hint: "Persistently avoid, ignore, or reject",
-    ruleKey: "V_UH_U"
+    ruleKey: "V_UH_U",
+    hidden: true,
   },
   {
     id: "lvl_box",
     word: "BOX",
-    hint: "Container with a flat base and sides",
-    ruleKey: "V_AH_O"
+    hint: "Six-sided cardboard container",
+    ruleKey: "X",
+    hidden: true,
   },
   {
     id: "lvl_sip",
     word: "SIP",
     hint: "Drink in small quantities",
-    ruleKey: "V_IH_I"
+    ruleKey: "V_IH_I",
+    hidden: true,
   },
   {
     id: "lvl_pay",
     word: "PAY",
     hint: "Give money for goods or services",
-    ruleKey: "V_AY_AY"
+    ruleKey: "V_AY_AY",
+    hidden: true,
   },
   {
     id: "lvl_see",
     word: "SEE",
     hint: "Perceive with the eyes",
-    ruleKey: "V_EE_EE"
+    ruleKey: "V_EE_EE",
+    hidden: true,
   },
   {
     id: "lvl_sky",
     word: "SKY",
     hint: "Region of the atmosphere above the earth",
-    ruleKey: "V_EYE_Y"
+    ruleKey: "V_EYE_Y",
+    hidden: true,
   },
   {
     id: "lvl_out",
     word: "OUT",
     hint: "Moving or appearing to move away",
-    ruleKey: "V_OW_OU"
+    ruleKey: "V_OW_OU",
+    hidden: true,
   },
   {
     id: "lvl_oil",
     word: "OIL",
     hint: "Viscous liquid used for fuel or food",
-    ruleKey: "V_OY_OI"
+    ruleKey: "V_OY_OI",
+    hidden: true,
   },
   {
     id: "lvl_raw",
     word: "RAW",
     hint: "Uncooked or unprocessed",
-    ruleKey: "V_AW_AW"
+    ruleKey: "V_AW_AW",
+    hidden: true,
   },
   {
     id: "lvl_new",
     word: "NEW",
     hint: "Not existing before; made recently",
-    ruleKey: "V_OO_EW"
+    ruleKey: "V_OO_EW",
+    hidden: true,
   },
   {
     id: "lvl_book",
     word: "BOOK",
     hint: "Written or printed work with pages",
-    ruleKey: "V_UH_OO"
+    ruleKey: "V_UH_OO",
+    hidden: true,
   },
   {
     id: "lvl_turn",
     word: "TURN",
     hint: "Move in a circular direction",
-    ruleKey: "V_UR_UR"
+    ruleKey: "V_UR_UR",
+    hidden: true,
   },
   {
     id: "lvl_star",
     word: "STAR",
     hint: "Fixed luminous point in the night sky",
-    ruleKey: "V_AR_AR"
+    ruleKey: "V_AR_AR",
+    hidden: true,
   },
   {
     id: "lvl_air",
     word: "AIR",
     hint: "Invisible gaseous substance surrounding earth",
-    ruleKey: "V_AIR_AIR"
+    ruleKey: "V_AIR_AIR",
+    hidden: true,
   },
   {
     id: "lvl_use",
     word: "USE",
     hint: "Take or hold as a means of accomplishing",
-    ruleKey: "V_YOU_U"
+    ruleKey: "V_YOU_U",
+    hidden: true,
   },
   {
     id: "lvl_gem",
     word: "GEM",
     hint: "Precious or semi-precious stone",
-    ruleKey: "V_EH_E"
+    ruleKey: "V_EH_E",
+    hidden: true,
   },
   {
     id: "lvl_cat",
     word: "CAT",
-    hint: "Small domesticated feline.",
-    ruleKey: "V_AE_A"
+    hint: "Small domesticated feline",
+    ruleKey: "V_AE_A",
+    hidden: true,
   },
   {
     id: "lvl_high",
     word: "HIGH",
-    hint: "Of great vertical extent",
-    ruleKey: "GH"
+    hint: "Elevated, physically or figuratively",
+    ruleKey: "V_EYE_I",
+    hidden: true,
   },
   {
     id: "lvl_eight",
     word: "EIGHT",
-    hint: "Number equivalent to the product of two and four",
-    ruleKey: "GH"
+    hint: "The number of sides on an octagon",
+    ruleKey: "V_AY_EI",
+    hidden: true,
   },
   {
     id: "lvl_tough",
     word: "TOUGH",
-    hint: "Strong enough to withstand adverse conditions",
-    ruleKey: "GH"
+    hint: "Hard to break; very resilient",
+    ruleKey: "GH",
+    hidden: true,
   },
   {
     id: "lvl_rhyme",
     word: "RHYME",
     hint: "Correspondence of sound between words",
-    ruleKey: "RH"
+    ruleKey: "RH",
+    hidden: true,
   },
   {
     id: "lvl_head",
     word: "HEAD",
     hint: "Upper part of the human body",
-    ruleKey: "V_EH_EA"
+    ruleKey: "V_EH_EA",
+    hidden: true,
+  },
+  {
+    id: "lvl_bureau",
+    word: "BUREAU",
+    hint: "Chest of drawers or an office",
+    ruleKey: "V_OH_EAU",
+    hidden: false,
+  },
+  {
+    id: "lvl_choir",
+    word: "CHOIR",
+    hint: "Group of singers in a church",
+    ruleKey: "CH_KW",
+    hidden: false,
+  },
+  {
+    id: "lvl_colonel",
+    word: "COLONEL",
+    hint: "Senior military officer rank",
+    ruleKey: "L_R",
+    hidden: false,
+  },
+  {
+    id: "lvl_phlegm",
+    word: "PHLEGM",
+    hint: "Thick mucosal substance in throat",
+    ruleKey: "GM",
+    hidden: false,
+  },
+  {
+    id: "lvl_yacht",
+    word: "YACHT",
+    hint: "Medium-sized sailing boat",
+    ruleKey: "V_AH_ACH",
+    hidden: false,
+  },
+  {
+    id: "lvl_djinn",
+    word: "DJINN",
+    hint: "Spirit in Arabian mythology",
+    ruleKey: "DJ",
+    hidden: false,
+  },
+  {
+    id: "lvl_czar",
+    word: "CZAR",
+    hint: "Emperor of Russia before 1917",
+    ruleKey: "CZ",
+    hidden: true,
+  },
+  {
+    id: "lvl_gnocchi",
+    word: "GNOCCHI",
+    hint: "Small dumplings made from potato",
+    ruleKey: "GN",
+    hidden: false,
+  },
+  {
+    id: "lvl_jalapeno",
+    word: "JALAPENO",
+    hint: "Medium-sized chili pepper",
+    ruleKey: "J",
+    hidden: false,
+  },
+  {
+    id: "lvl_tortilla",
+    word: "TORTILLA",
+    hint: "Thin flatbread made of corn",
+    ruleKey: "LL",
+    hidden: false,
+  },
+  {
+    id: "lvl_faux",
+    word: "FAUX",
+    hint: "Made in imitation; artificial",
+    ruleKey: "V_OH_AUX",
+    hidden: false,
+  },
+  {
+    id: "lvl_queue",
+    word: "QUEUE",
+    hint: "Line of people waiting their turn",
+    ruleKey: "V_YOU_UEUE",
+    hidden: false,
+  },
+  {
+    id: "lvl_quay",
+    word: "QUAY",
+    hint: "Platform for loading ships",
+    ruleKey: "V_EE_AY",
+    hidden: true,
+  },
+  {
+    id: "lvl_aisle",
+    word: "AISLE",
+    hint: "Passage between rows of seats",
+    ruleKey: "V_EYE_AIS",
+    hidden: false,
+  },
+  {
+    id: "lvl_business",
+    word: "BUSINESS",
+    hint: "Commercial activity or trade",
+    ruleKey: "V_IH_U",
+    hidden: false,
+  },
+  {
+    id: "lvl_women",
+    word: "WOMEN",
+    hint: "Adult human females",
+    ruleKey: "V_IH_O",
+    hidden: false,
+  },
+  {
+    id: "lvl_sieve",
+    word: "SIEVE",
+    hint: "Utensil for straining solids",
+    ruleKey: "V_IH_IE",
+    hidden: false,
+  },
+  {
+    id: "lvl_plaid",
+    word: "PLAID",
+    hint: "Checkered cloth pattern",
+    ruleKey: "V_AE_AI",
+    hidden: false,
+  },
+  {
+    id: "lvl_lingerie",
+    word: "LINGERIE",
+    hint: "Women's underwear and nightclothes",
+    ruleKey: "V_AH_E",
+    hidden: false,
+  },
+  {
+    id: "lvl_meringue",
+    word: "MERINGUE",
+    hint: "Sweet made of whipped egg whites",
+    ruleKey: "GUE",
+    hidden: false,
+  },
+  {
+    id: "lvl_champagne",
+    word: "CHAMPAGNE",
+    hint: "White sparkling wine from France",
+    ruleKey: "GNE",
+    hidden: false,
+  },
+  {
+    id: "lvl_debris",
+    word: "DEBRIS",
+    hint: "Scattered fragments of a wrecked object",
+    ruleKey: "V_EE_IS",
+    hidden: false,
+  },
+  {
+    id: "lvl_ballet",
+    word: "BALLET",
+    hint: "Artistic dance form",
+    ruleKey: "V_AY_ET",
+    hidden: false,
+  },
+  {
+    id: "lvl_cocoa",
+    word: "COCOA",
+    hint: "Powder made from roasted cacao seeds",
+    ruleKey: "V_OH_OA",
+    hidden: false,
+  },
+  {
+    id: "lvl_brooch",
+    word: "BROOCH",
+    hint: "Ornament fastened to clothing",
+    ruleKey: "V_OH_OO",
+    hidden: false,
+  },
+  {
+    id: "lvl_sugar",
+    word: "SUGAR",
+    hint: "Sweet crystalline substance",
+    ruleKey: "S_SH",
+    hidden: false,
+  },
+  {
+    id: "lvl_one",
+    word: "ONE",
+    hint: "Lowest cardinal number",
+    ruleKey: "O_W",
+    hidden: false,
+  },
+  {
+    id: "lvl_pizza",
+    word: "PIZZA",
+    hint: "Italian pie with dough and cheese",
+    ruleKey: "ZZ",
+    hidden: false,
+  },
+  {
+    id: "lvl_cello",
+    word: "CELLO",
+    hint: "Large string instrument",
+    ruleKey: "C_CH",
+    hidden: false,
+  },
+  {
+    id: "lvl_bologna",
+    word: "BOLOGNA",
+    hint: "Large smoked sausage from Italy",
+    ruleKey: "GNA",
+    hidden: false,
+  },
+  {
+    id: "lvl_feather",
+    word: "FEATHER",
+    hint: "Plumage covering a bird",
+    ruleKey: "V_EH_EA",
+    hidden: false,
+  },
+  {
+    id: "lvl_shoe",
+    word: "SHOE",
+    hint: "Covering for the foot",
+    ruleKey: "V_OO_OE",
+    hidden: false,
+  },
+  {
+    id: "lvl_build",
+    word: "BUILD",
+    hint: "Construct by putting parts together",
+    ruleKey: "V_IH_UI",
+    hidden: false,
+  },
+  {
+    id: "lvl_any",
+    word: "ANY",
+    hint: "Used to refer to one or some",
+    ruleKey: "V_EH_A",
+    hidden: false,
+  },
+  {
+    id: "lvl_beauty",
+    word: "BEAUTY",
+    hint: "Combination of qualities pleasing the senses",
+    ruleKey: "V_YOU_EAU",
+    hidden: false,
+  },
+  {
+    id: "lvl_eye",
+    word: "EYE",
+    hint: "Organ of sight",
+    ruleKey: "V_EYE_EYE",
+    hidden: false,
+  },
+  {
+    id: "lvl_sew",
+    word: "SEW",
+    hint: "Join or repair with needle and thread",
+    ruleKey: "V_OH_EW",
+    hidden: false,
+  },
+  {
+    id: "lvl_corps",
+    word: "CORPS",
+    hint: "Main subdivision of an army",
+    ruleKey: "V_OR_ORPS",
+    hidden: false,
+  },
+  {
+    id: "lvl_coup",
+    word: "COUP",
+    hint: "Sudden violent seizure of power",
+    ruleKey: "V_OO_OUP",
+    hidden: false,
+  },
+  {
+    id: "lvl_leopard",
+    word: "LEOPARD",
+    hint: "Large spotted cat of Africa/Asia",
+    ruleKey: "V_EH_EO",
+    hidden: false,
+  },
+  {
+    id: "lvl_friend",
+    word: "FRIEND",
+    hint: "Person with whom one has a bond",
+    ruleKey: "V_EH_IE",
+    hidden: false,
+  },
+  {
+    id: "lvl_buy",
+    word: "BUY",
+    hint: "Obtain in exchange for payment",
+    ruleKey: "V_EYE_UY",
+    hidden: false,
+  },
+  {
+    id: "lvl_heart",
+    word: "HEART",
+    hint: "Organ that pumps blood",
+    ruleKey: "V_AR_EAR",
+    hidden: false,
+  },
+  {
+    id: "lvl_flood",
+    word: "FLOOD",
+    hint: "Overflow of a large amount of water",
+    ruleKey: "V_UH_OO_UH",
+    hidden: false,
+  },
+  {
+    id: "lvl_myth",
+    word: "MYTH",
+    hint: "Traditional story explaining history",
+    ruleKey: "V_IH_Y",
+    hidden: false,
+  },
+  {
+    id: "lvl_of",
+    word: "OF",
+    hint: "Expressing the relationship between a part and a whole",
+    ruleKey: "F_V",
+    hidden: false,
+  },
+  {
+    id: "lvl_indict",
+    word: "INDICT",
+    hint: "Formally accuse of a crime",
+    ruleKey: "V_EYE_ICT",
+    hidden: false,
+  },
+  {
+    id: "lvl_bury",
+    word: "BURY",
+    hint: "Put or hide underground",
+    ruleKey: "V_EH_U",
+    hidden: false,
+  },
+  {
+    id: "lvl_busy",
+    word: "BUSY",
+    hint: "Engaged in activity (like a bee!)",
+    ruleKey: "V_IH_U",
+    hidden: false,
+  },
+  {
+    id: "lvl_hiccough",
+    word: "HICCOUGH",
+    hint: "Involuntary spasm of the diaphragm",
+    ruleKey: "GH_P",
+    hidden: false,
+  },
+  {
+    id: "lvl_mannequin",
+    word: "MANNEQUIN",
+    hint: "Dummy used to display clothes",
+    ruleKey: "QU",
+    hidden: false,
+  },
+  {
+    id: "lvl_vacuum",
+    word: "VACUUM",
+    hint: "Space entirely devoid of matter",
+    ruleKey: "V_YOU_UU",
+    hidden: false,
+  },
+  {
+    id: "lvl_wolf",
+    word: "WOLF",
+    hint: "Wild carnivorous mammal of the dog family",
+    ruleKey: "V_UH_O_SHORT",
+    hidden: false,
   },
 
   // --- HIDDEN WORDS ---
@@ -886,8 +1353,8 @@ export const levelData = [
   {
     id: "lvl_rhetoric",
     word: "RHETORIC",
-    hint: "Persuasive or eloquent speech.",
+    hint: "Persuasive or eloquent speech",
     ruleKey: "RH",
-    hidden: true
+    hidden: true,
   },
 ];
