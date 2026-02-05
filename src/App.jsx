@@ -186,25 +186,30 @@ export default function App() {
       setFeedback('');
     }
 
-    // 3. ADD NEW RULE (If valid)
-    const newRuleKey = currentLevel.ruleKey;
-    const ruleDefinition = RULES[newRuleKey];
-    
-    // We check if the rule exists AND if it isn't blocked by a mutex group
-    if (
-      ruleDefinition &&
-      !isRuleBlocked(ruleDefinition, aliveRules, newRuleKey) &&
-      aliveRules.length < 20
-    ) {
-      // Add the new rule with a 'key' property so we can track it
-      aliveRules.push({ 
-        ...ruleDefinition, 
-        key: newRuleKey, 
-        durability: ruleDefinition.maxDurability,
-        color: generatePastelHex()
-      });
-      setCardsCollected((prev) => prev + 1);
-    }
+    // 3. ADD NEW RULE(S) (If valid)
+    const newRuleKeys = Array.isArray(currentLevel.ruleKey)
+      ? currentLevel.ruleKey
+      : (currentLevel.ruleKey ? [currentLevel.ruleKey] : []);
+
+    newRuleKeys.forEach((ruleKey) => {
+      const ruleDefinition = RULES[ruleKey];
+
+      // We check if the rule exists AND if it isn't blocked by a mutex group
+      if (
+        ruleDefinition &&
+        !isRuleBlocked(ruleDefinition, aliveRules, ruleKey) &&
+        aliveRules.length < 20
+      ) {
+        // Add the new rule with a 'key' property so we can track it
+        aliveRules.push({ 
+          ...ruleDefinition, 
+          key: ruleKey, 
+          durability: ruleDefinition.maxDurability,
+          color: generatePastelHex()
+        });
+        setCardsCollected((prev) => prev + 1);
+      }
+    });
 
     // Update State
     const totalPoints = pointsEarned + crumbledCount * 10;
