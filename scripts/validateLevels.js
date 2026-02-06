@@ -20,30 +20,43 @@ const getPhonemesForWord = (word) => {
 const issues = [];
 
 for (const level of levelData) {
-  const rule = RULES[level.ruleKey];
-  if (!rule) {
-    issues.push({ type: "missing_rule", word: level.word, ruleKey: level.ruleKey });
+  const ruleKeys = Array.isArray(level.ruleKey)
+    ? level.ruleKey
+    : (level.ruleKey ? [level.ruleKey] : []);
+
+  if (ruleKeys.length === 0) continue;
+
+  const rules = ruleKeys.map((key) => ({ key, rule: RULES[key] }));
+  const missing = rules.filter((entry) => !entry.rule);
+  if (missing.length > 0) {
+    issues.push({
+      type: "missing_rule",
+      word: level.word,
+      ruleKey: missing.map((entry) => entry.key)
+    });
     continue;
   }
 
   const phonemes = getPhonemesForWord(level.word);
   if (!phonemes) {
-    issues.push({ type: "missing_phonemes", word: level.word, ruleKey: level.ruleKey });
+    issues.push({ type: "missing_phonemes", word: level.word, ruleKey: ruleKeys });
     continue;
   }
 
-  const match = phonemes.find(
-    (p) => p.soundId === rule.soundId && p.defaultSpelling === rule.spelling
-  );
+  for (const { key, rule } of rules) {
+    const match = phonemes.find(
+      (p) => p.soundId === rule.soundId && p.defaultSpelling === rule.spelling
+    );
 
-  if (!match) {
-    issues.push({
-      type: "rule_mismatch",
-      word: level.word,
-      ruleKey: level.ruleKey,
-      expected: `${rule.soundId}/${rule.spelling}`,
-      phonemes
-    });
+    if (!match) {
+      issues.push({
+        type: "rule_mismatch",
+        word: level.word,
+        ruleKey: key,
+        expected: `${rule.soundId}/${rule.spelling}`,
+        phonemes
+      });
+    }
   }
 }
 

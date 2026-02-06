@@ -1049,16 +1049,20 @@
       "soundId": "æ"
     },
     {
-      "grapheme": "S",
-      "soundId": "ʃən"
+      "grapheme": "SH",
+      "soundId": "ʃ"
     },
     {
-      "grapheme": "H",
-      "soundId": "d"
+      "grapheme": "ION",
+      "soundId": "ən"
     },
     {
-      "grapheme": "IONED",
+      "grapheme": "E",
       "soundId": null
+    },
+    {
+      "grapheme": "D",
+      "soundId": "d"
     }
   ],
   "FAUX": [
@@ -1421,7 +1425,7 @@
       "soundId": "t"
     }
   ],
-  "GNARL": [
+  "GNARLY": [
     {
       "grapheme": "GN",
       "soundId": "n"
@@ -1433,6 +1437,10 @@
     {
       "grapheme": "L",
       "soundId": "l"
+    },
+        {
+      "grapheme": "Y",
+      "soundId": "i"
     }
   ],
   "GNAT": [
@@ -1877,15 +1885,15 @@
       "soundId": "b"
     },
     {
-      "grapheme": "O",
+      "grapheme": "OA",
       "soundId": "ɔ"
     },
     {
-      "grapheme": "A",
+      "grapheme": "R",
       "soundId": "r"
     },
     {
-      "grapheme": "RD",
+      "grapheme": "D",
       "soundId": "d"
     }
   ],
@@ -1895,7 +1903,7 @@
       "soundId": "k"
     },
     {
-      "grapheme": "E",
+      "grapheme": "EY",
       "soundId": "i"
     },
     {
@@ -1921,16 +1929,24 @@
       "soundId": "i"
     },
     {
-      "grapheme": "ST",
+      "grapheme": "S",
       "soundId": "s"
+    },
+    {
+      "grapheme": "T",
+      "soundId": "t"
     },
     {
       "grapheme": "O",
       "soundId": "oʊ"
     },
     {
-      "grapheme": "NE",
+      "grapheme": "N",
       "soundId": "n"
+    },
+    {
+      "grapheme": "E",
+      "soundId": null
     }
   ],
   "KISS": [
@@ -2374,7 +2390,7 @@
     },
     {
       "grapheme": "A",
-      "soundId": "ə"
+      "soundId": "ɪ"
     },
     {
       "grapheme": "C",
@@ -2466,15 +2482,15 @@
   "ONE": [
     {
       "grapheme": "O",
-      "soundId": "w"
+      "soundId": "wʌ"
     },
     {
       "grapheme": "N",
-      "soundId": "ʌ"
+      "soundId": "n"
     },
     {
       "grapheme": "E",
-      "soundId": "n"
+      "soundId": null
     }
   ],
   "OUT": [
@@ -3609,15 +3625,15 @@
       "soundId": "n"
     },
     {
-      "grapheme": "SC",
+      "grapheme": "S",
       "soundId": "s"
     },
     {
-      "grapheme": "R",
+      "grapheme": "C",
       "soundId": "k"
     },
     {
-      "grapheme": "E",
+      "grapheme": "R",
       "soundId": "r"
     },
     {
