@@ -1,5 +1,5 @@
 // src/App.jsx
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
 import './App.css';
 import { RULES } from './data/rules'; // Import the rules data
 import { levelData } from './data/levels'; // Import the words data
@@ -24,7 +24,6 @@ const VOWEL_SOUNDS = new Set([
 ]);
 const isVowelRule = (rule) => VOWEL_SOUNDS.has(rule.soundId);
 const ENABLE_MAX_LENGTH = false;
-const MIN_WORD_LENGTH = 8;
 
 const shuffleLevels = (levels) => {
   const copy = [...levels];
@@ -45,7 +44,7 @@ const buildWarmupOrder = (levels) => {
         const maxLength = round / 4 + 5;
         return length < maxLength;
       }
-      return length >= MIN_WORD_LENGTH;
+      return true;
     });
     const pool = eligible.length > 0 ? eligible : remaining;
     const pickIndex = Math.floor(Math.random() * pool.length);
@@ -82,6 +81,8 @@ export default function App() {
   const defeatedFlashIdRef = useRef(0);
   const [recentRuleKeys, setRecentRuleKeys] = useState([]);
   const inputRef = useRef(null);
+  const entryFloaterRef = useRef(null);
+  const entryFloaterClampRef = useRef(0);
   const [showHelp, setShowHelp] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [wasPausedBeforeHelp, setWasPausedBeforeHelp] = useState(false);
@@ -89,6 +90,11 @@ export default function App() {
   const [hasStarted, setHasStarted] = useState(false);
   const [isShaking, setIsShaking] = useState(false);
   const [introScale, setIntroScale] = useState(1);
+  const [isTimed, setIsTimed] = useState(true);
+  const [showHints, setShowHints] = useState(true);
+  const [showHelper, setShowHelper] = useState(true);
+  const [difficultyPulse, setDifficultyPulse] = useState(false);
+  const [selectedDifficulty, setSelectedDifficulty] = useState(null);
   const [splitByPhonemeType, setSplitByPhonemeType] = useState(true);
   const roundEndedRef = useRef(false);
   const pausedRef = useRef(false);
@@ -225,7 +231,8 @@ export default function App() {
     const options = isCorrect ? correctFloaters : incorrectFloaters;
     const text = options[Math.floor(Math.random() * options.length)];
     const xOffset = Math.floor(Math.random() * 41) - 20;
-    const angle = Math.floor(Math.random() * 31) - 15;
+    const angleOptions = [-8, -7, -6, 6, 7, 8];
+    const angle = angleOptions[Math.floor(Math.random() * angleOptions.length)];
     setEntryFloater({
       id: `${Date.now()}-${Math.random()}`,
       text,
@@ -274,9 +281,42 @@ export default function App() {
   
   // Calculate the target spelling dynamically based on current rules
   // We do this every render so the UI is always up to date
+  const currentRuleKeys = Array.isArray(currentLevel.ruleKey)
+    ? currentLevel.ruleKey
+    : (currentLevel.ruleKey ? [currentLevel.ruleKey] : []);
+  const entryRuleKeys = (() => {
+    const seen = new Set();
+    const accepted = [];
+    currentRuleKeys.forEach((ruleKey) => {
+      const rule = RULES[ruleKey];
+      if (rule?.mutexGroup === "SOUND_SILENT") return;
+      const group = rule?.mutexGroup;
+      if (!group) {
+        accepted.push(ruleKey);
+        return;
+      }
+      if (seen.has(group)) return;
+      seen.add(group);
+      accepted.push(ruleKey);
+    });
+    return accepted;
+  })();
+  const levelPhonemes = currentRuleKeys
+    .map((ruleKey) => {
+      const rule = RULES[ruleKey];
+      if (!rule) return null;
+      return {
+        soundId: rule.soundId ?? null,
+        defaultSpelling: rule.spelling ?? rule.key ?? "",
+        ruleKey
+      };
+    })
+    .filter(Boolean);
+
   const { targetSpelling, usedRules, hintMask } = calculateTargetSpelling(
     currentLevel.word || '', 
-    activeRules
+    activeRules,
+    levelPhonemes
   );
   const transformedHint = currentLevel.hint || "";
 
@@ -343,6 +383,12 @@ export default function App() {
     setDisplayInput('');
     setEntryFloater(null);
     roundEndedRef.current = false;
+    if (!isTimed) {
+      setRoundSeconds(0);
+      setTimeLeft(0);
+      setTimeLeftMs(0);
+      return undefined;
+    }
     const baseSeconds = 4 + (currentLevel.word ? currentLevel.word.length * 2 : 0);
     setRoundSeconds(baseSeconds);
     setTimeLeft(baseSeconds);
@@ -371,7 +417,7 @@ export default function App() {
     return () => {
       clearInterval(timer);
     };
-  }, [levelIndex, isGameOver, hasWon, currentLevel.word, hasStarted]);
+  }, [levelIndex, isGameOver, hasWon, currentLevel.word, hasStarted, isTimed]);
 
   useEffect(() => {
     if (!showIntro) return undefined;
@@ -403,8 +449,53 @@ export default function App() {
     };
   }, [showIntro]);
 
+  useLayoutEffect(() => {
+    if (!entryFloater || !entryFloaterRef.current) return undefined;
+
+    const buffer = 60;
+    const clampFloater = () => {
+      const el = entryFloaterRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const overflow = rect.bottom - (window.innerHeight - buffer);
+      const nextOffset = overflow > 0 ? -overflow : 0;
+      if (Math.abs(entryFloaterClampRef.current - nextOffset) < 0.5) return;
+      entryFloaterClampRef.current = nextOffset;
+      el.style.setProperty('--entry-y', `${nextOffset}px`);
+    };
+
+    clampFloater();
+    window.addEventListener('resize', clampFloater);
+    let resizeObserver;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(clampFloater);
+      resizeObserver.observe(entryFloaterRef.current);
+    }
+    const fontsReady = document.fonts?.ready?.then(clampFloater);
+
+    return () => {
+      window.removeEventListener('resize', clampFloater);
+      if (resizeObserver) resizeObserver.disconnect();
+      if (fontsReady?.cancel) fontsReady.cancel();
+    };
+  }, [entryFloater]);
+
   // --- ACTIONS ---
-  const handleStartGame = () => {
+  const handleStartGame = (mode) => {
+    if (!mode) return;
+    if (mode === 'honeybee') {
+      setIsTimed(false);
+      setShowHints(true);
+      setShowHelper(true);
+    } else if (mode === 'killer') {
+      setIsTimed(true);
+      setShowHints(true);
+      setShowHelper(false);
+    } else {
+      setIsTimed(true);
+      setShowHints(true);
+      setShowHelper(true);
+    }
     setShowIntro(false);
     setHasStarted(true);
     inputRef.current?.focus();
@@ -453,9 +544,7 @@ export default function App() {
     }
 
     // 3. ADD NEW RULE(S) (If valid)
-    const newRuleKeys = Array.isArray(currentLevel.ruleKey)
-      ? currentLevel.ruleKey
-      : (currentLevel.ruleKey ? [currentLevel.ruleKey] : []);
+    const newRuleKeys = entryRuleKeys;
 
     newRuleKeys.forEach((ruleKey) => {
       const ruleDefinition = RULES[ruleKey];
@@ -567,8 +656,16 @@ export default function App() {
       onClick={() => inputRef.current?.focus()}
     >
       {showIntro && (
-        <div className="intro-overlay" role="dialog" aria-modal="true">
-          <div className="intro-card" ref={introCardRef}>
+        <div
+          className="intro-overlay"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => {
+            setDifficultyPulse(true);
+            setTimeout(() => setDifficultyPulse(false), 200);
+          }}
+        >
+          <div className="intro-card" ref={introCardRef} onClick={(e) => e.stopPropagation()}>
             <div
               className="intro-card__content"
               ref={introContentRef}
@@ -587,7 +684,7 @@ export default function App() {
                   <span className="intro-step__number">1.</span>
                   <span className="intro-step__text"><strong>SPELL</strong> out the word based on the hint.</span>
                 </div>
-                <div className="intro-step-spacer" />
+                <div className="intro-step-spacer intro-step-spacer--tight" />
                 <div className="intro-underline intro-underline--spaced">
                   <span className="intro-example-word">
                     <span className="intro-example-text">SUGAR</span>
@@ -603,10 +700,10 @@ export default function App() {
                   <span className="intro-step__text"><strong>CHANGE</strong> the English language based on your answers.</span>
                 </div>
                 <div className="intro-cards">
-                  {introRuleCards.map((rule) => (
+                  {introRuleCards.map((rule, idx) => (
                     <div
                       key={rule.name}
-                      className="rule-card intro-rule-card"
+                      className={`rule-card intro-rule-card intro-rule-card--${idx === 0 ? 'left' : 'right'}`}
                       style={{ backgroundColor: rule.color }}
                     >
                       <div className="rule-main">
@@ -620,7 +717,7 @@ export default function App() {
                   <span className="intro-step__number">3.</span>
                   <span className="intro-step__text"><strong>ADAPT</strong> your spelling to match the new rules.</span>
                 </div>
-                <div className="intro-step-spacer" />
+                <div className="intro-step-spacer intro-step-spacer--tight" />
                 <div className="intro-underline intro-underline--arrow">
                   <span className="intro-example-word">
                     <span className="intro-example-text">SHOE</span>
@@ -633,15 +730,62 @@ export default function App() {
                   </span>
                 </div>
               </div>
-              <button className="intro-button" onClick={handleStartGame}>LET'S BEE-GIN</button>
+              <div className="intro-subtitle intro-subtitle--spacious">CHOOSE YOUR DIFFICULTY:</div>
+              <div className={`difficulty-grid ${difficultyPulse ? 'difficulty-grid--pulse' : ''}`}>
+                <button
+                  className={`difficulty-option ${selectedDifficulty === 'honeybee' ? 'difficulty-option--selected' : ''}`}
+                  onClick={() => setSelectedDifficulty('honeybee')}
+                  aria-label="Honeybee difficulty"
+                  aria-pressed={selectedDifficulty === 'honeybee'}
+                >
+                  <span className="difficulty-hex" aria-hidden="true" />
+                  <div className="difficulty-name">HONEYBEE</div>
+                  <div className="difficulty-desc">spelling hints</div>
+                  <div className="difficulty-desc">no time limit</div>
+                </button>
+                <button
+                  className={`difficulty-option ${selectedDifficulty === 'bumblebee' ? 'difficulty-option--selected' : ''}`}
+                  onClick={() => setSelectedDifficulty('bumblebee')}
+                  aria-label="Bumblebee difficulty"
+                  aria-pressed={selectedDifficulty === 'bumblebee'}
+                >
+                  <span className="difficulty-hex difficulty-hex--warn" aria-hidden="true">
+                    <span className="difficulty-mark">!</span>
+                  </span>
+                  <div className="difficulty-name">BUMBLEBEE</div>
+                  <div className="difficulty-desc">spelling hints</div>
+                  <div className="difficulty-desc"><span className="intro-red">time limit</span></div>
+                </button>
+                <button
+                  className={`difficulty-option ${selectedDifficulty === 'killer' ? 'difficulty-option--selected' : ''}`}
+                  onClick={() => setSelectedDifficulty('killer')}
+                  aria-label="Killer Bee difficulty"
+                  aria-pressed={selectedDifficulty === 'killer'}
+                >
+                  <span className="difficulty-hex difficulty-hex--danger" aria-hidden="true">
+                    <span className="difficulty-mark">!!</span>
+                  </span>
+                  <div className="difficulty-name">KILLER BEE</div>
+                  <div className="difficulty-desc"><span className="intro-red">no hints</span></div>
+                  <div className="difficulty-desc"><span className="intro-red">time limit</span></div>
+                </button>
+              </div>
+              <button
+                className="intro-button"
+                onClick={() => handleStartGame(selectedDifficulty)}
+                disabled={!selectedDifficulty}
+              >
+                LET'S BEE-GIN!
+              </button>
             </div>
           </div>
         </div>
       )}
       {isPaused && !showHelp && (
         <div className="pause-overlay" role="dialog" aria-modal="true">
-          <div className="pause-title">Paused</div>
-          <button className="pause-button" onClick={() => setIsPaused(false)}>Resume</button>
+          <button className="pause-button" onClick={() => setIsPaused(false)}>
+            <span className="pause-button__icon">▶</span>
+          </button>
         </div>
       )}
       <div className="hexagon-field" aria-hidden="true">
@@ -668,23 +812,71 @@ export default function App() {
         ?
       </button>
       <button
-        className="pause-toggle"
+        className={`pause-toggle ${isPaused ? "pause-toggle--active" : "pause-toggle--inactive"}`}
         onClick={() => setIsPaused((prev) => !prev)}
         aria-label={isPaused ? "Resume game" : "Pause game"}
       >
-        {isPaused ? "Resume" : "Pause"}
+        {isPaused ? "▶" : "⏸︎"}
       </button>
       {showHelp && (
         <div className="help-overlay" role="dialog" aria-modal="true" onClick={handleCloseHelp}>
           <div className="help-card" onClick={(event) => event.stopPropagation()}>
-            <h3>How It Works</h3>
-            <ul>
-              <li>Active rules change the spelling you must type.</li>
-              <li>Underscores show word length; green marks altered letters.</li>
-              <li>Bonus points count down only in the last 10 seconds.</li>
-              <li>Correct answers score remaining seconds; wrong answers lose a life.</li>
-              <li>Breaking a rule card grants +10 points.</li>
-            </ul>
+            <div className="help-content">
+              <div className="help-column">
+                <div className="help-title"><strong>HOW TO PLAY</strong></div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>GUESS THE WORD</strong></div>
+                  <div className="help-item__text">Use the hint to find the answer. Standard English spelling applies... at first.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>UNLOCK MUTATIONS</strong></div>
+                  <div className="help-item__text">Correct answers unlock Mutation Cards that change the rules of English (e.g., PH becomes F).</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>OBEY THE HIVE</strong></div>
+                  <div className="help-item__text">Active Mutations are law. You must apply them to all future answers. Example: If "PH = F" is active, you must type FOTO, not PHOTO.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>SCORING</strong></div>
+                  <div className="help-item__text">Points are awarded based on word length and time remaining (when timer is enabled). Rule cards are "broken" after three uses, earning you additional points.</div>
+                </div>
+              </div>
+              <div className="help-divider" aria-hidden="true" />
+              <div className="help-column">
+                <div className="help-item">
+                  <div className="help-item__title"><strong>SPELLING STANDARDS</strong></div>
+                  <div className="help-item__text">This game uses American spelling conventions (as defined by Merriam-Webster).</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>PRONUNCIATION STANDARDS</strong></div>
+                  <div className="help-item__text">All phonetic logic is based on standard General American pronunciation.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>COT = CAUGHT</strong></div>
+                  <div className="help-item__text">The unrounded [/ɑ/] (as in bot) and rounded [/ɔ/] (as in bought) are pronounced the same.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>MARY = MARRY = MERRY</strong></div>
+                  <div className="help-item__text">The vowels [/e/], [/æ/], and [/ɛ/] are merged before the /r/ consonant.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>WHINE = WINE</strong></div>
+                  <div className="help-item__text">The voiced [/w/] and voiceless [/hw/] are merged.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>HORSE = HOARSE</strong></div>
+                  <div className="help-item__text">The vowels [/ɔ/] and [/oʊ/] are merged before /r/.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>PIN ≠ PEN</strong></div>
+                  <div className="help-item__text">The vowels [/ɪ/] (as in kit) and [/ɛ/] (as in dress) remain distinct before nasal consonants.</div>
+                </div>
+                <div className="help-item">
+                  <div className="help-item__title"><strong>RHOTICITY</strong></div>
+                  <div className="help-item__text">The [/r/] sound is always pronounced after vowels.</div>
+                </div>
+              </div>
+            </div>
             <button className="help-close" onClick={handleCloseHelp}>Close</button>
           </div>
         </div>
@@ -705,7 +897,7 @@ export default function App() {
 
       {/* MAIN GAME AREA */}
       <div className="w-full text-center">
-        <div className="bonus-bar">
+        <div className={`bonus-bar ${!isTimed ? 'bonus-bar--hidden' : ''}`}>
           <div 
             className="bonus-fill" 
             style={{
@@ -718,11 +910,23 @@ export default function App() {
           />
         </div>
         <div className="rules-title rules-title--score">
-          <span className="rules-title__score">SCORE: {score}</span>
-          <span key={pointsFlashId} className="score-bonus">
-            {pointsFlash}
-          </span>
-          <span className="rules-title__lives">LIVES: {'♥ '.repeat(lives)}</span>
+          <div className="rules-title__stack">
+            <span className="rules-title__label">SCORE</span>
+            <span className="rules-title__score">{score}</span>
+            <span key={pointsFlashId} className="score-bonus">
+              {pointsFlash}
+            </span>
+          </div>
+          <div className="rules-title__stack">
+            <span className="rules-title__label">LIVES</span>
+            <span className="rules-title__lives">
+              <span className="life-icons" aria-label={`${lives} lives`}>
+                {Array.from({ length: lives }).map((_, idx) => (
+                  <span key={`life-${idx}`} className="life-hex" />
+                ))}
+              </span>
+            </span>
+          </div>
         </div>
         <div className={`rules-section ${splitByPhonemeType ? 'rules-section--split' : ''}`}>
           {/* ACTIVE RULES LIST */}
@@ -909,8 +1113,12 @@ export default function App() {
           )}
         </div>
 
-        <h2 className={`hint-label ${isCorrectRevealing ? 'hint-label--fade' : ''}`}>HINT</h2>
-        <p className={`hint-text ${isCorrectRevealing ? 'hint-text--fade' : ''}`}>{transformedHint}</p>
+        {showHints && (
+          <>
+            <h2 className={`hint-label ${isCorrectRevealing ? 'hint-label--fade' : ''}`}>HINT</h2>
+            <p className={`hint-text ${isCorrectRevealing ? 'hint-text--fade' : ''}`}>{transformedHint}</p>
+          </>
+        )}
         <div
           key={displayFlashId}
           className={`hint-visual ${isDisplayFlashing && !isCorrectRevealing && !isWrongRevealing ? 'hint-visual--flash' : ''} ${isCorrectRevealing ? 'hint-visual--correct' : ''} ${isWrongRevealing ? 'hint-visual--wrong' : ''} ${isShaking ? 'hint-visual--shake' : ''}`}
@@ -922,7 +1130,7 @@ export default function App() {
             return (
             <span 
               key={`hint-${idx}`} 
-              className={`hint-underscore ${typedChar ? 'hint-underscore--typed' : ''} ${hintMask[idx] ? 'hint-underscore--changed' : ''}`}
+              className={`hint-underscore ${typedChar ? 'hint-underscore--typed' : ''} ${showHelper && hintMask[idx] ? 'hint-underscore--changed' : ''}`}
             >
               {typedChar || '_'}
             </span>
@@ -935,9 +1143,11 @@ export default function App() {
             <div
               key={entryFloater.id}
               className={`entry-floater entry-floater--${entryFloater.kind}`}
+              ref={entryFloaterRef}
               style={{
                 '--entry-tilt': `${entryFloater.angle}deg`,
-                '--entry-x': `${entryFloater.xOffset}px`
+                '--entry-x': `${entryFloater.xOffset}px`,
+                '--entry-y': '0px'
               }}
               aria-hidden="true"
             >

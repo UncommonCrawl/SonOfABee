@@ -745,12 +745,8 @@
       "soundId": "k"
     },
     {
-      "grapheme": "L",
-      "soundId": "ə"
-    },
-    {
-      "grapheme": "E",
-      "soundId": "l"
+      "grapheme": "LE",
+      "soundId": "əl"
     }
   ],
   "CITY": [
@@ -3475,20 +3471,16 @@
       "soundId": "ɛ"
     },
     {
-      "grapheme": "T",
+      "grapheme": "TCH",
       "soundId": "tʃ"
     },
     {
-      "grapheme": "C",
+      "grapheme": "E",
       "soundId": "ə"
     },
     {
-      "grapheme": "H",
+      "grapheme": "S",
       "soundId": "z"
-    },
-    {
-      "grapheme": "ES",
-      "soundId": null
     }
   ],
   "SKY": [

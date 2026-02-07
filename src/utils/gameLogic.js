@@ -170,16 +170,22 @@ const applyRuleWithMask = (ruleKey, word, mask) => {
 // 1. CALCULATE THE SPELLING
 // Takes the base word and runs it through every active rule.
 // Returns the "corrupted" word, a list of rules used, and a hint mask.
-export const calculateTargetSpelling = (baseWord, activeRules) => {
-  const phonemes = getPhonemesForWord(baseWord) || [
+export const calculateTargetSpelling = (baseWord, activeRules, phonemesOverride = null) => {
+  const phonemes = phonemesOverride && phonemesOverride.length
+    ? phonemesOverride
+    : (getPhonemesForWord(baseWord) || [
     { soundId: null, defaultSpelling: baseWord }
-  ];
+  ]);
   const usedRules = new Set();
   let currentSpelling = "";
   const currentMask = [];
 
   phonemes.forEach((phoneme) => {
-    const matchingRule = activeRules.find((rule) => rule.soundId === phoneme.soundId);
+    const matchingBySound = activeRules.find((rule) => rule.soundId === phoneme.soundId);
+    const matchingByKey = phoneme.ruleKey
+      ? activeRules.find((rule) => rule.key === phoneme.ruleKey)
+      : null;
+    const matchingRule = matchingBySound ?? matchingByKey;
     const nextSpelling = matchingRule
       ? (matchingRule.spelling ?? matchingRule.key)
       : phoneme.defaultSpelling;
