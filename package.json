@@ -8,7 +8,12 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "validate-levels": "node scripts/validateLevels.js"
+    "validate-levels": "node scripts/validateLevels.js",
+    "validate-rule-keys": "node scripts/validateRuleKeys.js",
+    "diagnose-hints": "node scripts/diagnoseHintDictionary.js",
+    "validate-hint-spelling": "node scripts/validateHintDictionarySpelling.js",
+    "fix-hint-spellings": "node scripts/fixHintDictionarySpellings.js --write",
+    "fix-hint-graphemes": "node scripts/fixHintDictionaryGraphemeFirst.js --write"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",

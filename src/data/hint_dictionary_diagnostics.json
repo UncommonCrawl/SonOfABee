@@ -1,0 +1,599 @@
+{
+  "summary": {
+    "missing_ipa": 8,
+    "unmapped": 8,
+    "api_error": 4
+  },
+  "results": [
+    {
+      "word": "SAMPLING",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "EXTREME",
+      "status": "unmapped",
+      "ipa": "/ɛkˈstɹiːm/",
+      "tokens": [
+        "ɛ",
+        "ks",
+        "t",
+        "r",
+        "i",
+        "m"
+      ],
+      "entries": [
+        {
+          "soundId": "ɛ",
+          "grapheme": "E",
+          "ruleLabel": "EH",
+          "exactKey": "E||ɛ",
+          "exactRuleKey": "EH_E",
+          "fallbackRuleKey": "EH_A"
+        },
+        {
+          "soundId": "ks",
+          "grapheme": "X",
+          "ruleLabel": "KS",
+          "exactKey": "X||ks",
+          "exactRuleKey": "CKS_X",
+          "fallbackRuleKey": "CKS_X"
+        },
+        {
+          "soundId": "t",
+          "grapheme": "T",
+          "ruleLabel": "T",
+          "exactKey": "T||t",
+          "exactRuleKey": "T_T",
+          "fallbackRuleKey": "T_BT"
+        },
+        {
+          "soundId": "r",
+          "grapheme": "R",
+          "ruleLabel": "R",
+          "exactKey": "R||r",
+          "exactRuleKey": "R_R",
+          "fallbackRuleKey": "R_A"
+        },
+        {
+          "soundId": "i",
+          "grapheme": "E",
+          "ruleLabel": "EE",
+          "exactKey": "E||i",
+          "exactRuleKey": "EE_E",
+          "fallbackRuleKey": "EE_AY"
+        },
+        {
+          "soundId": "m",
+          "grapheme": "M",
+          "ruleLabel": "M",
+          "exactKey": "M||m",
+          "exactRuleKey": "M_M",
+          "fallbackRuleKey": "M_GM"
+        },
+        {
+          "soundId": null,
+          "grapheme": "E",
+          "ruleLabel": "SILENT",
+          "exactKey": "E||null",
+          "exactRuleKey": "SILENT_E",
+          "fallbackRuleKey": "SILENT_B"
+        }
+      ]
+    },
+    {
+      "word": "GENERAL",
+      "status": "unmapped",
+      "ipa": "/ˈd͡ʒɛnɹəl/",
+      "tokens": [
+        "dʒ",
+        "ɛ",
+        "n",
+        "r",
+        "ə",
+        "l"
+      ],
+      "entries": [
+        {
+          "soundId": "dʒ",
+          "grapheme": "G",
+          "ruleLabel": "J",
+          "exactKey": "G||dʒ",
+          "exactRuleKey": "JH_G",
+          "fallbackRuleKey": "DJ_DJ"
+        },
+        {
+          "soundId": "ɛ",
+          "grapheme": "E",
+          "ruleLabel": "EH",
+          "exactKey": "E||ɛ",
+          "exactRuleKey": "EH_E",
+          "fallbackRuleKey": "EH_A"
+        },
+        {
+          "soundId": "n",
+          "grapheme": "N",
+          "ruleLabel": "N",
+          "exactKey": "N||n",
+          "exactRuleKey": "N_N",
+          "fallbackRuleKey": "N_DN"
+        },
+        {
+          "soundId": "r",
+          "grapheme": "",
+          "ruleLabel": "R",
+          "exactKey": "||r",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "R_A"
+        },
+        {
+          "soundId": "ə",
+          "grapheme": "E",
+          "ruleLabel": "UH",
+          "exactKey": "E||ə",
+          "exactRuleKey": "UH_E",
+          "fallbackRuleKey": "UH_A"
+        },
+        {
+          "soundId": "l",
+          "grapheme": "",
+          "ruleLabel": "L",
+          "exactKey": "||l",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "L_E"
+        },
+        {
+          "soundId": null,
+          "grapheme": "RAL",
+          "ruleLabel": "SILENT",
+          "exactKey": "RAL||null",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "SILENT_B"
+        }
+      ]
+    },
+    {
+      "word": "NATO",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "BURSTS",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "FASTENING",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "OWED",
+      "status": "unmapped",
+      "ipa": "/əʊd/",
+      "tokens": [
+        "oʊ",
+        "d"
+      ],
+      "entries": [
+        {
+          "soundId": "oʊ",
+          "grapheme": "OW",
+          "ruleLabel": "OH",
+          "exactKey": "OW||oʊ",
+          "exactRuleKey": "AH_OW",
+          "fallbackRuleKey": "AH_OW"
+        },
+        {
+          "soundId": "d",
+          "grapheme": "",
+          "ruleLabel": "D",
+          "exactKey": "||d",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "D_D"
+        },
+        {
+          "soundId": null,
+          "grapheme": "ED",
+          "ruleLabel": "SILENT",
+          "exactKey": "ED||null",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "SILENT_B"
+        }
+      ]
+    },
+    {
+      "word": "BERLIN",
+      "status": "api_error"
+    },
+    {
+      "word": "SAUSAGE",
+      "status": "unmapped",
+      "ipa": "/ˈsɑsɪd͡ʒ/",
+      "tokens": [
+        "s",
+        "ɑ",
+        "s",
+        "ɪ",
+        "dʒ"
+      ],
+      "entries": [
+        {
+          "soundId": "s",
+          "grapheme": "S",
+          "ruleLabel": "S",
+          "exactKey": "S||s",
+          "exactRuleKey": "S_S",
+          "fallbackRuleKey": "S_C"
+        },
+        {
+          "soundId": "ɑ",
+          "grapheme": "A",
+          "ruleLabel": "AH",
+          "exactKey": "A||ɑ",
+          "exactRuleKey": "AH_A",
+          "fallbackRuleKey": "AH_A"
+        },
+        {
+          "soundId": "s",
+          "grapheme": "",
+          "ruleLabel": "S",
+          "exactKey": "||s",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "S_C"
+        },
+        {
+          "soundId": "ɪ",
+          "grapheme": "",
+          "ruleLabel": "IH",
+          "exactKey": "||ɪ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "IH_AI"
+        },
+        {
+          "soundId": "dʒ",
+          "grapheme": "",
+          "ruleLabel": "J",
+          "exactKey": "||dʒ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "DJ_DJ"
+        },
+        {
+          "soundId": null,
+          "grapheme": "USAGE",
+          "ruleLabel": "SILENT",
+          "exactKey": "USAGE||null",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "SILENT_B"
+        }
+      ]
+    },
+    {
+      "word": "ENGAGED",
+      "status": "unmapped",
+      "ipa": "/ɛnˈɡeɪdʒd/",
+      "tokens": [
+        "ɛ",
+        "n",
+        "ɡ",
+        "eɪ",
+        "dʒ",
+        "d"
+      ],
+      "entries": [
+        {
+          "soundId": "ɛ",
+          "grapheme": "E",
+          "ruleLabel": "EH",
+          "exactKey": "E||ɛ",
+          "exactRuleKey": "EH_E",
+          "fallbackRuleKey": "EH_A"
+        },
+        {
+          "soundId": "n",
+          "grapheme": "N",
+          "ruleLabel": "N",
+          "exactKey": "N||n",
+          "exactRuleKey": "N_N",
+          "fallbackRuleKey": "N_DN"
+        },
+        {
+          "soundId": "ɡ",
+          "grapheme": "",
+          "ruleLabel": "G",
+          "exactKey": "||ɡ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "G_G"
+        },
+        {
+          "soundId": "eɪ",
+          "grapheme": "",
+          "ruleLabel": "AY",
+          "exactKey": "||eɪ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "AY_A"
+        },
+        {
+          "soundId": "dʒ",
+          "grapheme": "G",
+          "ruleLabel": "J",
+          "exactKey": "G||dʒ",
+          "exactRuleKey": "JH_G",
+          "fallbackRuleKey": "DJ_DJ"
+        },
+        {
+          "soundId": "d",
+          "grapheme": "",
+          "ruleLabel": "D",
+          "exactKey": "||d",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "D_D"
+        },
+        {
+          "soundId": null,
+          "grapheme": "AGED",
+          "ruleLabel": "SILENT",
+          "exactKey": "AGED||null",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "SILENT_B"
+        }
+      ]
+    },
+    {
+      "word": "SNACKS",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "MOLLUSKS",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "THEYRE",
+      "status": "api_error"
+    },
+    {
+      "word": "NARNIA",
+      "status": "api_error"
+    },
+    {
+      "word": "ARABIAN",
+      "status": "api_error"
+    },
+    {
+      "word": "COLLARBONE",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "PHYSICS",
+      "status": "unmapped",
+      "ipa": "/ˈfɪz.ɪks/",
+      "tokens": [
+        "f",
+        "ɪ",
+        "z",
+        "ɪ",
+        "ks"
+      ],
+      "entries": [
+        {
+          "soundId": "f",
+          "grapheme": "PH",
+          "ruleLabel": "F",
+          "exactKey": "PH||f",
+          "exactRuleKey": "F_PH",
+          "fallbackRuleKey": "F_E"
+        },
+        {
+          "soundId": "ɪ",
+          "grapheme": "Y",
+          "ruleLabel": "IH",
+          "exactKey": "Y||ɪ",
+          "exactRuleKey": "IH_Y",
+          "fallbackRuleKey": "IH_AI"
+        },
+        {
+          "soundId": "z",
+          "grapheme": "",
+          "ruleLabel": "Z",
+          "exactKey": "||z",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "Z_CZ"
+        },
+        {
+          "soundId": "ɪ",
+          "grapheme": "",
+          "ruleLabel": "IH",
+          "exactKey": "||ɪ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "IH_AI"
+        },
+        {
+          "soundId": "ks",
+          "grapheme": "",
+          "ruleLabel": "KS",
+          "exactKey": "||ks",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "CKS_X"
+        },
+        {
+          "soundId": null,
+          "grapheme": "SICS",
+          "ruleLabel": "SILENT",
+          "exactKey": "SICS||null",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "SILENT_B"
+        }
+      ]
+    },
+    {
+      "word": "CONVERTED",
+      "status": "unmapped",
+      "ipa": "/kənˈvɜːtɪd/",
+      "tokens": [
+        "k",
+        "ə",
+        "n",
+        "v",
+        "ɜ",
+        "t",
+        "ɪ",
+        "d"
+      ],
+      "entries": [
+        {
+          "soundId": "k",
+          "grapheme": "C",
+          "ruleLabel": "K",
+          "exactKey": "C||k",
+          "exactRuleKey": "K_C",
+          "fallbackRuleKey": "K_C"
+        },
+        {
+          "soundId": "ə",
+          "grapheme": "O",
+          "ruleLabel": "UH",
+          "exactKey": "O||ə",
+          "exactRuleKey": "UH_O",
+          "fallbackRuleKey": "UH_A"
+        },
+        {
+          "soundId": "n",
+          "grapheme": "N",
+          "ruleLabel": "N",
+          "exactKey": "N||n",
+          "exactRuleKey": "N_N",
+          "fallbackRuleKey": "N_DN"
+        },
+        {
+          "soundId": "v",
+          "grapheme": "V",
+          "ruleLabel": "V",
+          "exactKey": "V||v",
+          "exactRuleKey": "V_V",
+          "fallbackRuleKey": "V_F"
+        },
+        {
+          "soundId": "ɜ",
+          "grapheme": "ER",
+          "ruleLabel": "U025C",
+          "exactKey": "ER||ɜ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": null
+        },
+        {
+          "soundId": "t",
+          "grapheme": "T",
+          "ruleLabel": "T",
+          "exactKey": "T||t",
+          "exactRuleKey": "T_T",
+          "fallbackRuleKey": "T_BT"
+        },
+        {
+          "soundId": "ɪ",
+          "grapheme": "",
+          "ruleLabel": "IH",
+          "exactKey": "||ɪ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "IH_AI"
+        },
+        {
+          "soundId": "d",
+          "grapheme": "",
+          "ruleLabel": "D",
+          "exactKey": "||d",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "D_D"
+        },
+        {
+          "soundId": null,
+          "grapheme": "ED",
+          "ruleLabel": "SILENT",
+          "exactKey": "ED||null",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "SILENT_B"
+        }
+      ]
+    },
+    {
+      "word": "DOMESTICATED",
+      "status": "missing_ipa"
+    },
+    {
+      "word": "BIOLOGY",
+      "status": "unmapped",
+      "ipa": "/baɪˈɒlədʒɪ/",
+      "tokens": [
+        "b",
+        "ɑ",
+        "ɪ",
+        "ɑ",
+        "l",
+        "ə",
+        "dʒ",
+        "ɪ"
+      ],
+      "entries": [
+        {
+          "soundId": "b",
+          "grapheme": "B",
+          "ruleLabel": "B",
+          "exactKey": "B||b",
+          "exactRuleKey": "B_B",
+          "fallbackRuleKey": "B_B"
+        },
+        {
+          "soundId": "ɑ",
+          "grapheme": "",
+          "ruleLabel": "AH",
+          "exactKey": "||ɑ",
+          "exactRuleKey": null,
+          "fallbackRuleKey": "AH_A"
+        },
+        {
+          "soundId": "ɪ",
+          "grapheme": "I",
+          "ruleLabel": "IH",
+          "exactKey": "I||ɪ",
+          "exactRuleKey": "IH_I",
+          "fallbackRuleKey": "IH_AI"
+        },
+        {
+          "soundId": "ɑ",
+          "grapheme": "O",
+          "ruleLabel": "AH",
+          "exactKey": "O||ɑ",
+          "exactRuleKey": "AH_O",
+          "fallbackRuleKey": "AH_A"
+        },
+        {
+          "soundId": "l",
+          "grapheme": "L",
+          "ruleLabel": "L",
+          "exactKey": "L||l",
+          "exactRuleKey": "L_L",
+          "fallbackRuleKey": "L_E"
+        },
+        {
+          "soundId": "ə",
+          "grapheme": "O",
+          "ruleLabel": "UH",
+          "exactKey": "O||ə",
+          "exactRuleKey": "UH_O",
+          "fallbackRuleKey": "UH_A"
+        },
+        {
+          "soundId": "dʒ",
+          "grapheme": "G",
+          "ruleLabel": "J",
+          "exactKey": "G||dʒ",
+          "exactRuleKey": "JH_G",
+          "fallbackRuleKey": "DJ_DJ"
+        },
+        {
+          "soundId": "ɪ",
+          "grapheme": "Y",
+          "ruleLabel": "IH",
+          "exactKey": "Y||ɪ",
+          "exactRuleKey": "IH_Y",
+          "fallbackRuleKey": "IH_AI"
+        }
+      ]
+    }
+  ]
+}

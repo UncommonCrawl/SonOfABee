@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
 import './App.css';
 import { RULES } from './data/rules'; // Import the rules data
+import { hintDictionary } from './data/hint_dictionary';
 import { levelData } from './data/levels'; // Import the words data
 import { calculateTargetSpelling, isRuleBlocked, corruptText } from './utils/gameLogic';
 
@@ -58,7 +59,7 @@ const buildWarmupOrder = (levels) => {
 export default function App() {
   // --- STATE ---
   const [activeRules, setActiveRules] = useState([]); // Array of rule objects
-  const [lives, setLives] = useState(3);
+  const [lives, setLives] = useState(50);
   const [score, setScore] = useState(0);
   const [levelIndex, setLevelIndex] = useState(0);
   const [input, setInput] = useState('');
@@ -83,6 +84,8 @@ export default function App() {
   const inputRef = useRef(null);
   const entryFloaterRef = useRef(null);
   const entryFloaterClampRef = useRef(0);
+  const entryFloaterScaleRef = useRef(1);
+  const spellingFormRef = useRef(null);
   const [showHelp, setShowHelp] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [wasPausedBeforeHelp, setWasPausedBeforeHelp] = useState(false);
@@ -186,15 +189,14 @@ export default function App() {
     "LANGUAGE BARRIER",
     "WAX OFF.",
     "LOST IN TRANSLATION…",
-    "BUZZ KILL. ☠️",
+    "BUZZKILL.",
     "OH, HONEY...",
     "WING AND A MISS.",
     "THAT’S GOTTA STING.",
     "HIVE MIND SAYS NO.",
-    "DRONE BEHAVIOR. 🤖",
     "BEE-TRAYAL!",
     "NON-HIVE COMPLIANT.",
-    "LARVA LEVEL. 🐛",
+    "LARVA LEVEL.",
     "SORRY!",
     "INCORRECT.",
     "WRONG.",
@@ -318,7 +320,56 @@ export default function App() {
     activeRules,
     levelPhonemes
   );
-  const transformedHint = currentLevel.hint || "";
+  const [lockedSpelling, setLockedSpelling] = useState(targetSpelling);
+  const [lockedHintMask, setLockedHintMask] = useState(hintMask);
+
+  useEffect(() => {
+    if (roundEndedRef.current) return;
+    setLockedSpelling(targetSpelling);
+    setLockedHintMask(hintMask);
+  }, [targetSpelling, hintMask]);
+  const caseifyHint = (original, replacement) => {
+    if (!original) return replacement;
+    if (original.toUpperCase() === original) return replacement.toUpperCase();
+    const first = original[0];
+    if (first && first.toUpperCase() === first) {
+      return replacement[0].toUpperCase() + replacement.slice(1).toLowerCase();
+    }
+    return replacement.toLowerCase();
+  };
+
+  const transformHintWord = (word) => {
+    const key = word.toUpperCase();
+    const ruleKeys = hintDictionary[key];
+    if (!ruleKeys || ruleKeys.length === 0) return word;
+    const phonemes = ruleKeys
+      .map((ruleKey) => {
+        const rule = RULES[ruleKey];
+        if (!rule) return null;
+        return {
+          soundId: rule.soundId ?? null,
+          defaultSpelling: rule.spelling ?? rule.key ?? "",
+          ruleKey
+        };
+      })
+      .filter(Boolean);
+    if (phonemes.length === 0) return word;
+    const { targetSpelling: hintSpelling } = calculateTargetSpelling(
+      key,
+      activeRules,
+      phonemes
+    );
+    return caseifyHint(word, hintSpelling);
+  };
+
+  const shouldTransformHints = selectedDifficulty === 'killer' || selectedDifficulty === 'bumblebee';
+  const transformHintText = (hint) => {
+    if (!hint) return "";
+    if (!shouldTransformHints) return hint;
+    return hint.replace(/[A-Za-z]+/g, (match) => transformHintWord(match));
+  };
+
+  const transformedHint = transformHintText(currentLevel.hint || "");
 
   const generatePastelHex = () => {
     const channel = () => Math.floor(170 + Math.random() * 70).toString(16).padStart(2, '0');
@@ -452,29 +503,54 @@ export default function App() {
   useLayoutEffect(() => {
     if (!entryFloater || !entryFloaterRef.current) return undefined;
 
-    const buffer = 60;
+    const buffer = 20;
+    const anchorRatio = 1.1;
+    const maxWidth = 180;
     const clampFloater = () => {
       const el = entryFloaterRef.current;
-      if (!el) return;
+      const formEl = spellingFormRef.current;
+      if (!el || !formEl) return;
+      const formRect = formEl.getBoundingClientRect();
+      const baseTop = formRect.top + formRect.height * anchorRatio;
+      const baseLeft = formRect.left + formRect.width * 0.5;
+      el.style.setProperty('--entry-top', `${baseTop}px`);
+      el.style.setProperty('--entry-left', `${baseLeft}px`);
+
       const rect = el.getBoundingClientRect();
       const overflow = rect.bottom - (window.innerHeight - buffer);
       const nextOffset = overflow > 0 ? -overflow : 0;
       if (Math.abs(entryFloaterClampRef.current - nextOffset) < 0.5) return;
       entryFloaterClampRef.current = nextOffset;
       el.style.setProperty('--entry-y', `${nextOffset}px`);
+
+      const prevMaxWidth = el.style.maxWidth;
+      el.style.maxWidth = 'none';
+      const naturalWidth = el.scrollWidth || rect.width;
+      el.style.maxWidth = prevMaxWidth;
+      const nextScale = naturalWidth > maxWidth ? maxWidth / naturalWidth : 1;
+      if (Math.abs(entryFloaterScaleRef.current - nextScale) >= 0.005) {
+        entryFloaterScaleRef.current = nextScale;
+        el.style.setProperty('--entry-scale', `${nextScale}`);
+        el.style.setProperty('--entry-max-width', `${maxWidth}px`);
+      }
     };
 
     clampFloater();
     window.addEventListener('resize', clampFloater);
+    window.addEventListener('scroll', clampFloater, { passive: true });
     let resizeObserver;
     if (typeof ResizeObserver !== 'undefined') {
       resizeObserver = new ResizeObserver(clampFloater);
       resizeObserver.observe(entryFloaterRef.current);
+      if (spellingFormRef.current) {
+        resizeObserver.observe(spellingFormRef.current);
+      }
     }
     const fontsReady = document.fonts?.ready?.then(clampFloater);
 
     return () => {
       window.removeEventListener('resize', clampFloater);
+      window.removeEventListener('scroll', clampFloater);
       if (resizeObserver) resizeObserver.disconnect();
       if (fontsReady?.cancel) fontsReady.cancel();
     };
@@ -487,12 +563,16 @@ export default function App() {
       setIsTimed(false);
       setShowHints(true);
       setShowHelper(true);
+    } else if (mode === 'bumblebee') {
+      setIsTimed(false);
+      setShowHints(true);
+      setShowHelper(true);
     } else if (mode === 'killer') {
       setIsTimed(true);
       setShowHints(true);
-      setShowHelper(false);
+      setShowHelper(true);
     } else {
-      setIsTimed(true);
+      setIsTimed(false);
       setShowHints(true);
       setShowHelper(true);
     }
@@ -631,7 +711,7 @@ export default function App() {
     triggerShake();
     triggerEntryFloater(false);
     setFeedback('');
-    setDisplayInput(targetSpelling);
+    setDisplayInput(lockedSpelling);
     setIsWrongRevealing(true);
     const nextLives = lives - 1;
     setLives(nextLives);
@@ -672,8 +752,8 @@ export default function App() {
               style={{ transform: `scale(${introScale})` }}
             >
               <div className="intro-title header-title" aria-label="Son of a Bee">
-                <span className="header-title__top">SON OF A</span>
-                <span className="header-title__bottom">BEE</span>
+                <span className="header-title__top">{transformHintText("SON OF A")}</span>
+                <span className="header-title__bottom">{transformHintText("BEE")}</span>
               </div>
               <div className="intro-subtitle">
                 English makes no sense. <span className="intro-green">Let's make it worse.</span>
@@ -740,7 +820,7 @@ export default function App() {
                 >
                   <span className="difficulty-hex" aria-hidden="true" />
                   <div className="difficulty-name">HONEYBEE</div>
-                  <div className="difficulty-desc">spelling hints</div>
+                  <div className="difficulty-desc">normal clues</div>
                   <div className="difficulty-desc">no time limit</div>
                 </button>
                 <button
@@ -753,8 +833,8 @@ export default function App() {
                     <span className="difficulty-mark">!</span>
                   </span>
                   <div className="difficulty-name">BUMBLEBEE</div>
-                  <div className="difficulty-desc">spelling hints</div>
-                  <div className="difficulty-desc"><span className="intro-red">time limit</span></div>
+                  <div className="difficulty-desc"><span className="intro-red">RULES AFFECT CLUES</span></div>
+                  <div className="difficulty-desc">no time limit</div>
                 </button>
                 <button
                   className={`difficulty-option ${selectedDifficulty === 'killer' ? 'difficulty-option--selected' : ''}`}
@@ -766,8 +846,8 @@ export default function App() {
                     <span className="difficulty-mark">!!</span>
                   </span>
                   <div className="difficulty-name">KILLER BEE</div>
-                  <div className="difficulty-desc"><span className="intro-red">no hints</span></div>
-                  <div className="difficulty-desc"><span className="intro-red">time limit</span></div>
+                  <div className="difficulty-desc"><span className="intro-red">RULES AFFECT CLUES</span></div>
+                  <div className="difficulty-desc"><span className="intro-red">TIME LIMIT</span></div>
                 </button>
               </div>
               <button
@@ -803,8 +883,8 @@ export default function App() {
       <div className="w-full flex justify-between mb-8 header-bar">
         <div className="header-side" />
         <div className="header-title" aria-label="Son of a Bee">
-          <span className="header-title__top">SON OF A</span>
-          <span className="header-title__bottom">BEE</span>
+          <span className="header-title__top">{transformHintText("SON OF A")}</span>
+          <span className="header-title__bottom">{transformHintText("BEE")}</span>
         </div>
         <div className="header-side" />
       </div>
@@ -911,14 +991,14 @@ export default function App() {
         </div>
         <div className="rules-title rules-title--score">
           <div className="rules-title__stack">
-            <span className="rules-title__label">SCORE</span>
+            <span className="rules-title__label">{transformHintText("SCORE")}</span>
             <span className="rules-title__score">{score}</span>
             <span key={pointsFlashId} className="score-bonus">
               {pointsFlash}
             </span>
           </div>
           <div className="rules-title__stack">
-            <span className="rules-title__label">LIVES</span>
+            <span className="rules-title__label">{transformHintText("LIVES")}</span>
             <span className="rules-title__lives">
               <span className="life-icons" aria-label={`${lives} lives`}>
                 {Array.from({ length: lives }).map((_, idx) => (
@@ -990,7 +1070,7 @@ export default function App() {
           {splitByPhonemeType && (
             <div className="rules-deck-columns">
               <div className="rules-deck-column">
-                <div className="rules-subtitle">VOWEL RULES</div>
+                <div className="rules-subtitle">{transformHintText("VOWEL RULES")}</div>
                 <div className="rules-deck rules-deck--split">
                 {defeatedFlashes
                   .filter((flash) => flash.group === 'vowel')
@@ -1050,7 +1130,7 @@ export default function App() {
                 </div>
               </div>
               <div className="rules-deck-column">
-                <div className="rules-subtitle">CONSONANT RULES</div>
+                <div className="rules-subtitle">{transformHintText("CONSONANT RULES")}</div>
                 <div className="rules-deck rules-deck--split">
                 {defeatedFlashes
                   .filter((flash) => flash.group === 'consonant')
@@ -1115,22 +1195,22 @@ export default function App() {
 
         {showHints && (
           <>
-            <h2 className={`hint-label ${isCorrectRevealing ? 'hint-label--fade' : ''}`}>HINT</h2>
+            <h2 className={`hint-label ${isCorrectRevealing ? 'hint-label--fade' : ''}`}>{transformHintText("CLUE")}</h2>
             <p className={`hint-text ${isCorrectRevealing ? 'hint-text--fade' : ''}`}>{transformedHint}</p>
           </>
         )}
         <div
           key={displayFlashId}
           className={`hint-visual ${isDisplayFlashing && !isCorrectRevealing && !isWrongRevealing ? 'hint-visual--flash' : ''} ${isCorrectRevealing ? 'hint-visual--correct' : ''} ${isWrongRevealing ? 'hint-visual--wrong' : ''} ${isShaking ? 'hint-visual--shake' : ''}`}
-          aria-label={`Word length ${targetSpelling.length}`}
+          aria-label={`Word length ${lockedSpelling.length}`}
           onClick={() => inputRef.current?.focus()}
         >
-          {targetSpelling.split('').map((_, idx) => {
+          {lockedSpelling.split('').map((_, idx) => {
             const typedChar = (displayInput || input).toUpperCase()[idx];
             return (
             <span 
               key={`hint-${idx}`} 
-              className={`hint-underscore ${typedChar ? 'hint-underscore--typed' : ''} ${showHelper && hintMask[idx] ? 'hint-underscore--changed' : ''}`}
+              className={`hint-underscore ${typedChar ? 'hint-underscore--typed' : ''} ${showHelper && lockedHintMask[idx] ? 'hint-underscore--changed' : ''}`}
             >
               {typedChar || '_'}
             </span>
@@ -1138,7 +1218,7 @@ export default function App() {
           })}
         </div>
         
-        <form onSubmit={handleSubmit} className="spelling-form">
+        <form onSubmit={handleSubmit} className="spelling-form" ref={spellingFormRef}>
           {entryFloater && (
             <div
               key={entryFloater.id}
@@ -1162,14 +1242,14 @@ export default function App() {
             onChange={(e) => {
               const next = e.target.value;
               if (isCorrectRevealing) return;
-              if (ENABLE_MAX_LENGTH && next.length > targetSpelling.length) return;
+              if (ENABLE_MAX_LENGTH && next.length > lockedSpelling.length) return;
               setInput(next);
               setDisplayInput(next);
             }}
             className={`spelling-input spelling-input--ghost ${isShaking ? 'spelling-input--shake' : ''}`}
             aria-label="Type spelling"
             disabled={isGameOver || isPaused}
-            maxLength={ENABLE_MAX_LENGTH ? targetSpelling.length : undefined}
+            maxLength={ENABLE_MAX_LENGTH ? lockedSpelling.length : undefined}
           />
           <button type="submit" className="hidden">Submit</button>
         </form>

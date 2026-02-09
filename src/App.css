@@ -959,10 +959,11 @@ body {
 }
 
 .entry-floater {
-  position: absolute;
-  left: 50%;
-  top: calc(100% + 50px);
-  transform: translateX(calc(-50% + var(--entry-x, 0px))) translateY(var(--entry-y, 0px)) rotate(var(--entry-tilt, 0deg));
+  position: fixed;
+  left: var(--entry-left, 50%);
+  top: var(--entry-top, 0px);
+  transform: translateX(calc(-50% + var(--entry-x, 0px))) translateY(var(--entry-y, 0px)) rotate(var(--entry-tilt, 0deg)) scale(var(--entry-scale, 1));
+  transform-origin: center center;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -970,9 +971,9 @@ body {
   pointer-events: none;
   animation: entry-floater-fade 2s ease-out forwards;
   z-index: 60;
-  max-width: 70vw;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  max-width: var(--entry-max-width, 260px);
+  overflow: visible;
+  text-overflow: clip;
   text-align: center;
 }
 
