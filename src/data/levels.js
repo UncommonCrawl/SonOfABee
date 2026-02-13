@@ -769,7 +769,7 @@ export const levelData = [
   {
     id: "lvl_wrap",
     word: "WRAP",
-    hint: "Cover or enclose",
+    hint: "What you might do to a gift or wound",
     ruleKey: ["R_WR", "AE_A", "P_P"],
     hidden: false,
   },
@@ -1602,7 +1602,7 @@ export const levelData = [
   {
     id: "lvl_competition",
     word: "COMPETITION",
-    hint: "A tournament, perhaps described as steep or fierce",
+    hint: "In a tournament, it may be described as steep or fierce",
     ruleKey: ["K_C", "AH_O", "M_M", "P_P", "UH_E", "T_T", "IH_I", "SH_TI", "UH_O", "N_N"],
     hidden: false,
   },
@@ -1666,7 +1666,7 @@ export const levelData = [
     id: "lvl_consequence",
     word: "CONSEQUENCE",
     hint: "The result of an action",
-    ruleKey: ["K_C", "AH_O", "N_N", "S_S", "UH_E", "K_Q", "W_U", "EH_E", "N_N", "S_CE"],
+    ruleKey: ["K_C", "AH_O", "N_N", "S_S", "UH_E", "KW_QU", "EH_E", "N_N", "S_CE"],
     hidden: false,
   },
   {
@@ -1841,7 +1841,7 @@ export const levelData = [
     id: "lvl_examination",
     word: "EXAMINATION",
     hint: "A detailed inspection or a test",
-    ruleKey: ["EH_E", "CKS_X", "A_A", "M_M", "IH_I", "N_N", "AY_A", "SH_TI", "UH_O", "N_N"],
+    ruleKey: ["EH_E", "KS_X", "A_A", "M_M", "IH_I", "N_N", "AY_A", "SH_TI", "UH_O", "N_N"],
     hidden: false,
   },
   {
@@ -1855,7 +1855,7 @@ export const levelData = [
     id: "lvl_extraordinary",
     word: "EXTRAORDINARY",
     hint: "Very unusual or remarkable",
-    ruleKey: ["EH_E","CKS_X", "T_T", "R_R", "UH_A", "OR_OR", "D_D", "IH_I", "N_N", "AIR_AR", "EE_Y"],
+    ruleKey: ["EH_E","KS_X", "T_T", "R_R", "UH_A", "OR_OR", "D_D", "IH_I", "N_N", "AIR_AR", "EE_Y"],
     hidden: false,
   },
   {
@@ -1868,7 +1868,7 @@ export const levelData = [
   {
     id: "lvl_fjord",
     word: "FJORD",
-    hint: "A long, narrow, deep inlet of the sea between high cliffs",
+    hint: "One of many deep inlets on the Nordic coast",
     ruleKey: ["F_F", "Y_J", "OR_OR", "D_D"],
     hidden: false,
   },
@@ -1876,7 +1876,7 @@ export const levelData = [
     id: "lvl_flexibility",
     word: "FLEXIBILITY",
     hint: "The quality of bending easily without breaking",
-    ruleKey: ["F_F", "L_L", "EH_E", "K_X", "S_X", "IH_I", "B_B", "IH_I", "L_L", "IH_I", "T_T", "EE_Y"],
+    ruleKey: ["F_F", "L_L", "EH_E", "KS_X", "IH_I", "B_B", "IH_I", "L_L", "IH_I", "T_T", "EE_Y"],
     hidden: false,
   },
   {
@@ -2093,7 +2093,7 @@ export const levelData = [
     id: "lvl_macabre",
     word: "MACABRE",
     hint: "Disturbing because of involvement with death",
-    ruleKey: ["M_M", "UH_A", "K_C", "AH_A", "B_B", "R_RE"],
+    ruleKey: ["M_M", "UH_A", "K_C", "AH_A", "B_B", "R_R", "UH_E"],
     hidden: false,
   },
   {

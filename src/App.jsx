@@ -59,7 +59,7 @@ const buildWarmupOrder = (levels) => {
 export default function App() {
   // --- STATE ---
   const [activeRules, setActiveRules] = useState([]); // Array of rule objects
-  const [lives, setLives] = useState(50);
+  const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
   const [levelIndex, setLevelIndex] = useState(0);
   const [input, setInput] = useState('');
@@ -101,6 +101,7 @@ export default function App() {
   const [splitByPhonemeType, setSplitByPhonemeType] = useState(true);
   const roundEndedRef = useRef(false);
   const pausedRef = useRef(false);
+  const timePenaltyRef = useRef(0);
   const introCardRef = useRef(null);
   const introContentRef = useRef(null);
   const orderedRules = sortRulesBySound(activeRules);
@@ -321,13 +322,19 @@ export default function App() {
     levelPhonemes
   );
   const [lockedSpelling, setLockedSpelling] = useState(targetSpelling);
+  const lockedSpellingRef = useRef(targetSpelling);
   const [lockedHintMask, setLockedHintMask] = useState(hintMask);
+  const lastLevelIndexRef = useRef(levelIndex);
 
   useEffect(() => {
-    if (roundEndedRef.current) return;
-    setLockedSpelling(targetSpelling);
-    setLockedHintMask(hintMask);
-  }, [targetSpelling, hintMask]);
+    const levelChanged = levelIndex !== lastLevelIndexRef.current;
+    if (!roundEndedRef.current || levelChanged) {
+      setLockedSpelling(targetSpelling);
+      lockedSpellingRef.current = targetSpelling;
+      setLockedHintMask(hintMask);
+    }
+    if (levelChanged) lastLevelIndexRef.current = levelIndex;
+  }, [targetSpelling, hintMask, levelIndex]);
   const caseifyHint = (original, replacement) => {
     if (!original) return replacement;
     if (original.toUpperCase() === original) return replacement.toUpperCase();
@@ -362,7 +369,7 @@ export default function App() {
     return caseifyHint(word, hintSpelling);
   };
 
-  const shouldTransformHints = selectedDifficulty === 'killer' || selectedDifficulty === 'bumblebee';
+  const shouldTransformHints = true;
   const transformHintText = (hint) => {
     if (!hint) return "";
     if (!shouldTransformHints) return hint;
@@ -411,6 +418,7 @@ export default function App() {
     setHasStarted(true);
     pausedRef.current = false;
     roundEndedRef.current = false;
+    timePenaltyRef.current = 0;
     setRecentRuleKeys([]);
     setShuffledLevels(buildWarmupOrder(visibleLevels));
   };
@@ -438,12 +446,14 @@ export default function App() {
       setRoundSeconds(0);
       setTimeLeft(0);
       setTimeLeftMs(0);
+      timePenaltyRef.current = 0;
       return undefined;
     }
     const baseSeconds = 4 + (currentLevel.word ? currentLevel.word.length * 2 : 0);
     setRoundSeconds(baseSeconds);
     setTimeLeft(baseSeconds);
     setTimeLeftMs(baseSeconds * 1000);
+    timePenaltyRef.current = 0;
     let elapsedMs = 0;
     let lastTick = performance.now();
     const roundDurationMs = baseSeconds * 1000;
@@ -455,7 +465,7 @@ export default function App() {
       }
       elapsedMs += now - lastTick;
       lastTick = now;
-      const remainingMs = Math.max(0, roundDurationMs - elapsedMs);
+      const remainingMs = Math.max(0, roundDurationMs - elapsedMs - timePenaltyRef.current);
       const remainingSeconds = Math.max(0, Math.floor(remainingMs / 1000));
       setTimeLeftMs(remainingMs);
       setTimeLeft(remainingSeconds);
@@ -560,13 +570,17 @@ export default function App() {
   const handleStartGame = (mode) => {
     if (!mode) return;
     if (mode === 'honeybee') {
-      setIsTimed(false);
+      setIsTimed(true);
       setShowHints(true);
       setShowHelper(true);
     } else if (mode === 'bumblebee') {
-      setIsTimed(false);
+      setIsTimed(true);
       setShowHints(true);
       setShowHelper(true);
+    } else if (mode === 'hornet') {
+      setIsTimed(true);
+      setShowHints(true);
+      setShowHelper(false);
     } else if (mode === 'killer') {
       setIsTimed(true);
       setShowHints(true);
@@ -590,7 +604,11 @@ export default function App() {
     if (guess === targetSpelling) {
       handleSuccess();
     } else {
-      handleFailure();
+      if (selectedDifficulty === 'hornet') {
+        handleFailure();
+      } else {
+        handleIncorrectAttempt(guess);
+      }
     }
   };
 
@@ -624,7 +642,23 @@ export default function App() {
     }
 
     // 3. ADD NEW RULE(S) (If valid)
-    const newRuleKeys = entryRuleKeys;
+    const maxNewRules = selectedDifficulty === 'honeybee'
+      ? 2
+      : selectedDifficulty === 'bumblebee'
+        ? 4
+        : Infinity;
+    const candidateRuleKeys = entryRuleKeys.filter((ruleKey) => {
+      const ruleDefinition = RULES[ruleKey];
+      return ruleDefinition && !isRuleBlocked(ruleDefinition, aliveRules, ruleKey);
+    });
+    const shuffledCandidates = [...candidateRuleKeys];
+    for (let i = shuffledCandidates.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledCandidates[i], shuffledCandidates[j]] = [shuffledCandidates[j], shuffledCandidates[i]];
+    }
+    const newRuleKeys = maxNewRules === Infinity
+      ? shuffledCandidates
+      : shuffledCandidates.slice(0, maxNewRules);
 
     newRuleKeys.forEach((ruleKey) => {
       const ruleDefinition = RULES[ruleKey];
@@ -711,7 +745,7 @@ export default function App() {
     triggerShake();
     triggerEntryFloater(false);
     setFeedback('');
-    setDisplayInput(lockedSpelling);
+    setDisplayInput(lockedSpellingRef.current);
     setIsWrongRevealing(true);
     const nextLives = lives - 1;
     setLives(nextLives);
@@ -724,6 +758,37 @@ export default function App() {
         setLevelIndex(levelIndex + 1);
       }
     }, 1200);
+  };
+
+
+  const handleIncorrectAttempt = (guess) => {
+    const penaltyMs = selectedDifficulty === 'honeybee'
+      ? 2000
+      : selectedDifficulty === 'bumblebee'
+        ? 4000
+        : selectedDifficulty === 'killer'
+          ? 8000
+          : 0;
+    if (penaltyMs > 0 && isTimed) {
+      if (timeLeftMs <= penaltyMs) {
+        handleFailure();
+        return;
+      }
+      timePenaltyRef.current += penaltyMs;
+      const nextMs = Math.max(0, timeLeftMs - penaltyMs);
+      setTimeLeftMs(nextMs);
+      setTimeLeft(Math.max(0, Math.floor(nextMs / 1000)));
+    }
+    triggerShake();
+    triggerEntryFloater(false);
+    setFeedback('');
+    setDisplayInput(guess);
+    setIsWrongRevealing(true);
+    setInput('');
+    setTimeout(() => {
+      setIsWrongRevealing(false);
+      setDisplayInput('');
+    }, 500);
   };
 
   // --- RENDER ---
@@ -819,9 +884,9 @@ export default function App() {
                   aria-pressed={selectedDifficulty === 'honeybee'}
                 >
                   <span className="difficulty-hex" aria-hidden="true" />
-                  <div className="difficulty-name">HONEYBEE</div>
-                  <div className="difficulty-desc">normal clues</div>
-                  <div className="difficulty-desc">no time limit</div>
+                  <div className="difficulty-name">HONEY BEE</div>
+                  <div className="difficulty-desc">2s PENALTY PER WRONG ANSWER</div>
+                  <div className="difficulty-desc">UP TO 2 NEW RULES PER ROUND</div>
                 </button>
                 <button
                   className={`difficulty-option ${selectedDifficulty === 'bumblebee' ? 'difficulty-option--selected' : ''}`}
@@ -832,9 +897,9 @@ export default function App() {
                   <span className="difficulty-hex difficulty-hex--warn" aria-hidden="true">
                     <span className="difficulty-mark">!</span>
                   </span>
-                  <div className="difficulty-name">BUMBLEBEE</div>
-                  <div className="difficulty-desc"><span className="intro-red">RULES AFFECT CLUES</span></div>
-                  <div className="difficulty-desc">no time limit</div>
+                  <div className="difficulty-name">BUMBLE BEE</div>
+                  <div className="difficulty-desc">4s PENALTY PER WRONG ANSWER</div>
+                  <div className="difficulty-desc">UP TO 4 NEW RULES PER ROUND</div>
                 </button>
                 <button
                   className={`difficulty-option ${selectedDifficulty === 'killer' ? 'difficulty-option--selected' : ''}`}
@@ -846,8 +911,21 @@ export default function App() {
                     <span className="difficulty-mark">!!</span>
                   </span>
                   <div className="difficulty-name">KILLER BEE</div>
-                  <div className="difficulty-desc"><span className="intro-red">RULES AFFECT CLUES</span></div>
-                  <div className="difficulty-desc"><span className="intro-red">TIME LIMIT</span></div>
+                  <div className="difficulty-desc">8s PENALTY PER WRONG ANSWER</div>
+                  <div className="difficulty-desc">UNLIMITED NEW RULES PER ROUND</div>
+                </button>
+                <button
+                  className={`difficulty-option ${selectedDifficulty === 'hornet' ? 'difficulty-option--selected' : ''}`}
+                  onClick={() => setSelectedDifficulty('hornet')}
+                  aria-label="Hornet difficulty"
+                  aria-pressed={selectedDifficulty === 'hornet'}
+                >
+                  <span className="difficulty-hex difficulty-hex--danger" aria-hidden="true">
+                    <span className="difficulty-mark">!!!</span>
+                  </span>
+                  <div className="difficulty-name">HORNET</div>
+                  <div className="difficulty-desc">WRONG ANSWER = LOST LIFE</div>
+                  <div className="difficulty-desc">NO HINTS FOR CHANGED LETTERS</div>
                 </button>
               </div>
               <button
@@ -855,7 +933,7 @@ export default function App() {
                 onClick={() => handleStartGame(selectedDifficulty)}
                 disabled={!selectedDifficulty}
               >
-                LET'S BEE-GIN!
+                LET'S BEE-GIN
               </button>
             </div>
           </div>

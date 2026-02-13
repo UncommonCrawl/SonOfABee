@@ -51,7 +51,7 @@ export const RULES = {
   },
   AH_A: {
     name: "AH, HA",
-    description: "All 'ɑ' sounds are spelled A",
+    description: "All 'ɑh' sounds are spelled A",
     soundId: "ɑ",
     spelling: "A",
     mutexGroup: "VOWEL_AH",
@@ -60,7 +60,7 @@ export const RULES = {
   },
   AH_ACH: {
     name: "BACK TO SQUARE ONE",
-    description: "All 'ɑ' sounds are spelled ACH",
+    description: "All 'ɑh' sounds are spelled ACH",
     soundId: "ɑ",
     spelling: "ACH",
     mutexGroup: "VOWEL_AH",
@@ -69,7 +69,7 @@ export const RULES = {
   },
   AH_E: {
     name: "AHEAD OF THE GAME",
-    description: "All 'ɑ' sounds are spelled E",
+    description: "All 'ɑh' sounds are spelled E",
     soundId: "ɑ",
     spelling: "E",
     mutexGroup: "VOWEL_AH",
@@ -78,7 +78,7 @@ export const RULES = {
   },
   AH_O: {
     name: "ON THE DOT",
-    description: "All 'ɑ' sounds are spelled O",
+    description: "All 'ɑh' sounds are spelled O",
     soundId: "ɑ",
     spelling: "O",
     mutexGroup: "VOWEL_AH",
@@ -86,8 +86,8 @@ export const RULES = {
     transform: (word) => word
   },
   AH_OW: {
-    name: "OH, WOW",
-    description: "All 'oh' sounds are spelled OW",
+    name: "AH, WOW",
+    description: "All 'ah' sounds are spelled OW",
     soundId: "oʊ",
     spelling: "OW",
     mutexGroup: "VOWEL_OH",
@@ -472,15 +472,6 @@ export const RULES = {
     maxDurability: 3,
     transform: (word) => word
   }, 
-  CKS_X: {
-    name: "X MARKS THE SPOT",
-    description: "All 'cks' sounds are spelled X",
-    soundId: "ks",
-    spelling: "X",
-    mutexGroup: "SOUND_K_S",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   DJ_DJ: {
     name: "HEY MISTER DJ",
     description: "All 'dʒ' sounds are spelled DJ",
@@ -1278,6 +1269,15 @@ export const RULES = {
     mutexGroup: "KW_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/QU/g, "K_CH")
+  },
+  KW_QU: {
+    name: "QUICK AS A FLASH",
+    description: "All 'kw' sounds are spelled QU",
+    soundId: "kw",
+    spelling: "QU",
+    mutexGroup: "KW_SOUND",
+    maxDurability: 3,
+    transform: (word) => word.replace(/QU/g, "QU")
   },
   K_C: {
     name: "CUT TO THE CHASE",
