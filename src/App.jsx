@@ -1,23 +1,16 @@
 // src/App.jsx
-import React, { useState, useEffect, useRef, useMemo, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useLayoutEffect, useCallback } from 'react';
 import './App.css';
 import { RULES } from './data/rules'; // Import the rules data
 import { hintDictionary } from './data/hint_dictionary';
 import { levelData } from './data/levels'; // Import the words data
-import { calculateTargetSpelling, isRuleBlocked, corruptText } from './utils/gameLogic';
+import { calculateTargetSpelling, isRuleBlocked } from './utils/gameLogic';
 
-const SOUND_ORDER = [
-  'æ', 'ɑ', 'ɔ', 'eɪ', 'b', 'tʃ', 'd', 'i', 'ɛ', 'ɝ', 'ɚ', 'aɪ', 'f', 'g', 'h', 'ɪ',
-  'dʒ', 'k', 'l', 'm', 'ŋ', 'n', 'oʊ', 'u', 'ɔɪ', 'p', 'r', 'ʃ', 's', 'θ', 'ð', 't',
-  'ʌ', 'ə', 'ʊ', 'v', 'w', 'j', 'ʒ', 'z'
-];
-const SOUND_RANK = new Map(SOUND_ORDER.map((sound, index) => [sound, index]));
-const getSoundRank = (soundId) => (SOUND_RANK.has(soundId) ? SOUND_RANK.get(soundId) : SOUND_ORDER.length + 100);
-const sortRulesBySound = (rules) => (
+const sortRulesAlphabetically = (rules) => (
   [...rules].sort((a, b) => {
-    const rankDiff = getSoundRank(a.soundId) - getSoundRank(b.soundId);
-    if (rankDiff !== 0) return rankDiff;
-    return a.name.localeCompare(b.name, 'en');
+    const nameDiff = a.name.localeCompare(b.name, 'en', { sensitivity: 'base' });
+    if (nameDiff !== 0) return nameDiff;
+    return a.key.localeCompare(b.key, 'en');
   })
 );
 const VOWEL_SOUNDS = new Set([
@@ -25,15 +18,6 @@ const VOWEL_SOUNDS = new Set([
 ]);
 const isVowelRule = (rule) => VOWEL_SOUNDS.has(rule.soundId);
 const ENABLE_MAX_LENGTH = false;
-
-const shuffleLevels = (levels) => {
-  const copy = [...levels];
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-};
 
 const buildWarmupOrder = (levels) => {
   const remaining = [...levels];
@@ -54,6 +38,46 @@ const buildWarmupOrder = (levels) => {
     remaining.splice(remaining.indexOf(picked), 1);
   }
   return ordered;
+};
+
+const shuffleArray = (items) => {
+  const copy = [...items];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+};
+
+const hashString = (value) => {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = ((hash << 5) - hash + value.charCodeAt(i)) | 0;
+  }
+  return hash >>> 0;
+};
+
+const pastelFromString = (value) => {
+  const hash = hashString(value);
+  const hue = 42 + (hash % 12);
+  const saturation = 84 + ((hash >> 8) % 12);
+  const lightness = 64 + ((hash >> 16) % 18);
+  return `hsl(${hue} ${saturation}% ${lightness}%)`;
+};
+
+const buildEntryFloater = (isCorrect, correctFloaters, incorrectFloaters, id) => {
+  const options = isCorrect ? correctFloaters : incorrectFloaters;
+  const text = options[Math.floor(Math.random() * options.length)];
+  const xOffset = Math.floor(Math.random() * 41) - 20;
+  const angleOptions = [-8, -7, -6, 6, 7, 8];
+  const angle = angleOptions[Math.floor(Math.random() * angleOptions.length)];
+  return {
+    id: `floater-${id}`,
+    text,
+    xOffset,
+    angle,
+    kind: isCorrect ? 'correct' : 'wrong'
+  };
 };
 
 export default function App() {
@@ -80,9 +104,11 @@ export default function App() {
   const [cardsCollected, setCardsCollected] = useState(0);
   const [cardsDefeated, setCardsDefeated] = useState(0);
   const defeatedFlashIdRef = useRef(0);
+  const entryFloaterIdRef = useRef(0);
   const [recentRuleKeys, setRecentRuleKeys] = useState([]);
   const inputRef = useRef(null);
   const entryFloaterRef = useRef(null);
+  const rulesDeckRef = useRef(null);
   const entryFloaterClampRef = useRef(0);
   const entryFloaterScaleRef = useRef(1);
   const spellingFormRef = useRef(null);
@@ -98,20 +124,22 @@ export default function App() {
   const [showHelper, setShowHelper] = useState(true);
   const [difficultyPulse, setDifficultyPulse] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
-  const [splitByPhonemeType, setSplitByPhonemeType] = useState(true);
+  const splitByPhonemeType = false;
+  const [cardScale, setCardScale] = useState(1);
   const roundEndedRef = useRef(false);
   const pausedRef = useRef(false);
   const timePenaltyRef = useRef(0);
   const introCardRef = useRef(null);
   const introContentRef = useRef(null);
-  const orderedRules = sortRulesBySound(activeRules);
+  const orderedRules = sortRulesAlphabetically(activeRules);
   const vowelRules = orderedRules.filter(isVowelRule);
   const consonantRules = orderedRules.filter((rule) => !isVowelRule(rule));
-  const displayedVowelRules = vowelRules.slice(0, 10);
-  const displayedConsonantRules = consonantRules.slice(0, 10);
-  const splitBaseSpread = 110;
+  const displayedVowelRules = vowelRules;
+  const displayedConsonantRules = consonantRules;
+  const splitBaseSpread = 129;
+  const compactCards = cardScale < 0.999;
 
-  const correctFloaters = [
+  const correctFloaters = useMemo(() => ([
     "LETTER PERFECT!",
     "SPELL-TACULAR!",
     "WORD SMITH!",
@@ -172,9 +200,9 @@ export default function App() {
     "SUCCESS!",
     "ON POINT!",
     "SHARP!"
-  ];
+  ]), []);
 
-  const incorrectFloaters = [
+  const incorrectFloaters = useMemo(() => ([
     "TYPO CITY.",
     "IT’S ALL GREEK TO YOU.",
     "BEE BETTER.",
@@ -228,23 +256,19 @@ export default function App() {
     "NEGATIVE.",
     "DENIED.",
     "OOF."
-  ];
+  ]), []);
 
-  const triggerEntryFloater = (isCorrect) => {
-    const options = isCorrect ? correctFloaters : incorrectFloaters;
-    const text = options[Math.floor(Math.random() * options.length)];
-    const xOffset = Math.floor(Math.random() * 41) - 20;
-    const angleOptions = [-8, -7, -6, 6, 7, 8];
-    const angle = angleOptions[Math.floor(Math.random() * angleOptions.length)];
-    setEntryFloater({
-      id: `${Date.now()}-${Math.random()}`,
-      text,
-      xOffset,
-      angle,
-      kind: isCorrect ? 'correct' : 'wrong'
-    });
+  const triggerEntryFloater = useCallback((isCorrect) => {
+    entryFloaterIdRef.current += 1;
+    const floater = buildEntryFloater(
+      isCorrect,
+      correctFloaters,
+      incorrectFloaters,
+      entryFloaterIdRef.current
+    );
+    setEntryFloater(floater);
     setTimeout(() => setEntryFloater(null), 2000);
-  };
+  }, [correctFloaters, incorrectFloaters]);
 
   const handleOpenHelp = () => {
     setWasPausedBeforeHelp(isPaused);
@@ -260,20 +284,61 @@ export default function App() {
     setWasPausedBeforeHelp(false);
   };
 
-  const getFanLayout = (idx, total, baseSpread = 150, baseTilt = 3, rowThreshold = 10) => {
-    const hasSecondRow = total > rowThreshold;
-    const row = hasSecondRow && idx >= rowThreshold ? 1 : 0;
-    const rowCount = hasSecondRow ? (row === 0 ? rowThreshold : total - rowThreshold) : total;
-    const rowIndex = row === 0 ? idx : idx - rowThreshold;
-    const spread = rowCount <= 5 ? baseSpread : baseSpread * (5 / rowCount);
-    const offset = (rowIndex - (rowCount - 1) / 2) * spread;
-    const tilt = (rowIndex - (rowCount - 1) / 2) * baseTilt;
-    const rowY = row === 0 ? 0 : 90;
+  const getFanLayout = (idx, total, baseSpread = 129, layoutScale = 1) => {
+    const row1Count = Math.min(total, 8);
+    const row2Count = Math.min(Math.max(total - row1Count, 0), 7);
+    const row3Count = Math.min(Math.max(total - row1Count - row2Count, 0), 6);
+    let row = 0;
+    let rowIndex = idx;
+    let rowCount = row1Count;
+    if (idx >= row1Count + row2Count) {
+      row = 2;
+      rowIndex = idx - row1Count - row2Count;
+      rowCount = row3Count;
+    } else if (idx >= row1Count) {
+      row = 1;
+      rowIndex = idx - row1Count;
+      rowCount = row2Count;
+    }
+    const spread = baseSpread * layoutScale;
+    const rowCapacity = row === 0 ? 8 : row === 1 ? 7 : 6;
+    const rowStart = -((rowCapacity - 1) / 2) * spread;
+    const offset = rowStart + rowIndex * spread;
+    const tilt = 0;
+    const rowYBase = row === 0 ? (total > row1Count ? -36 : 0) : row === 1 ? 40 : 100;
+    const rowY = rowYBase * layoutScale;
     return { offset, tilt, rowY };
   };
+
+  useLayoutEffect(() => {
+    if (splitByPhonemeType) {
+      setCardScale(1);
+      return undefined;
+    }
+    const updateCardScale = () => {
+      if (!rulesDeckRef.current) return;
+      const total = orderedRules.length;
+      if (total <= 1) {
+        setCardScale(1);
+        return;
+      }
+      const row1Count = Math.min(total, 8);
+      const baseHexWidth = 129;
+      const requiredWidth = (row1Count - 1) * splitBaseSpread + baseHexWidth;
+      const availableWidth = Math.max(0, rulesDeckRef.current.clientWidth - 8);
+      const nextScale = requiredWidth > 0
+        ? Math.max(0.55, Math.min(1, availableWidth / requiredWidth))
+        : 1;
+      setCardScale((prev) => (Math.abs(prev - nextScale) < 0.01 ? prev : nextScale));
+    };
+
+    updateCardScale();
+    window.addEventListener('resize', updateCardScale);
+    return () => window.removeEventListener('resize', updateCardScale);
+  }, [orderedRules.length, splitBaseSpread, splitByPhonemeType]);
   
   const visibleLevels = levelData.filter((level) => !level.hidden);
-  const [shuffledLevels, setShuffledLevels] = useState(() => buildWarmupOrder(visibleLevels));
+  const [shuffledLevels, setShuffledLevels] = useState(() => visibleLevels);
 
   // Game Over State
   const isGameOver = lives <= 0;
@@ -321,20 +386,11 @@ export default function App() {
     activeRules,
     levelPhonemes
   );
-  const [lockedSpelling, setLockedSpelling] = useState(targetSpelling);
-  const lockedSpellingRef = useRef(targetSpelling);
-  const [lockedHintMask, setLockedHintMask] = useState(hintMask);
-  const lastLevelIndexRef = useRef(levelIndex);
-
-  useEffect(() => {
-    const levelChanged = levelIndex !== lastLevelIndexRef.current;
-    if (!roundEndedRef.current || levelChanged) {
-      setLockedSpelling(targetSpelling);
-      lockedSpellingRef.current = targetSpelling;
-      setLockedHintMask(hintMask);
-    }
-    if (levelChanged) lastLevelIndexRef.current = levelIndex;
-  }, [targetSpelling, hintMask, levelIndex]);
+  const [lockedSpellingState, setLockedSpellingState] = useState(targetSpelling);
+  const [lockedHintMaskState, setLockedHintMaskState] = useState(hintMask);
+  const [isLocked, setIsLocked] = useState(false);
+  const lockedSpelling = isLocked ? lockedSpellingState : targetSpelling;
+  const lockedHintMask = isLocked ? lockedHintMaskState : hintMask;
   const caseifyHint = (original, replacement) => {
     if (!original) return replacement;
     if (original.toUpperCase() === original) return replacement.toUpperCase();
@@ -378,14 +434,9 @@ export default function App() {
 
   const transformedHint = transformHintText(currentLevel.hint || "");
 
-  const generatePastelHex = () => {
-    const channel = () => Math.floor(170 + Math.random() * 70).toString(16).padStart(2, '0');
-    return `#${channel()}${channel()}${channel()}`;
-  };
-
   const introRuleCards = useMemo(() => ([
-    { ...RULES.SH_S, color: generatePastelHex() },
-    { ...RULES.OO_OUP, color: generatePastelHex() }
+    { ...RULES.SH_S, color: pastelFromString('intro-sh-s') },
+    { ...RULES.OO_OUP, color: pastelFromString('intro-oo-oup') }
   ]), []);
 
   const triggerShake = () => {
@@ -393,6 +444,29 @@ export default function App() {
     setTimeout(() => setIsShaking(true), 0);
     setTimeout(() => setIsShaking(false), 350);
   };
+
+  const startNewRound = useCallback((nextLevelIndex, levels = shuffledLevels, timedOverride = isTimed) => {
+    setIsCorrectRevealing(false);
+    setIsWrongRevealing(false);
+    setDisplayInput('');
+    setEntryFloater(null);
+    setIsLocked(false);
+    roundEndedRef.current = false;
+    timePenaltyRef.current = 0;
+
+    if (!timedOverride) {
+      setRoundSeconds(0);
+      setTimeLeft(0);
+      setTimeLeftMs(0);
+      return;
+    }
+
+    const nextWord = levels[nextLevelIndex]?.word || '';
+    const baseSeconds = 4 + (nextWord ? nextWord.length * 2 : 0);
+    setRoundSeconds(baseSeconds);
+    setTimeLeft(baseSeconds);
+    setTimeLeftMs(baseSeconds * 1000);
+  }, [isTimed, shuffledLevels]);
 
   const resetGame = () => {
     setActiveRules([]);
@@ -417,10 +491,10 @@ export default function App() {
     setShowIntro(false);
     setHasStarted(true);
     pausedRef.current = false;
-    roundEndedRef.current = false;
-    timePenaltyRef.current = 0;
     setRecentRuleKeys([]);
-    setShuffledLevels(buildWarmupOrder(visibleLevels));
+    const nextLevels = buildWarmupOrder(visibleLevels);
+    setShuffledLevels(nextLevels);
+    startNewRound(0, nextLevels, isTimed);
   };
 
   const markRuleAdded = (ruleKey) => {
@@ -433,52 +507,6 @@ export default function App() {
   useEffect(() => {
     pausedRef.current = isPaused;
   }, [isPaused]);
-
-  useEffect(() => {
-    if (!hasStarted) return undefined;
-    if (isGameOver || hasWon) return undefined;
-    setIsCorrectRevealing(false);
-    setIsWrongRevealing(false);
-    setDisplayInput('');
-    setEntryFloater(null);
-    roundEndedRef.current = false;
-    if (!isTimed) {
-      setRoundSeconds(0);
-      setTimeLeft(0);
-      setTimeLeftMs(0);
-      timePenaltyRef.current = 0;
-      return undefined;
-    }
-    const baseSeconds = 4 + (currentLevel.word ? currentLevel.word.length * 2 : 0);
-    setRoundSeconds(baseSeconds);
-    setTimeLeft(baseSeconds);
-    setTimeLeftMs(baseSeconds * 1000);
-    timePenaltyRef.current = 0;
-    let elapsedMs = 0;
-    let lastTick = performance.now();
-    const roundDurationMs = baseSeconds * 1000;
-    const timer = setInterval(() => {
-      const now = performance.now();
-      if (pausedRef.current || roundEndedRef.current) {
-        lastTick = now;
-        return;
-      }
-      elapsedMs += now - lastTick;
-      lastTick = now;
-      const remainingMs = Math.max(0, roundDurationMs - elapsedMs - timePenaltyRef.current);
-      const remainingSeconds = Math.max(0, Math.floor(remainingMs / 1000));
-      setTimeLeftMs(remainingMs);
-      setTimeLeft(remainingSeconds);
-      if (remainingMs <= 0) {
-        roundEndedRef.current = true;
-        clearInterval(timer);
-        handleFailure();
-      }
-    }, 50);
-    return () => {
-      clearInterval(timer);
-    };
-  }, [levelIndex, isGameOver, hasWon, currentLevel.word, hasStarted, isTimed]);
 
   useEffect(() => {
     if (!showIntro) return undefined;
@@ -569,6 +597,7 @@ export default function App() {
   // --- ACTIONS ---
   const handleStartGame = (mode) => {
     if (!mode) return;
+    let nextTimed = true;
     if (mode === 'honeybee') {
       setIsTimed(true);
       setShowHints(true);
@@ -586,12 +615,18 @@ export default function App() {
       setShowHints(true);
       setShowHelper(true);
     } else {
+      nextTimed = false;
       setIsTimed(false);
       setShowHints(true);
       setShowHelper(true);
     }
     setShowIntro(false);
     setHasStarted(true);
+    setLevelIndex(0);
+    setInput('');
+    const nextLevels = buildWarmupOrder(visibleLevels);
+    setShuffledLevels(nextLevels);
+    startNewRound(0, nextLevels, nextTimed);
     inputRef.current?.focus();
   };
 
@@ -614,6 +649,9 @@ export default function App() {
 
   const handleSuccess = () => {
     roundEndedRef.current = true;
+    setLockedSpellingState(targetSpelling);
+    setLockedHintMaskState(hintMask);
+    setIsLocked(true);
     const timeLeftSeconds = Math.max(0, Math.ceil(timeLeftMs / 1000));
     const pointsEarned = timeLeftSeconds > 0 ? timeLeftSeconds : 1;
     setFeedback('');
@@ -651,11 +689,7 @@ export default function App() {
       const ruleDefinition = RULES[ruleKey];
       return ruleDefinition && !isRuleBlocked(ruleDefinition, aliveRules, ruleKey);
     });
-    const shuffledCandidates = [...candidateRuleKeys];
-    for (let i = shuffledCandidates.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledCandidates[i], shuffledCandidates[j]] = [shuffledCandidates[j], shuffledCandidates[i]];
-    }
+    const shuffledCandidates = shuffleArray(candidateRuleKeys);
     const newRuleKeys = maxNewRules === Infinity
       ? shuffledCandidates
       : shuffledCandidates.slice(0, maxNewRules);
@@ -665,17 +699,13 @@ export default function App() {
 
       // We check if the rule exists AND if it isn't blocked by a mutex group
       if (ruleDefinition && !isRuleBlocked(ruleDefinition, aliveRules, ruleKey)) {
-        const isVowel = isVowelRule(ruleDefinition);
-        const vowelCount = aliveRules.filter(isVowelRule).length;
-        const consonantCount = aliveRules.length - vowelCount;
-        const withinCap = isVowel ? vowelCount < 10 : consonantCount < 10;
-        if (!withinCap) return;
+        if (aliveRules.length >= 21) return;
         // Add the new rule with a 'key' property so we can track it
         aliveRules.push({ 
           ...ruleDefinition, 
           key: ruleKey, 
           durability: ruleDefinition.maxDurability,
-          color: generatePastelHex()
+          color: pastelFromString(ruleKey)
         });
         markRuleAdded(ruleKey);
         setCardsCollected((prev) => prev + 1);
@@ -689,14 +719,14 @@ export default function App() {
     }
     setWordsDefeated((prev) => prev + 1);
     if (crumbledCount > 0) {
-      const sortedNextRules = sortRulesBySound(nextRules);
+      const sortedNextRules = sortRulesAlphabetically(nextRules);
       const sortedVowels = sortedNextRules.filter(isVowelRule);
       const sortedConsonants = sortedNextRules.filter((rule) => !isVowelRule(rule));
       const newFlashes = defeatedIndices.map((idx) => {
         const defeatedRule = nextRules[idx];
         const isVowel = isVowelRule(defeatedRule);
         const groupRules = splitByPhonemeType
-          ? (isVowel ? sortedVowels.slice(0, 10) : sortedConsonants.slice(0, 10))
+          ? (isVowel ? sortedVowels : sortedConsonants)
           : sortedNextRules;
         const displayIndex = groupRules.indexOf(defeatedRule);
         const count = groupRules.length;
@@ -706,8 +736,7 @@ export default function App() {
           displayIndex,
           count,
           splitBaseSpread,
-          3,
-          splitByPhonemeType ? 5 : 10
+          cardScale
         );
         return { id: defeatedFlashIdRef.current, offset, tilt, rowY, group: isVowel ? 'vowel' : 'consonant' };
       });
@@ -734,18 +763,23 @@ export default function App() {
     // Move to next level after a short delay
     setTimeout(() => {
       setFeedback('');
-      setIsCorrectRevealing(false);
-      setDisplayInput('');
-      setLevelIndex(levelIndex + 1);
+      const nextLevelIndex = levelIndex + 1;
+      if (nextLevelIndex < shuffledLevels.length) {
+        startNewRound(nextLevelIndex);
+      }
+      setLevelIndex(nextLevelIndex);
     }, 1000);
   };
 
   const handleFailure = () => {
     roundEndedRef.current = true;
+    setLockedSpellingState(targetSpelling);
+    setLockedHintMaskState(hintMask);
+    setIsLocked(true);
     triggerShake();
     triggerEntryFloater(false);
     setFeedback('');
-    setDisplayInput(lockedSpellingRef.current);
+    setDisplayInput(targetSpelling);
     setIsWrongRevealing(true);
     const nextLives = lives - 1;
     setLives(nextLives);
@@ -755,7 +789,11 @@ export default function App() {
       setIsWrongRevealing(false);
       setDisplayInput('');
       if (nextLives > 0) {
-        setLevelIndex(levelIndex + 1);
+        const nextLevelIndex = levelIndex + 1;
+        if (nextLevelIndex < shuffledLevels.length) {
+          startNewRound(nextLevelIndex);
+        }
+        setLevelIndex(nextLevelIndex);
       }
     }, 1200);
   };
@@ -790,6 +828,62 @@ export default function App() {
       setDisplayInput('');
     }, 500);
   };
+
+  useEffect(() => {
+    if (!hasStarted) return undefined;
+    if (isGameOver || hasWon) return undefined;
+    if (!isTimed || roundSeconds <= 0) return undefined;
+    let elapsedMs = 0;
+    let lastTick = 0;
+    const roundDurationMs = roundSeconds * 1000;
+    const handleTimeoutFailure = () => {
+      triggerShake();
+      triggerEntryFloater(false);
+      setFeedback('');
+      setDisplayInput(targetSpelling);
+      setIsWrongRevealing(true);
+      const nextLives = lives - 1;
+      setLives(nextLives);
+      setInput('');
+      setTimeout(() => {
+        setFeedback('');
+        setIsWrongRevealing(false);
+        setDisplayInput('');
+        if (nextLives > 0) {
+          const nextLevelIndex = levelIndex + 1;
+          if (nextLevelIndex < shuffledLevels.length) {
+            startNewRound(nextLevelIndex);
+          }
+          setLevelIndex(nextLevelIndex);
+        }
+      }, 1200);
+    };
+    const timer = setInterval(() => {
+      const now = performance.now();
+      if (lastTick === 0) {
+        lastTick = now;
+        return;
+      }
+      if (pausedRef.current || roundEndedRef.current) {
+        lastTick = now;
+        return;
+      }
+      elapsedMs += now - lastTick;
+      lastTick = now;
+      const remainingMs = Math.max(0, roundDurationMs - elapsedMs - timePenaltyRef.current);
+      const remainingSeconds = Math.max(0, Math.floor(remainingMs / 1000));
+      setTimeLeftMs(remainingMs);
+      setTimeLeft(remainingSeconds);
+      if (remainingMs <= 0) {
+        roundEndedRef.current = true;
+        clearInterval(timer);
+        handleTimeoutFailure();
+      }
+    }, 50);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [levelIndex, isGameOver, hasWon, hasStarted, isTimed, lives, roundSeconds, targetSpelling, triggerEntryFloater, shuffledLevels.length, startNewRound]);
 
   // --- RENDER ---
 
@@ -848,7 +942,7 @@ export default function App() {
                   {introRuleCards.map((rule, idx) => (
                     <div
                       key={rule.name}
-                      className={`rule-card intro-rule-card intro-rule-card--${idx === 0 ? 'left' : 'right'}`}
+                      className={`rule-card rule-card--hex intro-rule-card intro-rule-card--${idx === 0 ? 'left' : 'right'}`}
                       style={{ backgroundColor: rule.color }}
                     >
                       <div className="rule-main">
@@ -1089,7 +1183,10 @@ export default function App() {
         <div className={`rules-section ${splitByPhonemeType ? 'rules-section--split' : ''}`}>
           {/* ACTIVE RULES LIST */}
           {!splitByPhonemeType && (
-            <div className={`rules-deck ${activeRules.length > 10 ? 'rules-deck--two-rows' : ''}`}>
+            <div
+              ref={rulesDeckRef}
+              className={`rules-deck ${compactCards ? 'rules-deck--compact' : ''}`}
+            >
               {defeatedFlashes.map((flash) => (
                 <div
                   key={`defeated-${flash.id}`}
@@ -1104,22 +1201,19 @@ export default function App() {
               ))}
               {orderedRules.map((rule, idx) => {
                 const count = orderedRules.length;
-                const { offset, tilt, rowY } = getFanLayout(idx, count);
-                const healthPercent = Math.max(
-                  0,
-                  Math.min(100, Math.round((rule.durability / rule.maxDurability) * 100))
-                );
+                const { offset, tilt, rowY } = getFanLayout(idx, count, splitBaseSpread, cardScale);
                 return (
                 <div 
                   key={rule.key} 
-                  className={`rule-card ${recentRuleKeys.includes(rule.key) ? 'rule-card--new' : ''}`}
+                  className={`rule-card rule-card--hex ${recentRuleKeys.includes(rule.key) ? 'rule-card--new' : ''}`}
                   style={{ 
-                    backgroundColor: rule.color || generatePastelHex(),
+                    backgroundColor: rule.color || pastelFromString(rule.key),
                     '--fan-x': `${offset}px`,
                     '--fan-rot': `${tilt}deg`,
                     '--fan-y': `${rowY}px`,
                     '--card-z': idx + 1,
-                    '--card-delay': `${idx * 40}ms`
+                    '--card-delay': `${idx * 40}ms`,
+                    '--card-scale': `${cardScale}`
                   }}
                 >
                     <div className="rule-main">
@@ -1166,17 +1260,13 @@ export default function App() {
                   ))}
                 {displayedVowelRules.map((rule, idx) => {
                   const count = displayedVowelRules.length;
-                  const { offset, tilt, rowY } = getFanLayout(idx, count, splitBaseSpread, 3, 5);
-                  const healthPercent = Math.max(
-                    0,
-                    Math.min(100, Math.round((rule.durability / rule.maxDurability) * 100))
-                  );
+                  const { offset, tilt, rowY } = getFanLayout(idx, count, splitBaseSpread, cardScale);
                   return (
                     <div
                       key={rule.key}
-                      className={`rule-card ${recentRuleKeys.includes(rule.key) ? 'rule-card--new' : ''}`}
+                      className={`rule-card rule-card--hex ${recentRuleKeys.includes(rule.key) ? 'rule-card--new' : ''}`}
                       style={{
-                        backgroundColor: rule.color || generatePastelHex(),
+                        backgroundColor: rule.color || pastelFromString(rule.key),
                         '--fan-x': `${offset}px`,
                         '--fan-rot': `${tilt}deg`,
                         '--fan-y': `${rowY}px`,
@@ -1226,17 +1316,13 @@ export default function App() {
                   ))}
                 {displayedConsonantRules.map((rule, idx) => {
                   const count = displayedConsonantRules.length;
-                  const { offset, tilt, rowY } = getFanLayout(idx, count, splitBaseSpread, 3, 5);
-                  const healthPercent = Math.max(
-                    0,
-                    Math.min(100, Math.round((rule.durability / rule.maxDurability) * 100))
-                  );
+                  const { offset, tilt, rowY } = getFanLayout(idx, count, splitBaseSpread, cardScale);
                   return (
                     <div
                       key={rule.key}
-                      className={`rule-card ${recentRuleKeys.includes(rule.key) ? 'rule-card--new' : ''}`}
+                      className={`rule-card rule-card--hex ${recentRuleKeys.includes(rule.key) ? 'rule-card--new' : ''}`}
                       style={{
-                        backgroundColor: rule.color || generatePastelHex(),
+                        backgroundColor: rule.color || pastelFromString(rule.key),
                         '--fan-x': `${offset}px`,
                         '--fan-rot': `${tilt}deg`,
                         '--fan-y': `${rowY}px`,
@@ -1273,7 +1359,6 @@ export default function App() {
 
         {showHints && (
           <>
-            <h2 className={`hint-label ${isCorrectRevealing ? 'hint-label--fade' : ''}`}>{transformHintText("CLUE")}</h2>
             <p className={`hint-text ${isCorrectRevealing ? 'hint-text--fade' : ''}`}>{transformedHint}</p>
           </>
         )}

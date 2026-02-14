@@ -419,9 +419,6 @@ body {
   position: relative;
   left: auto;
   transform: none;
-  width: clamp(140px, 26vw, 170px);
-  height: clamp(140px, 20vh, 180px);
-  min-width: clamp(140px, 26vw, 170px);
   gap: 0.35rem;
   cursor: default;
   box-shadow: none;
@@ -429,11 +426,11 @@ body {
 }
 
 .intro-rule-card.rule-card.intro-rule-card--left {
-  transform: translateX(20px) rotate(-4deg);
+  transform: none;
 }
 
 .intro-rule-card.rule-card.intro-rule-card--right {
-  transform: translateX(-20px) rotate(4deg);
+  transform: none;
 }
 
 .intro-rule-card.rule-card:hover {
@@ -443,11 +440,15 @@ body {
 }
 
 .intro-rule-card.rule-card.intro-rule-card--left:hover {
-  transform: translateX(10px) rotate(-10deg);
+  transform: none;
 }
 
 .intro-rule-card.rule-card.intro-rule-card--right:hover {
-  transform: translateX(-10px) rotate(10deg);
+  transform: none;
+}
+
+.intro-rule-card.rule-card .rule-health-dots {
+  display: none;
 }
 
 .intro-green {
@@ -661,11 +662,11 @@ body {
 
 .rules-deck {
   position: relative;
-  height: clamp(150px, 22vh, 230px);
+  height: clamp(300px, 40vh, 360px);
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.06rem;
 }
 
 .rules-deck--two-rows {
@@ -688,7 +689,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   gap: 1.4rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .rules-title__stack {
@@ -715,7 +716,7 @@ body {
 .rules-section {
   position: relative;
   z-index: 2;
-  margin-bottom: clamp(0.4rem, 1.4vh, 0.75rem);
+  margin-bottom: clamp(0.1rem, 0.35vh, 0.19rem);
 }
 
 .rules-section--split {
@@ -808,6 +809,25 @@ body {
   opacity: 1;
 }
 
+.rule-card--hex {
+  --hex-card-width: 129px;
+  --hex-card-height: 152px;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  width: calc(var(--hex-card-width) * var(--card-scale, 1));
+  min-width: calc(var(--hex-card-width) * var(--card-scale, 1));
+  height: calc(var(--hex-card-height) * var(--card-scale, 1));
+  padding: calc(1.1rem * var(--card-scale, 1)) calc(0.9rem * var(--card-scale, 1));
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.35rem;
+  transition: transform 120ms ease-out, box-shadow 120ms ease-out;
+}
+
 .rule-card--new {
   opacity: 0;
   animation: card-float-in 320ms ease-out forwards;
@@ -820,20 +840,61 @@ body {
   z-index: 99;
 }
 
+.rule-card--hex:hover {
+  transform: translateX(calc(-50% + var(--fan-x, 0px))) rotate(var(--fan-rot, 0deg)) translateY(calc(var(--fan-y, 0px) - 4px)) scale(1.1);
+  box-shadow: 0 16px 26px rgba(17, 17, 17, 0.35);
+  z-index: 120;
+}
+
 .rule-desc {
   font-size: clamp(0.7rem, 1.6vw, 0.78rem);
   line-height: 1.2;
-}
-
-.rule-health {
-  width: 100%;
-  text-align: left;
 }
 
 .rule-main {
   text-align: left;
   max-width: 100%;
   width: 70%;
+}
+
+.rule-card--hex .rule-main {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 74%;
+  max-width: 74%;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 0.8;
+  padding-bottom: 0.14em;
+}
+
+.rule-card--hex .rule-title {
+  display: block;
+  font-size: 0.975rem;
+  line-height: 0.8;
+  margin-bottom: 0.25em;
+}
+
+.rule-card--hex .rule-desc {
+  display: inline;
+  font-size: 0.72rem;
+  line-height: 0.8;
+}
+
+.rules-deck--compact .rule-card--hex .rule-desc,
+.rules-deck--compact .rule-card--hex .rule-health-dots {
+  display: none;
+}
+
+.rules-deck--compact .rule-card--hex .rule-main {
+  width: 70%;
+  max-width: 70%;
 }
 
 .rule-title {
@@ -853,6 +914,24 @@ body {
   display: flex;
   gap: 0.3rem;
   margin-top: 0.1rem;
+}
+
+.rule-card--hex .rule-health-dots {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  justify-content: center;
+  width: 56%;
+  max-width: 56%;
+  margin-top: 0;
+  opacity: 0.25;
+}
+
+.rule-card--hex .health-dot,
+.rule-card--hex .health-dot--on {
+  background: #cc9900;
+  border-color: #cc9900;
 }
 
 .health-dot {
