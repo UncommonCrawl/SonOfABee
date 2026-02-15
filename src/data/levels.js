@@ -1379,7 +1379,7 @@ export const levelData = [
     id: "lvl_lacquer",
     word: "LACQUER",
     hint: "Shiny protective coating for a cabinet or car",
-    ruleKey: ["L_L", "AAH_A", "K_CQU", "UH_E", "R_R"],
+    ruleKey: ["L_L", "AAH_A", "K_CQ", "UH_UE", "R_R"],
     hidden: false,
   },
   {
