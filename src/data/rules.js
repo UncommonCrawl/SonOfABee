@@ -13,38 +13,12 @@ const isSSound = (word) => {
 // This acts as the translation layer between the "Key" in levels.js and the actual logic.
 
 export const RULES = {
-  A_A: {
-    name: "aah → A",
-    description: "All 'aah' sounds are spelled A",
-    soundId: "æ",
-    spelling: "A",
-    mutexGroup: "VOWEL_AE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AD_AD: {
-    name: "ad → AD",
-    description: "All 'ad' sounds are spelled AD",
-    soundId: "æd",
-    spelling: "AD",
-    mutexGroup: "SOUND_AD",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AE_A: {
-    name: "aah → A",
-    description: "All 'aah' sounds are spelled A",
-    soundId: "æ",
-    spelling: "A",
-    mutexGroup: "VOWEL_AE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   AE_AI: {
     name: "aah → AI",
     description: "All 'aah' sounds are spelled AI",
     soundId: "æ",
     spelling: "AI",
+    usageCount: 1,
     mutexGroup: "VOWEL_AE",
     maxDurability: 3,
     transform: (word) => word
@@ -54,6 +28,7 @@ export const RULES = {
     description: "All 'aah' sounds are spelled AU",
     soundId: "æ",
     spelling: "AU",
+    usageCount: 1,
     mutexGroup: "VOWEL_AE",
     maxDurability: 3,
     transform: (word) => word
@@ -63,6 +38,7 @@ export const RULES = {
     description: "All 'ɑh' sounds are spelled A",
     soundId: "ɑ",
     spelling: "A",
+    usageCount: 20,
     mutexGroup: "VOWEL_AH",
     maxDurability: 3,
     transform: (word) => word
@@ -72,6 +48,7 @@ export const RULES = {
     description: "All 'ɑh' sounds are spelled ACH",
     soundId: "ɑ",
     spelling: "ACH",
+    usageCount: 2,
     mutexGroup: "VOWEL_AH",
     maxDurability: 3,
     transform: (word) => word
@@ -81,6 +58,7 @@ export const RULES = {
     description: "All 'ɑh' sounds are spelled E",
     soundId: "ɑ",
     spelling: "E",
+    usageCount: 22,
     mutexGroup: "VOWEL_AH",
     maxDurability: 3,
     transform: (word) => word
@@ -90,6 +68,7 @@ export const RULES = {
     description: "All 'ɑh' sounds are spelled O",
     soundId: "ɑ",
     spelling: "O",
+    usageCount: 125,
     mutexGroup: "VOWEL_AH",
     maxDurability: 3,
     transform: (word) => word
@@ -99,6 +78,7 @@ export const RULES = {
     description: "All 'ah' sounds are spelled OW",
     soundId: "oʊ",
     spelling: "OW",
+    usageCount: 19,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -108,6 +88,7 @@ export const RULES = {
     description: "All 'ah' sounds are spelled U",
     soundId: "ɑ",
     spelling: "U",
+    usageCount: 7,
     mutexGroup: "VOWEL_AH",
     maxDurability: 3,
     transform: (word) => word
@@ -117,6 +98,7 @@ export const RULES = {
     description: "All 'air' sounds are spelled AIR",
     soundId: "ɛr",
     spelling: "AIR",
+    usageCount: 3,
     mutexGroup: "VOWEL_AIR",
     maxDurability: 3,
     transform: (word) => word
@@ -126,6 +108,7 @@ export const RULES = {
     description: "All 'air' sounds are spelled AIRE",
     soundId: "ɛr",
     spelling: "AIRE",
+    usageCount: 1,
     mutexGroup: "VOWEL_AIR",
     maxDurability: 3,
     transform: (word) => word
@@ -135,15 +118,7 @@ export const RULES = {
     description: "All 'air' sounds are spelled AR",
     soundId: "ɛr",
     spelling: "AR",
-    mutexGroup: "VOWEL_AIR",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AIR_ARY: {
-    name: "air → ARY",
-    description: "All 'air' sounds are spelled ARY",
-    soundId: "ɛr",
-    spelling: "ARY",
+    usageCount: 17,
     mutexGroup: "VOWEL_AIR",
     maxDurability: 3,
     transform: (word) => word
@@ -153,6 +128,7 @@ export const RULES = {
     description: "All 'ak' sounds are spelled AC",
     soundId: "æk",
     spelling: "AC",
+    usageCount: 7,
     mutexGroup: "SOUND_AK",
     maxDurability: 3,
     transform: (word) => word
@@ -162,25 +138,8 @@ export const RULES = {
     description: "All 'al' sounds are spelled AL",
     soundId: "æl",
     spelling: "AL",
+    usageCount: 15,
     mutexGroup: "SOUND_AL",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AN_AN: {
-    name: "an → AN",
-    description: "All 'an' sounds are spelled AN",
-    soundId: "æn",
-    spelling: "AN",
-    mutexGroup: "SOUND_AN",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AP_APP: {
-    name: "ap → APP",
-    description: "All 'ap' sounds are spelled APP",
-    soundId: "æp",
-    spelling: "APP",
-    mutexGroup: "SOUND_AP",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -189,6 +148,7 @@ export const RULES = {
     description: "All 'ɑr' sounds are spelled AR",
     soundId: "ɑr",
     spelling: "AR",
+    usageCount: 28,
     mutexGroup: "VOWEL_AR",
     maxDurability: 3,
     transform: (word) => word
@@ -198,6 +158,7 @@ export const RULES = {
     description: "All 'ɑr' sounds are spelled EAR",
     soundId: "ɑr",
     spelling: "EAR",
+    usageCount: 6,
     mutexGroup: "VOWEL_AR",
     maxDurability: 3,
     transform: (word) => word
@@ -207,6 +168,7 @@ export const RULES = {
     description: "All 'aw' sounds are spelled A",
     soundId: "ɔ",
     spelling: "A",
+    usageCount: 9,
     mutexGroup: "VOWEL_AW",
     maxDurability: 3,
     transform: (word) => word
@@ -216,6 +178,7 @@ export const RULES = {
     description: "All 'aw' sounds are spelled AU",
     soundId: "ɔ",
     spelling: "AU",
+    usageCount: 6,
     mutexGroup: "VOWEL_AW",
     maxDurability: 3,
     transform: (word) => word
@@ -225,6 +188,7 @@ export const RULES = {
     description: "All 'aw' sounds are spelled AW",
     soundId: "ɔ",
     spelling: "AW",
+    usageCount: 4,
     mutexGroup: "VOWEL_AW",
     maxDurability: 3,
     transform: (word) => word
@@ -234,6 +198,7 @@ export const RULES = {
     description: "All 'aw' sounds are spelled O",
     soundId: "ɔ",
     spelling: "O",
+    usageCount: 20,
     mutexGroup: "VOWEL_AW",
     maxDurability: 3,
     transform: (word) => word
@@ -243,6 +208,7 @@ export const RULES = {
     description: "All 'aw' sounds are spelled OA",
     soundId: "ɔ",
     spelling: "OA",
+    usageCount: 1,
     mutexGroup: "VOWEL_AW",
     maxDurability: 3,
     transform: (word) => word
@@ -252,6 +218,7 @@ export const RULES = {
     description: "All 'aw' sounds are spelled OU",
     soundId: "ɔ",
     spelling: "OU",
+    usageCount: 2,
     mutexGroup: "VOWEL_AW",
     maxDurability: 3,
     transform: (word) => word
@@ -261,6 +228,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled A",
     soundId: "eɪ",
     spelling: "A",
+    usageCount: 115,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -270,15 +238,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled AI",
     soundId: "eɪ",
     spelling: "AI",
-    mutexGroup: "VOWEL_AY",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AY_AIN: {
-    name: "ay → AIN",
-    description: "All 'ay' sounds are spelled AIN",
-    soundId: "eɪ",
-    spelling: "AIN",
+    usageCount: 28,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -288,6 +248,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled AU",
     soundId: "eɪ",
     spelling: "AU",
+    usageCount: 1,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -297,6 +258,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled AY",
     soundId: "eɪ",
     spelling: "AY",
+    usageCount: 13,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -306,6 +268,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled E",
     soundId: "eɪ",
     spelling: "E",
+    usageCount: 5,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -315,6 +278,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled EA",
     soundId: "eɪ",
     spelling: "EA",
+    usageCount: 4,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -324,6 +288,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled EI",
     soundId: "eɪ",
     spelling: "EI",
+    usageCount: 3,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -333,6 +298,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled ET",
     soundId: "eɪ",
     spelling: "ET",
+    usageCount: 9,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -342,6 +308,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled EY",
     soundId: "eɪ",
     spelling: "EY",
+    usageCount: 5,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -351,24 +318,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled I",
     soundId: "eɪ",
     spelling: "I",
-    mutexGroup: "VOWEL_AY",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AY_IA: {
-    name: "ay → IA",
-    description: "All 'ay' sounds are spelled IA",
-    soundId: "eɪ",
-    spelling: "IA",
-    mutexGroup: "VOWEL_AY",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AY_IE: {
-    name: "ay → IE",
-    description: "All 'ay' sounds are spelled IE",
-    soundId: "eɪ",
-    spelling: "IE",
+    usageCount: 58,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -378,15 +328,7 @@ export const RULES = {
     description: "All 'ay' sounds are spelled Y",
     soundId: "eɪ",
     spelling: "Y",
-    mutexGroup: "VOWEL_AY",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  AY_Z: {
-    name: "ay → Z",
-    description: "All 'ay' sounds are spelled Z",
-    soundId: "eɪ",
-    spelling: "Z",
+    usageCount: 18,
     mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
@@ -396,6 +338,7 @@ export const RULES = {
     description: "All 'az' sounds are spelled AS",
     soundId: "æz",
     spelling: "AS",
+    usageCount: 6,
     mutexGroup: "SOUND_AZ",
     maxDurability: 3,
     transform: (word) => word
@@ -405,15 +348,7 @@ export const RULES = {
     description: "All 'b' sounds are spelled B",
     soundId: "b",
     spelling: "B",
-    mutexGroup: "SOUND_B",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  B_Y: {
-    name: "b → Y",
-    description: "All 'b' sounds are spelled Y",
-    soundId: "b",
-    spelling: "Y",
+    usageCount: 168,
     mutexGroup: "SOUND_B",
     maxDurability: 3,
     transform: (word) => word
@@ -423,6 +358,7 @@ export const RULES = {
     description: "All 'ch' sounds are spelled C",
     soundId: "tʃ",
     spelling: "C",
+    usageCount: 28,
     mutexGroup: "CH_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/CH/g, "C")
@@ -432,6 +368,7 @@ export const RULES = {
     description: "All 'ch' sounds are spelled CC",
     soundId: "tʃ",
     spelling: "CC",
+    usageCount: 1,
     mutexGroup: "CH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -441,16 +378,8 @@ export const RULES = {
     description: "All 'ch' sounds are spelled CH",
     soundId: "tʃ",
     spelling: "CH",
+    usageCount: 26,
     mutexGroup: "CH_SOUND",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  CH_CH_2: {
-    name: "ʧ → CH",
-    description: "All 'ʧ' sounds are spelled CH",
-    soundId: "ʧ",
-    spelling: "CH",
-    mutexGroup: "SOUND_U02A7",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -459,6 +388,7 @@ export const RULES = {
     description: "All 'ch' sounds are spelled T",
     soundId: "tʃ",
     spelling: "T",
+    usageCount: 15,
     mutexGroup: "CH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -468,6 +398,7 @@ export const RULES = {
     description: "All 'ch' sounds are spelled TCH",
     soundId: "tʃ",
     spelling: "TCH",
+    usageCount: 5,
     mutexGroup: "CH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -486,6 +417,7 @@ export const RULES = {
     description: "All 'd' sounds are spelled DD",
     soundId: "d",
     spelling: "DD",
+    usageCount: 5,
     mutexGroup: "SOUND_D",
     maxDurability: 3,
     transform: (word) => word
@@ -495,6 +427,7 @@ export const RULES = {
     description: "All 'd' sounds are spelled DE",
     soundId: "d",
     spelling: "DE",
+    usageCount: 20,
     mutexGroup: "SOUND_D",
     maxDurability: 3,
     transform: (word) => word
@@ -504,6 +437,7 @@ export const RULES = {
     description: "All 'dʒ' sounds are spelled DG",
     soundId: "dʒ",
     spelling: "DG",
+    usageCount: 1,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -513,43 +447,8 @@ export const RULES = {
     description: "All 'd' sounds are spelled ED",
     soundId: "d",
     spelling: "ED",
+    usageCount: 45,
     mutexGroup: "SOUND_D",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  D_H: {
-    name: "d → H",
-    description: "All 'd' sounds are spelled H",
-    soundId: "d",
-    spelling: "H",
-    mutexGroup: "SOUND_D",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  DJ_DJ: {
-    name: "dʒ → DJ",
-    description: "All 'dʒ' sounds are spelled DJ",
-    soundId: "dʒ",
-    spelling: "DJ",
-    mutexGroup: "J_SOUND",
-    maxDurability: 3,
-    transform: (word) => word.replace(/J/g, "DJ")
-  },
-  EE_AY: {
-    name: "ee → AY",
-    description: "All 'ee' sounds are spelled AY",
-    soundId: "i",
-    spelling: "AY",
-    mutexGroup: "VOWEL_EE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  EE_B: {
-    name: "ee → B",
-    description: "All 'ee' sounds are spelled B",
-    soundId: "i",
-    spelling: "B",
-    mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -558,6 +457,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled E",
     soundId: "i",
     spelling: "E",
+    usageCount: 30,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -567,6 +467,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled EA",
     soundId: "i",
     spelling: "EA",
+    usageCount: 21,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -576,6 +477,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled EE",
     soundId: "i",
     spelling: "EE",
+    usageCount: 31,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -585,6 +487,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled EI",
     soundId: "i",
     spelling: "EI",
+    usageCount: 2,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -594,6 +497,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled EO",
     soundId: "i",
     spelling: "EO",
+    usageCount: 2,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -603,6 +507,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled EY",
     soundId: "i",
     spelling: "EY",
+    usageCount: 5,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -612,6 +517,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled I",
     soundId: "i",
     spelling: "I",
+    usageCount: 40,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -621,6 +527,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled IE",
     soundId: "i",
     spelling: "IE",
+    usageCount: 16,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -630,6 +537,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled IS",
     soundId: "i",
     spelling: "IS",
+    usageCount: 6,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -639,6 +547,7 @@ export const RULES = {
     description: "All 'ee' sounds are spelled Y",
     soundId: "i",
     spelling: "Y",
+    usageCount: 108,
     mutexGroup: "VOWEL_EE",
     maxDurability: 3,
     transform: (word) => word
@@ -648,6 +557,7 @@ export const RULES = {
     description: "All 'ehh' sounds are spelled A",
     soundId: "ɛ",
     spelling: "A",
+    usageCount: 15,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -657,6 +567,7 @@ export const RULES = {
     description: "All 'eh' sounds are spelled AI",
     soundId: "ɛ",
     spelling: "AI",
+    usageCount: 1,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -666,6 +577,7 @@ export const RULES = {
     description: "All 'eh' sounds are spelled E",
     soundId: "ɛ",
     spelling: "E",
+    usageCount: 216,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -675,6 +587,7 @@ export const RULES = {
     description: "All 'ehh' sounds are spelled EA",
     soundId: "ɛ",
     spelling: "EA",
+    usageCount: 10,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -684,6 +597,7 @@ export const RULES = {
     description: "All 'eh' sounds are spelled EH",
     soundId: "ɛ",
     spelling: "EH",
+    usageCount: 3,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -693,15 +607,7 @@ export const RULES = {
     description: "All 'eh' sounds are spelled EI",
     soundId: "ɛ",
     spelling: "EI",
-    mutexGroup: "VOWEL_EH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  EH_EK: {
-    name: "eh → EK",
-    description: "All 'eh' sounds are spelled EK",
-    soundId: "ɛ",
-    spelling: "EK",
+    usageCount: 1,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -711,6 +617,7 @@ export const RULES = {
     description: "All 'ehh' sounds are spelled EO",
     soundId: "ɛ",
     spelling: "EO",
+    usageCount: 1,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -720,6 +627,7 @@ export const RULES = {
     description: "All 'eh' sounds are spelled ES",
     soundId: "ɛ",
     spelling: "ES",
+    usageCount: 21,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -729,16 +637,8 @@ export const RULES = {
     description: "All 'ehh' sounds are spelled IE",
     soundId: "ɛ",
     spelling: "IE",
+    usageCount: 2,
     mutexGroup: "VOWEL_EH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  EH_L: {
-    name: "el → L",
-    description: "All 'el' sounds are spelled L",
-    soundId: "əl",
-    spelling: "L",
-    mutexGroup: "SOUND_EL",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -747,6 +647,7 @@ export const RULES = {
     description: "All 'ehh' sounds are spelled U",
     soundId: "ɛ",
     spelling: "U",
+    usageCount: 1,
     mutexGroup: "VOWEL_EH",
     maxDurability: 3,
     transform: (word) => word
@@ -756,52 +657,8 @@ export const RULES = {
     description: "All 'el' sounds are spelled LE",
     soundId: "əl",
     spelling: "LE",
+    usageCount: 25,
     mutexGroup: "SOUND_EL",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  ER_AR: {
-    name: "er → AR",
-    description: "All 'er' sounds are spelled AR",
-    soundId: "ər",
-    spelling: "AR",
-    mutexGroup: "VOWEL_ER",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  ER_ER: {
-    name: "er → ER",
-    description: "All 'er' sounds are spelled ER",
-    soundId: "ər",
-    spelling: "ER",
-    mutexGroup: "VOWEL_ER",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  ER_N: {
-    name: "er → N",
-    description: "All 'er' sounds are spelled N",
-    soundId: "ər",
-    spelling: "N",
-    mutexGroup: "VOWEL_ER",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  ER_OR: {
-    name: "er → OR",
-    description: "All 'er' sounds are spelled OR",
-    soundId: "ər",
-    spelling: "OR",
-    mutexGroup: "VOWEL_ER",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  ER_OUR: {
-    name: "er → OUR",
-    description: "All 'er' sounds are spelled OUR",
-    soundId: "ər",
-    spelling: "OUR",
-    mutexGroup: "VOWEL_ER",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -810,6 +667,7 @@ export const RULES = {
     description: "All 'er' sounds are spelled R",
     soundId: "ər",
     spelling: "R",
+    usageCount: 26,
     mutexGroup: "VOWEL_ER",
     maxDurability: 3,
     transform: (word) => word
@@ -819,6 +677,7 @@ export const RULES = {
     description: "All 'er' sounds are spelled RE",
     soundId: "ər",
     spelling: "RE",
+    usageCount: 2,
     mutexGroup: "VOWEL_ER",
     maxDurability: 3,
     transform: (word) => word
@@ -828,25 +687,8 @@ export const RULES = {
     description: "All 'er' sounds are spelled UR",
     soundId: "ɜr",
     spelling: "UR",
+    usageCount: 3,
     mutexGroup: "VOWEL_UR",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  ER_URE: {
-    name: "er → URE",
-    description: "All 'er' sounds are spelled URE",
-    soundId: "ər",
-    spelling: "URE",
-    mutexGroup: "VOWEL_ER",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  EY_A: {
-    name: "ay → EY",
-    description: "All 'ay' sounds are spelled EY",
-    soundId: "eɪ",
-    spelling: "EY",
-    mutexGroup: "VOWEL_AY",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -855,6 +697,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled AIS",
     soundId: "aɪ",
     spelling: "AIS",
+    usageCount: 1,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -864,6 +707,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled EI",
     soundId: "aɪ",
     spelling: "EI",
+    usageCount: 1,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -873,6 +717,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled EYE",
     soundId: "aɪ",
     spelling: "EYE",
+    usageCount: 2,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -882,6 +727,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled I",
     soundId: "aɪ",
     spelling: "I",
+    usageCount: 62,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -891,6 +737,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled ICT",
     soundId: "aɪ",
     spelling: "ICT",
+    usageCount: 1,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -900,15 +747,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled IGH",
     soundId: "aɪ",
     spelling: "IGH",
-    mutexGroup: "VOWEL_EYE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  EYE_L: {
-    name: "eye → L",
-    description: "All 'eye' sounds are spelled L",
-    soundId: "aɪ",
-    spelling: "L",
+    usageCount: 11,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -918,6 +757,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled OI",
     soundId: "aɪ",
     spelling: "OI",
+    usageCount: 1,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -927,6 +767,7 @@ export const RULES = {
     description: "All 'eye' sounds are spelled UY",
     soundId: "aɪ",
     spelling: "UY",
+    usageCount: 1,
     mutexGroup: "VOWEL_EYE",
     maxDurability: 3,
     transform: (word) => word
@@ -936,16 +777,8 @@ export const RULES = {
     description: "All 'eye' sounds are spelled Y",
     soundId: "aɪ",
     spelling: "Y",
+    usageCount: 14,
     mutexGroup: "VOWEL_EYE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  F_E: {
-    name: "f → E",
-    description: "All 'f' sounds are spelled E",
-    soundId: "f",
-    spelling: "E",
-    mutexGroup: "F_SOUND",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -954,6 +787,7 @@ export const RULES = {
     description: "All 'f' sounds are spelled F",
     soundId: "f",
     spelling: "F",
+    usageCount: 138,
     mutexGroup: "F_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -963,6 +797,7 @@ export const RULES = {
     description: "All 'f' sounds are spelled FF",
     soundId: "f",
     spelling: "FF",
+    usageCount: 14,
     mutexGroup: "F_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -972,6 +807,7 @@ export const RULES = {
     description: "All 'f' sounds are spelled GH",
     soundId: "f",
     spelling: "GH",
+    usageCount: 4,
     mutexGroup: "F_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/F/g, "GH")
@@ -981,6 +817,7 @@ export const RULES = {
     description: "All 'f' sounds are spelled PH",
     soundId: "f",
     spelling: "PH",
+    usageCount: 20,
     mutexGroup: "F_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/F/g, "PH")
@@ -990,6 +827,7 @@ export const RULES = {
     description: "All 'ɡ' sounds are spelled G",
     soundId: "ɡ",
     spelling: "G",
+    usageCount: 73,
     mutexGroup: "G_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -999,6 +837,7 @@ export const RULES = {
     description: "All 'ɡ' sounds are spelled GH",
     soundId: "ɡ",
     spelling: "GH",
+    usageCount: 1,
     mutexGroup: "G_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1008,24 +847,17 @@ export const RULES = {
     description: "All 'ɡ' sounds are spelled GUE",
     soundId: "ɡ",
     spelling: "GUE",
+    usageCount: 3,
     mutexGroup: "G_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/G/g, "GUE")
-  },
-  G_X: {
-    name: "g → X",
-    description: "All 'g' sounds are spelled X",
-    soundId: "ɡ",
-    spelling: "X",
-    mutexGroup: "G_SOUND",
-    maxDurability: 3,
-    transform: (word) => word
   },
   H_H: {
     name: "h → H",
     description: "All 'h' sounds are spelled H",
     soundId: "h",
     spelling: "H",
+    usageCount: 49,
     mutexGroup: "H",
     maxDurability: 3,
     transform: (word) => word
@@ -1035,6 +867,7 @@ export const RULES = {
     description: "All 'h' sounds are spelled J",
     soundId: "h",
     spelling: "J",
+    usageCount: 1,
     mutexGroup: "H",
     maxDurability: 3,
     transform: (word) => {
@@ -1047,6 +880,7 @@ export const RULES = {
     description: "All 'h' sounds are spelled WH",
     soundId: "h",
     spelling: "WH",
+    usageCount: 3,
     mutexGroup: "H",
     maxDurability: 3,
     transform: (word) => {
@@ -1059,6 +893,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled A",
     soundId: "ɪ",
     spelling: "A",
+    usageCount: 7,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1068,15 +903,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled AI",
     soundId: "ɪ",
     spelling: "AI",
-    mutexGroup: "VOWEL_IH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  IH_CHI: {
-    name: "ih → CHI",
-    description: "All 'ih' sounds are spelled CHI",
-    soundId: "ɪ",
-    spelling: "CHI",
+    usageCount: 2,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1086,6 +913,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled E",
     soundId: "ɪ",
     spelling: "E",
+    usageCount: 89,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1095,6 +923,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled I",
     soundId: "ɪ",
     spelling: "I",
+    usageCount: 414,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1104,6 +933,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled IE",
     soundId: "ɪ",
     spelling: "IE",
+    usageCount: 1,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1113,6 +943,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled O",
     soundId: "ɪ",
     spelling: "O",
+    usageCount: 3,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1122,6 +953,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled U",
     soundId: "ɪ",
     spelling: "U",
+    usageCount: 6,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1131,6 +963,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled UI",
     soundId: "ɪ",
     spelling: "UI",
+    usageCount: 8,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1140,6 +973,7 @@ export const RULES = {
     description: "All 'ih' sounds are spelled Y",
     soundId: "ɪ",
     spelling: "Y",
+    usageCount: 19,
     mutexGroup: "VOWEL_IH",
     maxDurability: 3,
     transform: (word) => word
@@ -1149,6 +983,7 @@ export const RULES = {
     description: "All 'il' sounds are spelled LE",
     soundId: "ɪl",
     spelling: "LE",
+    usageCount: 3,
     mutexGroup: "SOUND_EL",
     maxDurability: 3,
     transform: (word) => word
@@ -1158,6 +993,7 @@ export const RULES = {
     description: "All 'dʒ' sounds are spelled DGE",
     soundId: "dʒ",
     spelling: "DGE",
+    usageCount: 3,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/J/g, "DGE")
@@ -1167,6 +1003,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled G",
     soundId: "dʒ",
     spelling: "G",
+    usageCount: 8,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1176,16 +1013,8 @@ export const RULES = {
     description: "All 'dʒ' sounds are spelled J",
     soundId: "dʒ",
     spelling: "J",
+    usageCount: 6,
     mutexGroup: "J_SOUND",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  J_J_2: {
-    name: "ʤ → J",
-    description: "All 'ʤ' sounds are spelled J",
-    soundId: "ʤ",
-    spelling: "J",
-    mutexGroup: "SOUND_U02A4",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -1194,6 +1023,7 @@ export const RULES = {
     description: "All 'y' sounds are spelled LL",
     soundId: "j",
     spelling: "LL",
+    usageCount: 1,
     mutexGroup: "Y_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/Y/g, "LL")
@@ -1203,6 +1033,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled Y",
     soundId: "j",
     spelling: "Y",
+    usageCount: 1,
     mutexGroup: "Y_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1212,6 +1043,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled DGE",
     soundId: "dʒ",
     spelling: "DGE",
+    usageCount: 2,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1221,6 +1053,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled DU",
     soundId: "dʒ",
     spelling: "DU",
+    usageCount: 6,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1230,6 +1063,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled G",
     soundId: "dʒ",
     spelling: "G",
+    usageCount: 5,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1239,6 +1073,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled GE",
     soundId: "dʒ",
     spelling: "GE",
+    usageCount: 17,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1248,6 +1083,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled GI",
     soundId: "dʒ",
     spelling: "GI",
+    usageCount: 8,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1257,6 +1093,7 @@ export const RULES = {
     description: "All 'j' sounds are spelled J",
     soundId: "dʒ",
     spelling: "J",
+    usageCount: 12,
     mutexGroup: "J_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1266,6 +1103,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled C",
     soundId: "k",
     spelling: "C",
+    usageCount: 225,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1275,6 +1113,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled CC",
     soundId: "k",
     spelling: "CC",
+    usageCount: 7,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1284,6 +1123,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled CCH",
     soundId: "k",
     spelling: "CCH",
+    usageCount: 1,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1293,6 +1133,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled CH",
     soundId: "k",
     spelling: "CH",
+    usageCount: 9,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => {
@@ -1304,6 +1145,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled CK",
     soundId: "k",
     spelling: "CK",
+    usageCount: 26,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => {
@@ -1318,15 +1160,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled CQ",
     soundId: "k",
     spelling: "CQ",
-    mutexGroup: "K",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  K_CQU: {
-    name: "k → CQU",
-    description: "All 'k' sounds are spelled CQU",
-    soundId: "k",
-    spelling: "CQU",
+    usageCount: 3,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1336,6 +1170,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled K",
     soundId: "k",
     spelling: "K",
+    usageCount: 67,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1345,6 +1180,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled KH",
     soundId: "k",
     spelling: "KH",
+    usageCount: 1,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1354,6 +1190,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled Q",
     soundId: "k",
     spelling: "Q",
+    usageCount: 9,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1363,6 +1200,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled QU",
     soundId: "k",
     spelling: "QU",
+    usageCount: 6,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word.replace(/K/g, "QU")
@@ -1372,6 +1210,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled QUE",
     soundId: "k",
     spelling: "QUE",
+    usageCount: 6,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => {
@@ -1385,6 +1224,7 @@ export const RULES = {
     description: "All 'k' sounds are spelled X",
     soundId: "k",
     spelling: "X",
+    usageCount: 1,
     mutexGroup: "K",
     maxDurability: 3,
     transform: (word) => word
@@ -1394,6 +1234,7 @@ export const RULES = {
     description: "All 'ks' sounds are spelled X",
     soundId: "ks",
     spelling: "X",
+    usageCount: 24,
     mutexGroup: "SOUND_K_S",
     maxDurability: 3,
     transform: (word) => word
@@ -1403,6 +1244,7 @@ export const RULES = {
     description: "All 'kw' sounds are spelled CH",
     soundId: "kw",
     spelling: "CH",
+    usageCount: 1,
     mutexGroup: "KW_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/QU/g, "K_CH")
@@ -1412,6 +1254,7 @@ export const RULES = {
     description: "All 'kw' sounds are spelled QU",
     soundId: "kw",
     spelling: "QU",
+    usageCount: 1,
     mutexGroup: "KW_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/QU/g, "QU")
@@ -1421,15 +1264,7 @@ export const RULES = {
     description: "All 'l' sounds are spelled E",
     soundId: "l",
     spelling: "E",
-    mutexGroup: "SOUND_L",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  L_F: {
-    name: "l → F",
-    description: "All 'l' sounds are spelled F",
-    soundId: "l",
-    spelling: "F",
+    usageCount: 6,
     mutexGroup: "SOUND_L",
     maxDurability: 3,
     transform: (word) => word
@@ -1439,6 +1274,7 @@ export const RULES = {
     description: "All 'l' sounds are spelled L",
     soundId: "l",
     spelling: "L",
+    usageCount: 328,
     mutexGroup: "SOUND_L",
     maxDurability: 3,
     transform: (word) => word
@@ -1448,6 +1284,7 @@ export const RULES = {
     description: "All 'l' sounds are spelled LL",
     soundId: "l",
     spelling: "LL",
+    usageCount: 38,
     mutexGroup: "SOUND_L",
     maxDurability: 3,
     transform: (word) => word
@@ -1457,6 +1294,7 @@ export const RULES = {
     description: "All 'm' sounds are spelled GM",
     soundId: "m",
     spelling: "GM",
+    usageCount: 2,
     mutexGroup: "M",
     maxDurability: 3,
     transform: (word) => word.replace(/M/g, "GM")
@@ -1466,6 +1304,7 @@ export const RULES = {
     description: "All 'm' sounds are spelled M",
     soundId: "m",
     spelling: "M",
+    usageCount: 244,
     mutexGroup: "M",
     maxDurability: 3,
     transform: (word) => word
@@ -1475,6 +1314,7 @@ export const RULES = {
     description: "All 'm' sounds are spelled MM",
     soundId: "m",
     spelling: "MM",
+    usageCount: 9,
     mutexGroup: "SOUND_M",
     maxDurability: 3,
     transform: (word) => word
@@ -1484,6 +1324,7 @@ export const RULES = {
     description: "All 'm' sounds are spelled MN",
     soundId: "m",
     spelling: "MN",
+    usageCount: 4,
     mutexGroup: "M",
     maxDurability: 3,
     transform: (word) => {
@@ -1491,29 +1332,12 @@ export const RULES = {
       return word;
     }
   },
-  N_DN: {
-    name: "n → DN",
-    description: "All 'n' sounds are spelled DN",
-    soundId: "n",
-    spelling: "DN",
-    mutexGroup: "N",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  N_E: {
-    name: "n → E",
-    description: "All 'n' sounds are spelled E",
-    soundId: "n",
-    spelling: "E",
-    mutexGroup: "N",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   N_GN: {
     name: "n → GN",
     description: "All 'n' sounds are spelled GN",
     soundId: "n",
     spelling: "GN",
+    usageCount: 8,
     mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => {
@@ -1526,6 +1350,7 @@ export const RULES = {
     description: "All 'n' sounds are spelled GNE",
     soundId: "n",
     spelling: "GNE",
+    usageCount: 1,
     mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => {
@@ -1538,6 +1363,7 @@ export const RULES = {
     description: "All 'n' sounds are spelled KN",
     soundId: "n",
     spelling: "KN",
+    usageCount: 8,
     mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => {
@@ -1550,6 +1376,7 @@ export const RULES = {
     description: "All 'n' sounds are spelled N",
     soundId: "n",
     spelling: "N",
+    usageCount: 563,
     mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => word
@@ -1559,6 +1386,7 @@ export const RULES = {
     description: "All 'n' sounds are spelled NE",
     soundId: "n",
     spelling: "NE",
+    usageCount: 36,
     mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => word
@@ -1568,6 +1396,7 @@ export const RULES = {
     description: "All 'n' sounds are spelled NN",
     soundId: "n",
     spelling: "NN",
+    usageCount: 12,
     mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => word
@@ -1577,6 +1406,7 @@ export const RULES = {
     description: "All 'n' sounds are spelled PN",
     soundId: "n",
     spelling: "PN",
+    usageCount: 1,
     mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => {
@@ -1589,6 +1419,7 @@ export const RULES = {
     description: "All 'ng' sounds are spelled N",
     soundId: "ŋ",
     spelling: "N",
+    usageCount: 10,
     mutexGroup: "SOUND_U014B",
     maxDurability: 3,
     transform: (word) => word
@@ -1598,25 +1429,8 @@ export const RULES = {
     description: "All 'ng' sounds are spelled NG",
     soundId: "ŋ",
     spelling: "NG",
+    usageCount: 116,
     mutexGroup: "SOUND_U014B",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  NI_GNA: {
-    name: "ni → GNA",
-    description: "All 'ni' sounds are spelled GNA",
-    soundId: "ni",
-    spelling: "GNA",
-    mutexGroup: "NI_SOUND",
-    maxDurability: 3,
-    transform: (word) => word.replace(/NI/g, "GNA")
-  },
-  NS_N: {
-    name: "n → NS",
-    description: "All 'n' sounds are spelled NS",
-    soundId: "n",
-    spelling: "NS",
-    mutexGroup: "N",
     maxDurability: 3,
     transform: (word) => word
   },
@@ -1625,6 +1439,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled AUX",
     soundId: "oʊ",
     spelling: "AUX",
+    usageCount: 1,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1634,6 +1449,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled EAU",
     soundId: "oʊ",
     spelling: "EAU",
+    usageCount: 1,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1643,6 +1459,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled EW",
     soundId: "oʊ",
     spelling: "EW",
+    usageCount: 4,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1652,6 +1469,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled O",
     soundId: "oʊ",
     spelling: "O",
+    usageCount: 81,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1661,6 +1479,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled OA",
     soundId: "oʊ",
     spelling: "OA",
+    usageCount: 14,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1670,6 +1489,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled OAH",
     soundId: "oʊ",
     spelling: "OAH",
+    usageCount: 1,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1679,6 +1499,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled OE",
     soundId: "oʊ",
     spelling: "OE",
+    usageCount: 1,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1688,6 +1509,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled OO",
     soundId: "oʊ",
     spelling: "OO",
+    usageCount: 3,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1697,6 +1519,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled OUGH",
     soundId: "oʊ",
     spelling: "OUGH",
+    usageCount: 3,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1706,6 +1529,7 @@ export const RULES = {
     description: "All 'oh' sounds are spelled OW",
     soundId: "oʊ",
     spelling: "OW",
+    usageCount: 3,
     mutexGroup: "VOWEL_OH",
     maxDurability: 3,
     transform: (word) => word
@@ -1715,6 +1539,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled EU",
     soundId: "u",
     spelling: "EU",
+    usageCount: 2,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1724,6 +1549,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled EW",
     soundId: "u",
     spelling: "EW",
+    usageCount: 6,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1733,6 +1559,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled IEU",
     soundId: "u",
     spelling: "IEU",
+    usageCount: 1,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1742,6 +1569,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled O",
     soundId: "u",
     spelling: "O",
+    usageCount: 11,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1751,6 +1579,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled OE",
     soundId: "u",
     spelling: "OE",
+    usageCount: 2,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1760,6 +1589,7 @@ export const RULES = {
     description: "All 'ooh' sounds are spelled OO",
     soundId: "u",
     spelling: "OO",
+    usageCount: 7,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1769,6 +1599,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled OU",
     soundId: "u",
     spelling: "OU",
+    usageCount: 6,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1778,6 +1609,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled OUGH",
     soundId: "u",
     spelling: "OUGH",
+    usageCount: 1,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1787,15 +1619,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled OUP",
     soundId: "u",
     spelling: "OUP",
-    mutexGroup: "VOWEL_OO",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  OO_OVE: {
-    name: "oo → OVE",
-    description: "All 'oo' sounds are spelled OVE",
-    soundId: "u",
-    spelling: "OVE",
+    usageCount: 1,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1805,6 +1629,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled U",
     soundId: "u",
     spelling: "U",
+    usageCount: 16,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1814,6 +1639,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled UI",
     soundId: "u",
     spelling: "UI",
+    usageCount: 3,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1823,6 +1649,7 @@ export const RULES = {
     description: "All 'oo' sounds are spelled UO",
     soundId: "u",
     spelling: "UO",
+    usageCount: 1,
     mutexGroup: "VOWEL_OO",
     maxDurability: 3,
     transform: (word) => word
@@ -1832,6 +1659,7 @@ export const RULES = {
     description: "All 'or' sounds are spelled OR",
     soundId: "ɔr",
     spelling: "OR",
+    usageCount: 35,
     mutexGroup: "VOWEL_OR",
     maxDurability: 3,
     transform: (word) => word
@@ -1841,6 +1669,7 @@ export const RULES = {
     description: "All 'or' sounds are spelled ORE",
     soundId: "ɔr",
     spelling: "ORE",
+    usageCount: 2,
     mutexGroup: "VOWEL_OR",
     maxDurability: 3,
     transform: (word) => word
@@ -1850,6 +1679,7 @@ export const RULES = {
     description: "All 'or' sounds are spelled ORPS",
     soundId: "ɔr",
     spelling: "ORPS",
+    usageCount: 1,
     mutexGroup: "VOWEL_OR",
     maxDurability: 3,
     transform: (word) => word
@@ -1859,6 +1689,7 @@ export const RULES = {
     description: "All 'ow' sounds are spelled OU",
     soundId: "aʊ",
     spelling: "OU",
+    usageCount: 27,
     mutexGroup: "VOWEL_OW",
     maxDurability: 3,
     transform: (word) => word
@@ -1868,6 +1699,7 @@ export const RULES = {
     description: "All 'ow' sounds are spelled OW",
     soundId: "aʊ",
     spelling: "OW",
+    usageCount: 4,
     mutexGroup: "VOWEL_OW",
     maxDurability: 3,
     transform: (word) => word
@@ -1877,6 +1709,7 @@ export const RULES = {
     description: "All 'oi' sounds are spelled OI",
     soundId: "ɔɪ",
     spelling: "OI",
+    usageCount: 13,
     mutexGroup: "VOWEL_OY",
     maxDurability: 3,
     transform: (word) => word
@@ -1886,24 +1719,17 @@ export const RULES = {
     description: "All 'oy' sounds are spelled OY",
     soundId: "ɔɪ",
     spelling: "OY",
+    usageCount: 5,
     mutexGroup: "VOWEL_OY",
     maxDurability: 3,
     transform: (word) => word
-  },
-  P_GH: {
-    name: "p → GH",
-    description: "All 'p' sounds are spelled GH",
-    soundId: "p",
-    spelling: "GH",
-    mutexGroup: "P_SOUND",
-    maxDurability: 3,
-    transform: (word) => word.replace(/P/g, "F_GH")
   },
   P_P: {
     name: "p → P",
     description: "All 'p' sounds are spelled P",
     soundId: "p",
     spelling: "P",
+    usageCount: 257,
     mutexGroup: "P_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1913,6 +1739,7 @@ export const RULES = {
     description: "All 'p' sounds are spelled PP",
     soundId: "p",
     spelling: "PP",
+    usageCount: 20,
     mutexGroup: "P_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -1922,6 +1749,7 @@ export const RULES = {
     description: "All 'r' sounds are spelled A",
     soundId: "r",
     spelling: "A",
+    usageCount: 3,
     mutexGroup: "R",
     maxDurability: 3,
     transform: (word) => word
@@ -1931,6 +1759,7 @@ export const RULES = {
     description: "All 'r' sounds are spelled L",
     soundId: "r",
     spelling: "L",
+    usageCount: 1,
     mutexGroup: "R",
     maxDurability: 3,
     transform: (word) => word.replace(/R/g, "L")
@@ -1940,6 +1769,7 @@ export const RULES = {
     description: "All 'r' sounds are spelled R",
     soundId: "r",
     spelling: "R",
+    usageCount: 408,
     mutexGroup: "R",
     maxDurability: 3,
     transform: (word) => word
@@ -1949,6 +1779,7 @@ export const RULES = {
     description: "All 'r' sounds are spelled RE",
     soundId: "r",
     spelling: "RE",
+    usageCount: 30,
     mutexGroup: "R",
     maxDurability: 3,
     transform: (word) => word
@@ -1958,6 +1789,7 @@ export const RULES = {
     description: "All 'r' sounds are spelled RH",
     soundId: "r",
     spelling: "RH",
+    usageCount: 4,
     mutexGroup: "R",
     maxDurability: 3,
     transform: (word) => {
@@ -1970,6 +1802,7 @@ export const RULES = {
     description: "All 'r' sounds are spelled RR",
     soundId: "r",
     spelling: "RR",
+    usageCount: 10,
     mutexGroup: "R",
     maxDurability: 3,
     transform: (word) => word
@@ -1979,6 +1812,7 @@ export const RULES = {
     description: "All 'r' sounds are spelled WR",
     soundId: "r",
     spelling: "WR",
+    usageCount: 11,
     mutexGroup: "R",
     maxDurability: 3,
     transform: (word) => {
@@ -1991,6 +1825,7 @@ export const RULES = {
     description: "All 's' sounds are spelled C",
     soundId: "s",
     spelling: "C",
+    usageCount: 28,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => word
@@ -2000,6 +1835,7 @@ export const RULES = {
     description: "All 's' sounds are spelled CE",
     soundId: "s",
     spelling: "CE",
+    usageCount: 45,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => word
@@ -2009,6 +1845,7 @@ export const RULES = {
     description: "All 's' sounds are spelled CES",
     soundId: "s",
     spelling: "CES",
+    usageCount: 4,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => word
@@ -2018,6 +1855,7 @@ export const RULES = {
     description: "All 's' sounds are spelled PS",
     soundId: "s",
     spelling: "PS",
+    usageCount: 2,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => {
@@ -2030,6 +1868,7 @@ export const RULES = {
     description: "All 's' sounds are spelled S",
     soundId: "s",
     spelling: "S",
+    usageCount: 341,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => word
@@ -2039,6 +1878,7 @@ export const RULES = {
     description: "All 's' sounds are spelled SC",
     soundId: "s",
     spelling: "SC",
+    usageCount: 9,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => {
@@ -2051,6 +1891,7 @@ export const RULES = {
     description: "All 's' sounds are spelled SCE",
     soundId: "s",
     spelling: "SCE",
+    usageCount: 2,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => word
@@ -2060,15 +1901,7 @@ export const RULES = {
     description: "All 's' sounds are spelled SS",
     soundId: "s",
     spelling: "SS",
-    mutexGroup: "S",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  S_ST: {
-    name: "s → ST",
-    description: "All 's' sounds are spelled ST",
-    soundId: "s",
-    spelling: "ST",
+    usageCount: 29,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => word
@@ -2078,6 +1911,7 @@ export const RULES = {
     description: "All 's' sounds are spelled TS",
     soundId: "s",
     spelling: "TS",
+    usageCount: 1,
     mutexGroup: "S",
     maxDurability: 3,
     transform: (word) => {
@@ -2085,29 +1919,12 @@ export const RULES = {
       return word;
     }
   },
-  S_X: {
-    name: "s → X",
-    description: "All 's' sounds are spelled X",
-    soundId: "s",
-    spelling: "X",
-    mutexGroup: "S",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SEE_CI: {
-    name: "ee → CI",
-    description: "All 'ee' sounds are spelled CI",
-    soundId: "i",
-    spelling: "CI",
-    mutexGroup: "VOWEL_EE",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   SH_CH: {
     name: "sh → CH",
     description: "All 'sh' sounds are spelled CH",
     soundId: "ʃ",
     spelling: "CH",
+    usageCount: 5,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2117,6 +1934,7 @@ export const RULES = {
     description: "All 'sh' sounds are spelled CI",
     soundId: "ʃ",
     spelling: "CI",
+    usageCount: 12,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/SH/g, "CI")
@@ -2126,6 +1944,7 @@ export const RULES = {
     description: "All 'sh' sounds are spelled S",
     soundId: "ʃ",
     spelling: "S",
+    usageCount: 1,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/SH/g, "S")
@@ -2135,6 +1954,7 @@ export const RULES = {
     description: "All 'sh' sounds are spelled SCH",
     soundId: "ʃ",
     spelling: "SCH",
+    usageCount: 4,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2144,6 +1964,7 @@ export const RULES = {
     description: "All 'sh' sounds are spelled SCI",
     soundId: "ʃ",
     spelling: "SCI",
+    usageCount: 1,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2153,6 +1974,7 @@ export const RULES = {
     description: "All 'sh' sounds are spelled SH",
     soundId: "ʃ",
     spelling: "SH",
+    usageCount: 37,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2162,6 +1984,7 @@ export const RULES = {
     description: "All 'sh' sounds are spelled SS",
     soundId: "ʃ",
     spelling: "SS",
+    usageCount: 8,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2171,6 +1994,7 @@ export const RULES = {
     description: "All 'sh' sounds are spelled SU",
     soundId: "ʃ",
     spelling: "SU",
+    usageCount: 6,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2180,114 +2004,17 @@ export const RULES = {
     description: "All 'sh' sounds are spelled TI",
     soundId: "ʃ",
     spelling: "TI",
+    usageCount: 95,
     mutexGroup: "SH_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/SH/g, "TI")
-  },
-  SILENT_B: {
-    name: "silent → B",
-    description: "All silent sounds are spelled B",
-    soundId: null,
-    spelling: "B",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_D: {
-    name: "silent → D",
-    description: "All silent sounds are spelled D",
-    soundId: null,
-    spelling: "D",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
   },
   SILENT_E: {
     name: "silent → E",
     description: "All silent sounds are spelled E",
     soundId: null,
     spelling: "E",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_EE: {
-    name: "silent → EE",
-    description: "All silent sounds are spelled EE",
-    soundId: null,
-    spelling: "EE",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_ER: {
-    name: "silent → ER",
-    description: "All silent sounds are spelled ER",
-    soundId: null,
-    spelling: "ER",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_ES: {
-    name: "silent → ES",
-    description: "All silent sounds are spelled ES",
-    soundId: null,
-    spelling: "ES",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_G: {
-    name: "silent → G",
-    description: "All silent sounds are spelled G",
-    soundId: null,
-    spelling: "G",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_GH: {
-    name: "silent → GH",
-    description: "All silent sounds are spelled GH",
-    soundId: null,
-    spelling: "GH",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_H: {
-    name: "silent → H",
-    description: "All silent sounds are spelled H",
-    soundId: null,
-    spelling: "H",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_I: {
-    name: "silent → I",
-    description: "All silent sounds are spelled I",
-    soundId: null,
-    spelling: "I",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_IONED: {
-    name: "silent → IONED",
-    description: "All silent sounds are spelled IONED",
-    soundId: null,
-    spelling: "IONED",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_K: {
-    name: "silent → K",
-    description: "All silent sounds are spelled K",
-    soundId: null,
-    spelling: "K",
+    usageCount: 2,
     mutexGroup: "SOUND_SILENT",
     maxDurability: 3,
     transform: (word) => word
@@ -2297,33 +2024,7 @@ export const RULES = {
     description: "All silent sounds are spelled M",
     soundId: null,
     spelling: "M",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_P: {
-    name: "silent → P",
-    description: "All silent sounds are spelled P",
-    soundId: null,
-    spelling: "P",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_S: {
-    name: "silent → S",
-    description: "All silent sounds are spelled S",
-    soundId: null,
-    spelling: "S",
-    mutexGroup: "SOUND_SILENT",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  SILENT_TH: {
-    name: "silent → TH",
-    description: "All silent sounds are spelled TH",
-    soundId: null,
-    spelling: "TH",
+    usageCount: 1,
     mutexGroup: "SOUND_SILENT",
     maxDurability: 3,
     transform: (word) => word
@@ -2333,6 +2034,7 @@ export const RULES = {
     description: "All 't' sounds are spelled BT",
     soundId: "t",
     spelling: "BT",
+    usageCount: 4,
     mutexGroup: "T",
     maxDurability: 3,
     transform: (word) => {
@@ -2340,20 +2042,12 @@ export const RULES = {
       return word;
     }
   },
-  T_ED: {
-    name: "t → ED",
-    description: "All 't' sounds are spelled ED",
-    soundId: "t",
-    spelling: "ED",
-    mutexGroup: "T",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   T_GHT: {
     name: "t → GHT",
     description: "All 't' sounds are spelled GHT",
     soundId: "t",
     spelling: "GHT",
+    usageCount: 4,
     mutexGroup: "T",
     maxDurability: 3,
     transform: (word) => word
@@ -2363,6 +2057,7 @@ export const RULES = {
     description: "All 't' sounds are spelled PT",
     soundId: "t",
     spelling: "PT",
+    usageCount: 1,
     mutexGroup: "T",
     maxDurability: 3,
     transform: (word) => {
@@ -2375,6 +2070,7 @@ export const RULES = {
     description: "All 't' sounds are spelled T",
     soundId: "t",
     spelling: "T",
+    usageCount: 498,
     mutexGroup: "T",
     maxDurability: 3,
     transform: (word) => word
@@ -2384,6 +2080,7 @@ export const RULES = {
     description: "All 't' sounds are spelled TT",
     soundId: "t",
     spelling: "TT",
+    usageCount: 16,
     mutexGroup: "T",
     maxDurability: 3,
     transform: (word) => word
@@ -2393,6 +2090,7 @@ export const RULES = {
     description: "All 'th' sounds are spelled TH",
     soundId: "ð",
     spelling: "TH",
+    usageCount: 51,
     mutexGroup: "SOUND_U00F0",
     maxDurability: 3,
     transform: (word) => word
@@ -2402,6 +2100,7 @@ export const RULES = {
     description: "All 'th' sounds are spelled TH",
     soundId: "θ",
     spelling: "TH",
+    usageCount: 1,
     mutexGroup: "SOUND_U03B8",
     maxDurability: 3,
     transform: (word) => word
@@ -2411,33 +2110,17 @@ export const RULES = {
     description: "All 'ts' sounds are spelled ZZ",
     soundId: "ts",
     spelling: "ZZ",
+    usageCount: 1,
     mutexGroup: "TS_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/TS/g, "ZZ")
-  },
-  U0283_U0259_N_S: {
-    name: "ʃən → S",
-    description: "All 'ʃən' sounds are spelled S",
-    soundId: "ʃən",
-    spelling: "S",
-    mutexGroup: "SOUND_U0283_U0259_N",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  U0292_G: {
-    name: "zh → G",
-    description: "All 'zh' sounds are spelled G",
-    soundId: "ʒ",
-    spelling: "G",
-    mutexGroup: "SOUND_U0292",
-    maxDurability: 3,
-    transform: (word) => word
   },
   UH_A: {
     name: "uh → A",
     description: "All 'uh' sounds are spelled A",
     soundId: "ə",
     spelling: "A",
+    usageCount: 178,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2447,6 +2130,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled AI",
     soundId: "ə",
     spelling: "AI",
+    usageCount: 1,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2456,15 +2140,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled AU",
     soundId: "ə",
     spelling: "AU",
-    mutexGroup: "VOWEL_UH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  UH_C: {
-    name: "uh → C",
-    description: "All 'uh' sounds are spelled C",
-    soundId: "ə",
-    spelling: "C",
+    usageCount: 1,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2474,6 +2150,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled E",
     soundId: "ə",
     spelling: "E",
+    usageCount: 165,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2483,6 +2160,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled I",
     soundId: "ə",
     spelling: "I",
+    usageCount: 13,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2492,15 +2170,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled IA",
     soundId: "ə",
     spelling: "IA",
-    mutexGroup: "VOWEL_UH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  UH_ION: {
-    name: "uhn → ION",
-    description: "All 'uhn' sounds are spelled ION",
-    soundId: "ən",
-    spelling: "ION",
+    usageCount: 3,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2510,15 +2180,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled L",
     soundId: "ə",
     spelling: "L",
-    mutexGroup: "VOWEL_UH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  UH_N: {
-    name: "uh → N",
-    description: "All 'uh' sounds are spelled N",
-    soundId: "ʌ",
-    spelling: "N",
+    usageCount: 7,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2528,24 +2190,17 @@ export const RULES = {
     description: "All 'uh' sounds are spelled O",
     soundId: "ə",
     spelling: "O",
+    usageCount: 194,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
   },
-  UUGH_O: {
-    name: "uugh → O",
-    description: "All 'uugh' sounds are spelled O",
+  UUH_O: {
+    name: "uuh → O",
+    description: "All 'uuh' sounds are spelled O",
     soundId: "ʊ",
     spelling: "O",
-    mutexGroup: "VOWEL_UH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  UH_O_3: {
-    name: "uh → O",
-    description: "All 'uh' sounds are spelled O",
-    soundId: "ʌ",
-    spelling: "O",
+    usageCount: 1,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2555,24 +2210,17 @@ export const RULES = {
     description: "All 'wuh' sounds are spelled O",
     soundId: "wʌ",
     spelling: "O",
+    usageCount: 1,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
   },
   UH_OO: {
-    name: "uugh → OO",
-    description: "All 'uugh' sounds are spelled OO",
+    name: "uuh → OO",
+    description: "All 'uuh' sounds are spelled OO",
     soundId: "ʊ",
     spelling: "OO",
-    mutexGroup: "VOWEL_UH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  UH_OO_2: {
-    name: "uh → OO",
-    description: "All 'uh' sounds are spelled OO",
-    soundId: "ʌ",
-    spelling: "OO",
+    usageCount: 11,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2582,6 +2230,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled OU",
     soundId: "ʌ",
     spelling: "OU",
+    usageCount: 14,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2591,15 +2240,7 @@ export const RULES = {
     description: "All 'uh' sounds are spelled U",
     soundId: "ʌ",
     spelling: "U",
-    mutexGroup: "VOWEL_UH",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  UH_U_2: {
-    name: "uh → U",
-    description: "All 'uh' sounds are spelled U",
-    soundId: "ə",
-    spelling: "U",
+    usageCount: 127,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2609,15 +2250,17 @@ export const RULES = {
     description: "All 'er' sounds are spelled UR",
     soundId: "ɜr",
     spelling: "UR",
+    usageCount: 3,
     mutexGroup: "VOWEL_UR",
     maxDurability: 3,
     transform: (word) => word
   },
-  UUGH_U: {
-    name: "uugh → U",
-    description: "All 'uugh' sounds are spelled U",
+  UUH_U: {
+    name: "uuh → U",
+    description: "All 'uuh' sounds are spelled U",
     soundId: "ʊ",
     spelling: "U",
+    usageCount: 4,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2627,6 +2270,7 @@ export const RULES = {
     description: "All 'v' sounds are spelled F",
     soundId: "v",
     spelling: "F",
+    usageCount: 2,
     mutexGroup: "V_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/V/g, "F")
@@ -2636,6 +2280,7 @@ export const RULES = {
     description: "All 'v' sounds are spelled V",
     soundId: "v",
     spelling: "V",
+    usageCount: 71,
     mutexGroup: "V_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2645,6 +2290,7 @@ export const RULES = {
     description: "All 'v' sounds are spelled VE",
     soundId: "v",
     spelling: "VE",
+    usageCount: 36,
     mutexGroup: "V_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2654,6 +2300,7 @@ export const RULES = {
     description: "All 'w' sounds are spelled O",
     soundId: "w",
     spelling: "O",
+    usageCount: 3,
     mutexGroup: "W_SOUND",
     maxDurability: 3,
     transform: (word) => word.replace(/W/g, "O")
@@ -2663,6 +2310,7 @@ export const RULES = {
     description: "All 'w' sounds are spelled OU",
     soundId: "w",
     spelling: "OU",
+    usageCount: 1,
     mutexGroup: "W_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2672,6 +2320,7 @@ export const RULES = {
     description: "All 'w' sounds are spelled U",
     soundId: "w",
     spelling: "U",
+    usageCount: 6,
     mutexGroup: "W_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2681,6 +2330,7 @@ export const RULES = {
     description: "All 'w' sounds are spelled W",
     soundId: "w",
     spelling: "W",
+    usageCount: 47,
     mutexGroup: "W_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2690,6 +2340,7 @@ export const RULES = {
     description: "All 'w' sounds are spelled WH",
     soundId: "w",
     spelling: "WH",
+    usageCount: 8,
     mutexGroup: "W_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2699,6 +2350,7 @@ export const RULES = {
     description: "All 'wuh' sounds are spelled O",
     soundId: "wʌ",
     spelling: "O",
+    usageCount: 2,
     mutexGroup: "VOWEL_UH",
     maxDurability: 3,
     transform: (word) => word
@@ -2708,15 +2360,7 @@ export const RULES = {
     description: "All 'y' sounds are spelled J",
     soundId: "j",
     spelling: "J",
-    mutexGroup: "Y_SOUND",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  Y_U: {
-    name: "y → U",
-    description: "All 'y' sounds are spelled U",
-    soundId: "j",
-    spelling: "U",
+    usageCount: 1,
     mutexGroup: "Y_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2726,6 +2370,7 @@ export const RULES = {
     description: "All 'y' sounds are spelled Y",
     soundId: "j",
     spelling: "Y",
+    usageCount: 7,
     mutexGroup: "Y_SOUND",
     maxDurability: 3,
     transform: (word) => word
@@ -2735,6 +2380,7 @@ export const RULES = {
     description: "All 'yu' sounds are spelled EAU",
     soundId: "ju",
     spelling: "EAU",
+    usageCount: 1,
     mutexGroup: "VOWEL_YOU",
     maxDurability: 3,
     transform: (word) => word
@@ -2744,6 +2390,7 @@ export const RULES = {
     description: "All 'yu' sounds are spelled U",
     soundId: "ju",
     spelling: "U",
+    usageCount: 30,
     mutexGroup: "VOWEL_YOU",
     maxDurability: 3,
     transform: (word) => word
@@ -2753,6 +2400,7 @@ export const RULES = {
     description: "All 'yu' sounds are spelled UE",
     soundId: "ju",
     spelling: "UE",
+    usageCount: 2,
     mutexGroup: "VOWEL_YOU",
     maxDurability: 3,
     transform: (word) => word
@@ -2762,6 +2410,7 @@ export const RULES = {
     description: "All 'yu' sounds are spelled UEUE",
     soundId: "ju",
     spelling: "UEUE",
+    usageCount: 1,
     mutexGroup: "VOWEL_YOU",
     maxDurability: 3,
     transform: (word) => word
@@ -2771,6 +2420,7 @@ export const RULES = {
     description: "All 'yu' sounds are spelled UU",
     soundId: "ju",
     spelling: "UU",
+    usageCount: 1,
     mutexGroup: "VOWEL_YOU",
     maxDurability: 3,
     transform: (word) => word
@@ -2780,6 +2430,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled CZ",
     soundId: "z",
     spelling: "CZ",
+    usageCount: 1,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => {
@@ -2787,38 +2438,12 @@ export const RULES = {
       return word;
     }
   },
-  Z_E: {
-    name: "z → E",
-    description: "All 'z' sounds are spelled E",
-    soundId: "z",
-    spelling: "E",
-    mutexGroup: "Z",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  Z_H: {
-    name: "z → H",
-    description: "All 'z' sounds are spelled H",
-    soundId: "z",
-    spelling: "H",
-    mutexGroup: "Z",
-    maxDurability: 3,
-    transform: (word) => word
-  },
-  Z_I: {
-    name: "z → I",
-    description: "All 'z' sounds are spelled I",
-    soundId: "z",
-    spelling: "I",
-    mutexGroup: "Z",
-    maxDurability: 3,
-    transform: (word) => word
-  },
   Z_S: {
     name: "z → S",
     description: "All 'z' sounds are spelled S",
     soundId: "z",
     spelling: "S",
+    usageCount: 88,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
@@ -2828,6 +2453,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled SI",
     soundId: "z",
     spelling: "SI",
+    usageCount: 21,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
@@ -2837,6 +2463,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled SS",
     soundId: "z",
     spelling: "SS",
+    usageCount: 1,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
@@ -2846,6 +2473,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled TS",
     soundId: "z",
     spelling: "TS",
+    usageCount: 1,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
@@ -2855,6 +2483,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled X",
     soundId: "z",
     spelling: "X",
+    usageCount: 2,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => {
@@ -2867,6 +2496,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled Z",
     soundId: "z",
     spelling: "Z",
+    usageCount: 14,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
@@ -2876,6 +2506,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled ZE",
     soundId: "z",
     spelling: "ZE",
+    usageCount: 9,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
@@ -2885,6 +2516,7 @@ export const RULES = {
     description: "All 'z' sounds are spelled ZZ",
     soundId: "z",
     spelling: "ZZ",
+    usageCount: 3,
     mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
@@ -2894,7 +2526,280 @@ export const RULES = {
     description: "All 'zh' sounds are spelled S",
     soundId: "ʒ",
     spelling: "S",
+    usageCount: 5,
     mutexGroup: "SOUND_U0292",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+
+  // Added missing rules (auto-generated)
+  AAH_A: {
+    name: "aah → A",
+    description: "All 'aah' sounds are spelled A",
+    soundId: "æ",
+    spelling: "A",
+    usageCount: 206,
+    mutexGroup: "AAH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  AH_UB: {
+    name: "ɑh → UB",
+    description: "All 'ɑh' sounds are spelled UB",
+    soundId: "ɑ",
+    spelling: "UB",
+    usageCount: 1,
+    mutexGroup: "VOWEL_AH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  AY_EIGH: {
+    name: "ay → EIGH",
+    description: "All 'ay' sounds are spelled EIGH",
+    soundId: "eɪ",
+    spelling: "EIGH",
+    usageCount: 1,
+    mutexGroup: "VOWEL_AY",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  AY_IGH: {
+    name: "ay → IGH",
+    description: "All 'ay' sounds are spelled IGH",
+    soundId: "eɪ",
+    spelling: "IGH",
+    usageCount: 1,
+    mutexGroup: "VOWEL_AY",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  AZ_ASTH: {
+    name: "az → ASTH",
+    description: "All 'az' sounds are spelled ASTH",
+    soundId: "æz",
+    spelling: "ASTH",
+    usageCount: 1,
+    mutexGroup: "SOUND_AZ",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  B_BE: {
+    name: "b → BE",
+    description: "All 'b' sounds are spelled BE",
+    soundId: "b",
+    spelling: "BE",
+    usageCount: 1,
+    mutexGroup: "SOUND_B",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  EE: {
+    name: "ee → EE",
+    description: "All 'ee' sounds are spelled EE",
+    soundId: "i",
+    spelling: "EE",
+    usageCount: 1,
+    mutexGroup: "VOWEL_EE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  EE_EIP: {
+    name: "ee → EIP",
+    description: "All 'ee' sounds are spelled EIP",
+    soundId: "i",
+    spelling: "EIP",
+    usageCount: 1,
+    mutexGroup: "VOWEL_EE",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  F_FE: {
+    name: "f → FE",
+    description: "All 'f' sounds are spelled FE",
+    soundId: "f",
+    spelling: "FE",
+    usageCount: 2,
+    mutexGroup: "F_SOUND",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  K_KE: {
+    name: "k → KE",
+    description: "All 'k' sounds are spelled KE",
+    soundId: "k",
+    spelling: "KE",
+    usageCount: 9,
+    mutexGroup: "K",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  L_LE: {
+    name: "l → LE",
+    description: "All 'l' sounds are spelled LE",
+    soundId: "l",
+    spelling: "LE",
+    usageCount: 14,
+    mutexGroup: "SOUND_L",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  M_ME: {
+    name: "m → ME",
+    description: "All 'm' sounds are spelled ME",
+    soundId: "m",
+    spelling: "ME",
+    usageCount: 13,
+    mutexGroup: "M",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  N_DNE: {
+    name: "n → DNE",
+    description: "All 'n' sounds are spelled DNE",
+    soundId: "n",
+    spelling: "DNE",
+    usageCount: 1,
+    mutexGroup: "N",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  OH_OU: {
+    name: "oh → OU",
+    description: "All 'oh' sounds are spelled OU",
+    soundId: "oʊ",
+    spelling: "OU",
+    usageCount: 3,
+    mutexGroup: "VOWEL_OH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  OO_OUS: {
+    name: "oo → OUS",
+    description: "All 'oo' sounds are spelled OUS",
+    soundId: "u",
+    spelling: "OUS",
+    usageCount: 1,
+    mutexGroup: "VOWEL_OO",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  OO_UE: {
+    name: "oo → UE",
+    description: "All 'oo' sounds are spelled UE",
+    soundId: "u",
+    spelling: "UE",
+    usageCount: 2,
+    mutexGroup: "VOWEL_OO",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  P_PE: {
+    name: "p → PE",
+    description: "All 'p' sounds are spelled PE",
+    soundId: "p",
+    spelling: "PE",
+    usageCount: 1,
+    mutexGroup: "P_SOUND",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  P_PPE: {
+    name: "p → PPE",
+    description: "All 'p' sounds are spelled PPE",
+    soundId: "p",
+    spelling: "PPE",
+    usageCount: 1,
+    mutexGroup: "P_SOUND",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  S: {
+    name: "s → S",
+    description: "All 's' sounds are spelled S",
+    soundId: "s",
+    spelling: "S",
+    usageCount: 1,
+    mutexGroup: "S",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  S_SE: {
+    name: "s → SE",
+    description: "All 's' sounds are spelled SE",
+    soundId: "s",
+    spelling: "SE",
+    usageCount: 10,
+    mutexGroup: "S",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  SH_SI: {
+    name: "sh → SI",
+    description: "All 'sh' sounds are spelled SI",
+    soundId: "ʃ",
+    spelling: "SI",
+    usageCount: 1,
+    mutexGroup: "SH_SOUND",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  T_TE: {
+    name: "t → TE",
+    description: "All 't' sounds are spelled TE",
+    soundId: "t",
+    spelling: "TE",
+    usageCount: 16,
+    mutexGroup: "T",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  UH_AH: {
+    name: "uh → AH",
+    description: "All 'uh' sounds are spelled AH",
+    soundId: "ə",
+    spelling: "AH",
+    usageCount: 2,
+    mutexGroup: "VOWEL_UH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  UH_IO: {
+    name: "uh → IO",
+    description: "All 'uh' sounds are spelled IO",
+    soundId: "ə",
+    spelling: "IO",
+    usageCount: 10,
+    mutexGroup: "VOWEL_UH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  UH_OE: {
+    name: "uh → OE",
+    description: "All 'uh' sounds are spelled OE",
+    soundId: "ə",
+    spelling: "OE",
+    usageCount: 1,
+    mutexGroup: "VOWEL_UH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  UUH_OO: {
+    name: "uuh → OO",
+    description: "All 'uuh' sounds are spelled OO",
+    soundId: "ʊ",
+    spelling: "OO",
+    usageCount: 1,
+    mutexGroup: "VOWEL_UH",
+    maxDurability: 3,
+    transform: (word) => word
+  },
+  Z_SE: {
+    name: "z → SE",
+    description: "All 'z' sounds are spelled SE",
+    soundId: "z",
+    spelling: "SE",
+    usageCount: 11,
+    mutexGroup: "Z",
     maxDurability: 3,
     transform: (word) => word
   },

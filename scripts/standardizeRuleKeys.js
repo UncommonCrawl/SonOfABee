@@ -10,12 +10,12 @@ const args = new Set(process.argv.slice(2));
 const shouldWrite = args.has("--write");
 
 const phonemeLabelMap = {
-  "æ": "AE",
+  "æ": "AAH",
   "ɑ": "AH",
   "ɔ": "AW",
   "ə": "UH",
   "ʌ": "UH",
-  "ʊ": "UH",
+  "ʊ": "UUH",
   "ɛ": "EH",
   "ɪ": "IH",
   "i": "EE",

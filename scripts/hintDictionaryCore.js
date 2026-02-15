@@ -9,6 +9,7 @@ export const COMBINING_MARKS = /[\u0300-\u036f]/g;
 export const NORMALIZE = [
   ["ɹ", "r"],
   ["ɐ", "ə"],
+  ["ᵻ", "ɪ"],
   ["əʊ", "oʊ"],
   ["ɝ", "ɜr"],
   ["ɚ", "ər"],
@@ -157,11 +158,13 @@ export const getRuleLabel = (soundId) => {
   return parts.join("_");
 };
 
-export const buildRuleKeyMap = () => {
+export const buildRuleKeyMap = (options = {}) => {
+  const minUsage = Number.isFinite(Number(options.minUsage)) ? Number(options.minUsage) : null;
   const exactMap = new Map();
   const soundFallback = new Map();
   for (const [ruleKey, rule] of Object.entries(RULES)) {
     if (!rule) continue;
+    if (minUsage != null && (rule.usageCount ?? 0) <= minUsage) continue;
     const spelling = rule.spelling ?? "";
     const soundId = rule.soundId ?? null;
     const key = `${spelling}||${soundId}`;

@@ -12,6 +12,10 @@
     "validate-rule-keys": "node scripts/validateRuleKeys.js",
     "generate-level-graphemes": "node scripts/generateLevelsGraphemeReport.js",
     "diagnose-hints": "node scripts/diagnoseHintDictionary.js",
+    "seed-hints-from-archive-ipa": "node scripts/seedHintDictionaryFromArchivedIpa.js",
+    "update-rule-counts": "node scripts/updateRuleCounts.js",
+    "add-missing-rules": "node scripts/addMissingRules.js",
+    "list-low-usage-rule-words": "node scripts/listLowUsageRuleWords.js",
     "validate-hint-spelling": "node scripts/validateHintDictionarySpelling.js",
     "fix-hint-spellings": "node scripts/fixHintDictionarySpellings.js --write",
     "fix-hint-graphemes": "node scripts/fixHintDictionaryGraphemeFirst.js --write"

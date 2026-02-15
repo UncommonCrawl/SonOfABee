@@ -305,7 +305,8 @@ export default function App() {
     const rowStart = -((rowCapacity - 1) / 2) * spread;
     const offset = rowStart + rowIndex * spread;
     const tilt = 0;
-    const rowYBase = row === 0 ? (total > row1Count ? -36 : 0) : row === 1 ? 40 : 100;
+    // Keep the first row anchored; additional rows should only expand downward.
+    const rowYBase = row === 0 ? 0 : row === 1 ? 76 : 136;
     const rowY = rowYBase * layoutScale;
     return { offset, tilt, rowY };
   };

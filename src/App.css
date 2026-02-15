@@ -689,7 +689,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   gap: 1.4rem;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.3rem;
 }
 
 .rules-title__stack {
@@ -716,11 +716,11 @@ body {
 .rules-section {
   position: relative;
   z-index: 2;
-  margin-bottom: clamp(0.1rem, 0.35vh, 0.19rem);
+  margin-bottom: clamp(0.05rem, 0.175vh, 0.095rem);
 }
 
 .rules-section--split {
-  margin-bottom: clamp(1.6rem, 3vh, 2.4rem);
+  margin-bottom: clamp(0.8rem, 1.5vh, 1.2rem);
   --deck-width: 620px;
 }
 
