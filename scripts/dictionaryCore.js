@@ -1,8 +1,9 @@
-import { RULES } from "../src/data/rules.js";
 import { levelData } from "../src/data/levels.js";
-import { PHONEME_STANDARD_SPELLINGS } from "../src/data/phonemeStandardSpellings.js";
 import { PHONEME_STANDARD_RULE_LABELS } from "../src/data/phonemeStandardRuleLabels.js";
-import { alignPhonemesToGraphemes, GRAPHEME_COSTS } from "../src/utils/robustAligner.js";
+import {
+  alignPhonemesToGraphemesDetailed,
+  GRAPHEME_COSTS
+} from "../src/data/robustAligner.js";
 
 export const CLEANUP = /[ˈˌ.\s()\/\[\]]/g;
 export const COMBINING_MARKS = /[\u0300-\u036f]/g;
@@ -15,6 +16,12 @@ export const NORMALIZE = [
   ["ɚ", "ər"],
   ["ɒ", "ɑ"],
   ["a", "ɑ"],
+  ["ɑʊ", "aʊ"],
+  ["ɑɪə", "aɪ"],
+  ["aɪə", "aɪ"],
+  ["ɑɪ", "aɪ"],
+  ["ʧ", "tʃ"],
+  ["ʤ", "dʒ"],
   ["ʉ", "u"],
   ["ɘ", "ə"],
   ["ɨ", "ɪ"],
@@ -25,8 +32,20 @@ export const NORMALIZE = [
   ["ʍ", "w"]
 ];
 
+// Final canonicalization pass for composite phonemes so they don't get
+// fragmented by earlier symbol-level replacements.
+export const COMPOSITE_OVERRIDES = [
+  ["ɑʊ", "aʊ"],
+  ["ɑɪ", "aɪ"],
+  ["ɛɪ", "eɪ"],
+  ["oɪ", "ɔɪ"],
+  ["jʊ", "ju"]
+];
+
 export const IPA_TOKENS = [
+  "kw",
   "ʃən",
+  "əl",
   "ks",
   "ju",
   "ɜr",
@@ -85,7 +104,7 @@ export const IPA_TOKENS = [
   "h"
 ];
 
-export const GRAPHEME_MAP = PHONEME_STANDARD_SPELLINGS;
+export const GRAPHEME_MAP = {};
 
 const forceRhotic = (ipa, word) => {
   if (!word) return ipa;
@@ -112,6 +131,9 @@ export const normalizeIpa = (ipa, word = null) => {
   next = next.replace(CLEANUP, "");
   next = next.replace(COMBINING_MARKS, "");
   for (const [from, to] of NORMALIZE) {
+    next = next.replace(new RegExp(from, "g"), to);
+  }
+  for (const [from, to] of COMPOSITE_OVERRIDES) {
     next = next.replace(new RegExp(from, "g"), to);
   }
   return next;
@@ -146,7 +168,7 @@ export const tokenizeIPA = (ipa, unknownSymbols = null, word = null) => {
 };
 
 export const alignGraphemes = (word, phonemes) =>
-  alignPhonemesToGraphemes(word, phonemes);
+  alignPhonemesToGraphemesDetailed(word, phonemes);
 
 export const getRuleLabel = (soundId) => {
   if (soundId == null) return "SILENT";
@@ -158,21 +180,21 @@ export const getRuleLabel = (soundId) => {
   return parts.join("_");
 };
 
-export const buildRuleKeyMap = (options = {}) => {
-  const minUsage = Number.isFinite(Number(options.minUsage)) ? Number(options.minUsage) : null;
-  const exactMap = new Map();
-  const soundFallback = new Map();
-  for (const [ruleKey, rule] of Object.entries(RULES)) {
-    if (!rule) continue;
-    if (minUsage != null && (rule.usageCount ?? 0) <= minUsage) continue;
-    const spelling = rule.spelling ?? "";
-    const soundId = rule.soundId ?? null;
-    const key = `${spelling}||${soundId}`;
-    if (!exactMap.has(key)) exactMap.set(key, ruleKey);
-    const soundKey = `||${soundId}`;
-    if (!soundFallback.has(soundKey)) soundFallback.set(soundKey, ruleKey);
+export const RULE_LABEL_GRAPHEME_COSTS = (() => {
+  const mapped = new Map();
+  for (const [soundId, spellings] of Object.entries(GRAPHEME_COSTS || {})) {
+    const ruleLabel = getRuleLabel(soundId);
+    if (!mapped.has(ruleLabel)) mapped.set(ruleLabel, new Set());
+    for (const spelling of spellings || []) {
+      const upper = String(spelling || "").toUpperCase();
+      if (upper) mapped.get(ruleLabel).add(upper);
+    }
   }
-  return { exactMap, soundFallback };
+  return mapped;
+})();
+
+export const buildRuleKeyMap = (options = {}) => {
+  return { exactMap: new Map(), soundFallback: new Map(), options };
 };
 
 export const collectHintWords = () => {
@@ -192,8 +214,10 @@ export const collectHintWords = () => {
 
 export const buildEntriesFromTokens = (word, phonemes) => {
   if (!phonemes || phonemes.length === 0) return null;
-  const alignment = alignGraphemes(word, phonemes);
-  if (!alignment || alignment.length === 0) return null;
+  const alignmentResult = alignGraphemes(word, phonemes);
+  if (!alignmentResult || !alignmentResult.alignment || alignmentResult.alignment.length === 0) return null;
+  if (alignmentResult.quality?.isGarbage) return null;
+  const alignment = alignmentResult.alignment;
   const entries = alignment.map((entry) => ({
     soundId: entry.soundId,
     grapheme: entry.grapheme ? entry.grapheme.replace(/_(1|2)$/, "") : ""
@@ -211,16 +235,26 @@ export const buildEntries = (word, ipa, unknownSymbols = null) => {
 export const toRuleKeysFromTokens = (word, tokens, ruleMap) => {
   const built = buildEntriesFromTokens(word, tokens);
   if (!built) return null;
+  const upper = String(word || "").toUpperCase();
+  let graphemeIndex = 0;
   const ruleKeys = [];
+
+  const isAllowedByCosts = (ruleLabel, grapheme, soundId) => {
+    const allowed = RULE_LABEL_GRAPHEME_COSTS.get(ruleLabel);
+    if (!allowed || allowed.size === 0) return true;
+    if (allowed.has(grapheme)) return true;
+    if (grapheme.length === 1 && upper[graphemeIndex] === grapheme) return true;
+    if ("AEIOUY".includes(grapheme) && VOWEL_SOUNDS.has(soundId)) return true;
+    return false;
+  };
+
   for (const entry of built.entries) {
     const ruleLabel = getRuleLabel(entry.soundId);
-    const exactKey = `${entry.grapheme}||${entry.soundId ?? null}`;
-    const exactRuleKey = ruleMap.exactMap.get(exactKey);
-    if (exactRuleKey && exactRuleKey.startsWith(`${ruleLabel}_`)) {
-      ruleKeys.push(exactRuleKey);
-      continue;
-    }
-    return null;
+    const grapheme = String(entry.grapheme || "").toUpperCase();
+    if (!grapheme) return null;
+    if (!isAllowedByCosts(ruleLabel, grapheme, entry.soundId)) return null;
+    ruleKeys.push(`${ruleLabel}_${grapheme}`);
+    graphemeIndex += grapheme.length;
   }
   return ruleKeys;
 };
@@ -233,63 +267,92 @@ const isVowelSound = (soundId) => VOWEL_SOUNDS.has(soundId);
 
 const toRuleKeysHeuristic = (word, tokens, ruleMap) => {
   const upper = word.toUpperCase();
-  let index = 0;
-  const keys = [];
-
-  const pickGrapheme = (soundId) => {
-    const candidates = GRAPHEME_COSTS[soundId] || GRAPHEME_MAP[soundId] || [];
-    const sorted = [...candidates].sort((a, b) => b.length - a.length);
-    for (const candidate of sorted) {
-      if (!candidate) continue;
-      if (upper.startsWith(candidate, index)) return candidate;
-    }
-    return null;
-  };
+  const cache = new Map();
 
   const buildRuleKey = (ruleLabel, grapheme) => {
-    const candidate = `${ruleLabel}_${grapheme}`;
-    if (RULES[candidate]) return candidate;
+    return `${ruleLabel}_${grapheme}`;
+  };
+
+  const pickRuleKeyForLabel = (ruleLabel, index) => {
+    const prefix = `${ruleLabel}_`;
+    const preferredSpellings = RULE_LABEL_GRAPHEME_COSTS.get(ruleLabel) || null;
+    const candidates = [];
+    const spellings = preferredSpellings ? Array.from(preferredSpellings) : [];
+    for (const spelling of spellings) {
+      if (!spelling) continue;
+      if (!upper.startsWith(spelling, index)) continue;
+      candidates.push({
+        ruleKey: `${prefix}${spelling}`,
+        spelling,
+        preferred: Boolean(preferredSpellings && preferredSpellings.has(spelling.toUpperCase())),
+        usageCount: 0
+      });
+    }
+    if (!candidates.length) return [];
+    candidates.sort((a, b) =>
+      Number(b.preferred) - Number(a.preferred) ||
+      b.spelling.length - a.spelling.length ||
+      b.usageCount - a.usageCount ||
+      a.ruleKey.localeCompare(b.ruleKey)
+    );
+    return candidates;
+  };
+
+  const solve = (tokenIndex, index) => {
+    const memoKey = `${tokenIndex}|${index}`;
+    if (cache.has(memoKey)) return cache.get(memoKey);
+
+    if (tokenIndex >= tokens.length) {
+      if (index === upper.length) {
+        cache.set(memoKey, []);
+        return [];
+      }
+      const remainder = upper.slice(index);
+      if (remainder === "E") {
+        cache.set(memoKey, ["SILENT_E"]);
+        return ["SILENT_E"];
+      }
+      cache.set(memoKey, null);
+      return null;
+    }
+
+    const soundId = tokens[tokenIndex];
+    const ruleLabel = getRuleLabel(soundId);
+    const nextSound = tokens[tokenIndex + 1];
+    const candidates = [];
+    const picked = pickRuleKeyForLabel(ruleLabel, index);
+    for (const candidate of picked) candidates.push(candidate);
+
+    const fallbackChar = upper[index] || "";
+    if (fallbackChar) {
+      const fallbackKey = buildRuleKey(ruleLabel, fallbackChar);
+      candidates.push({
+        ruleKey: fallbackKey,
+        spelling: fallbackChar,
+        usageCount: 0
+      });
+    }
+
+    for (const candidate of candidates) {
+      let nextIndex = index + candidate.spelling.length;
+      const partial = [candidate.ruleKey];
+      if (upper[nextIndex] === "E" && nextSound && !isVowelSound(nextSound)) {
+        partial.push("SILENT_E");
+        nextIndex += 1;
+      }
+      const remainder = solve(tokenIndex + 1, nextIndex);
+      if (remainder) {
+        const solved = [...partial, ...remainder];
+        cache.set(memoKey, solved);
+        return solved;
+      }
+    }
+
+    cache.set(memoKey, null);
     return null;
   };
 
-  for (let i = 0; i < tokens.length; i += 1) {
-    const soundId = tokens[i];
-    const ruleLabel = getRuleLabel(soundId);
-    let grapheme = pickGrapheme(soundId);
-
-    if (!grapheme) {
-      const fallbackChar = upper[index] || "";
-      if (fallbackChar) grapheme = fallbackChar;
-    }
-
-    if (!grapheme) return null;
-
-    const ruleKey = buildRuleKey(ruleLabel, grapheme);
-    if (!ruleKey) return null;
-    keys.push(ruleKey);
-    index += grapheme.length;
-
-    const nextSound = tokens[i + 1];
-    if (upper[index] === "E" && nextSound && !isVowelSound(nextSound)) {
-      const silentKey = RULES["SILENT_E"] ? "SILENT_E" : null;
-      if (silentKey) {
-        keys.push(silentKey);
-        index += 1;
-      }
-    }
-  }
-
-  if (index < upper.length) {
-    const remainder = upper.slice(index);
-    if (remainder === "E") {
-      const silentKey = RULES["SILENT_E"] ? "SILENT_E" : null;
-      if (silentKey) keys.push(silentKey);
-      return keys;
-    }
-    return null;
-  }
-
-  return keys;
+  return solve(0, 0);
 };
 
 const splitBySuffix = (word, tokens) => {
@@ -324,6 +387,9 @@ export const toRuleKeys = (word, ipa, ruleMap, unknownSymbols = null) => {
   if (!ipa) return null;
   const tokens = tokenizeIPA(ipa, unknownSymbols, word);
   if (!tokens.length) return null;
+  const alignmentProbe = alignPhonemesToGraphemesDetailed(word, tokens);
+  if (!alignmentProbe.alignment?.length) return null;
+  if (alignmentProbe.quality?.isGarbage) return null;
 
   const direct = toRuleKeysFromTokens(word, tokens, ruleMap);
   if (direct) return direct;

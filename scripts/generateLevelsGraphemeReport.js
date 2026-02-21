@@ -2,14 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 
 import { levelData } from "../src/data/levels.js";
+import { getRuleKeysForWord } from "../src/data/dictionary.js";
 
 const outputDir = path.resolve(process.cwd(), "reports");
 const outputPath = path.join(outputDir, "levels_grapheme_report.txt");
-
-const normalizeRuleKeys = (ruleKey) => {
-  if (!ruleKey) return [];
-  return Array.isArray(ruleKey) ? ruleKey : [ruleKey];
-};
 
 const graphemeFromRuleKey = (ruleKey) => {
   const underscoreIndex = ruleKey.indexOf("_");
@@ -23,7 +19,7 @@ const rows = [];
 const misspellings = [];
 
 for (const level of levelData) {
-  const keys = normalizeRuleKeys(level.ruleKey);
+  const keys = getRuleKeysForWord(level.word);
   const reconstructed = keys.map(graphemeFromRuleKey).join("").toUpperCase();
   const expected = String(level.word ?? "").toUpperCase();
   const mismatch = reconstructed !== expected;

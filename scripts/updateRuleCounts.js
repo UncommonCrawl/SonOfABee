@@ -2,19 +2,13 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { RULES } from "../src/data/rules.js";
-import { levelData } from "../src/data/levels.js";
-import { hintDictionary } from "../src/data/hint_dictionary.js";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { dictionary, normalizeRuleKeys } from "../src/data/dictionary.js";
 
 const args = new Set(process.argv.slice(2));
 const shouldWrite = args.has("--write");
 
-const normalizeRuleKeys = (ruleKey) => {
-  if (!ruleKey) return [];
-  return Array.isArray(ruleKey) ? ruleKey : [ruleKey];
-};
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const counts = new Map();
 for (const key of Object.keys(RULES)) counts.set(key, 0);
@@ -25,11 +19,7 @@ const bump = (key) => {
   else unknownKeys.set(key, (unknownKeys.get(key) || 0) + 1);
 };
 
-for (const level of levelData) {
-  for (const key of normalizeRuleKeys(level?.ruleKey)) bump(key);
-}
-
-for (const ruleKeys of Object.values(hintDictionary)) {
+for (const ruleKeys of Object.values(dictionary)) {
   for (const key of normalizeRuleKeys(ruleKeys)) bump(key);
 }
 
@@ -66,7 +56,7 @@ const flushRule = () => {
 };
 
 for (const line of lines) {
-  const ruleStart = line.match(/^  ([A-Z0-9_]+): \{$/);
+  const ruleStart = line.match(/^\s{2}([A-Z0-9_]+): \{$/);
   if (!inRule && ruleStart) {
     inRule = true;
     ruleKey = ruleStart[1];
@@ -76,7 +66,7 @@ for (const line of lines) {
 
   if (inRule) {
     ruleBuffer.push(line);
-    if (/^  },$/.test(line)) {
+    if (line.trim() === "},") {
       inRule = false;
       flushRule();
     }

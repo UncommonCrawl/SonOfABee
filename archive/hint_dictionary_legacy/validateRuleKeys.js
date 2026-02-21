@@ -1,5 +1,5 @@
 import { levelData } from "../src/data/levels.js";
-import { hintDictionary } from "../src/data/hint_dictionary.js";
+import { dictionary, getRuleKeysForWord } from "../src/data/dictionary.js";
 import { RULES } from "../src/data/rules.js";
 
 const issues = [];
@@ -34,12 +34,12 @@ const validateWord = (word, ruleKeys, sourceLabel) => {
 for (const level of levelData) {
   if (!level?.word) continue;
   const word = level.word.toUpperCase();
-  const ruleKeys = normalizeRuleKeys(level.ruleKey);
+  const ruleKeys = getRuleKeysForWord(word);
   validateWord(word, ruleKeys, "levels.js");
 }
 
-for (const [word, ruleKeys] of Object.entries(hintDictionary)) {
-  validateWord(word.toUpperCase(), normalizeRuleKeys(ruleKeys), "hint_dictionary.js");
+for (const [word, ruleKeys] of Object.entries(dictionary)) {
+  validateWord(word.toUpperCase(), normalizeRuleKeys(ruleKeys), "dictionary.js");
 }
 
 if (issues.length > 0) {

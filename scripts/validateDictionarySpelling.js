@@ -1,4 +1,4 @@
-import { hintDictionary } from "../src/data/hint_dictionary.js";
+import { dictionary } from "../src/data/dictionary.js";
 import { RULES } from "../src/data/rules.js";
 
 const issues = [];
@@ -18,7 +18,7 @@ const reconstructWord = (ruleKeys) => {
   return { word: spellings.join("") };
 };
 
-for (const [word, ruleKeys] of Object.entries(hintDictionary)) {
+for (const [word, ruleKeys] of Object.entries(dictionary)) {
   const keys = normalizeRuleKeys(ruleKeys);
   if (keys.length === 0) {
     issues.push({ word, issue: "Missing rule keys" });

@@ -1,15 +1,11 @@
 // src/data/phonemeMap.js
 import { RULES } from "./rules.js";
-import { levelData } from "./levels.js";
-import { hintDictionary } from "./hint_dictionary.js";
+import { getRuleKeysForWord } from "./dictionary.js";
 
 export const getPhonemesForWord = (word) => {
   if (!word) return null;
   const key = word.toUpperCase();
-  const level = levelData.find((entry) => entry?.word?.toUpperCase() === key);
-  const ruleKeys = level?.ruleKey
-    ? (Array.isArray(level.ruleKey) ? level.ruleKey : [level.ruleKey])
-    : (hintDictionary[key] || null);
+  const ruleKeys = getRuleKeysForWord(key);
   if (!ruleKeys || ruleKeys.length === 0) return null;
 
   const phonemes = [];

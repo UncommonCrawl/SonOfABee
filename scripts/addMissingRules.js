@@ -3,15 +3,10 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { RULES } from "../src/data/rules.js";
 import { levelData } from "../src/data/levels.js";
-import { hintDictionary } from "../src/data/hint_dictionary.js";
+import { dictionary, getRuleKeysForWord, normalizeRuleKeys } from "../src/data/dictionary.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-const normalizeRuleKeys = (ruleKey) => {
-  if (!ruleKey) return [];
-  return Array.isArray(ruleKey) ? ruleKey : [ruleKey];
-};
 
 const knownKeys = new Set(Object.keys(RULES));
 const unknownKeys = new Set();
@@ -21,10 +16,10 @@ const bump = (key) => {
 };
 
 for (const level of levelData) {
-  for (const key of normalizeRuleKeys(level?.ruleKey)) bump(key);
+  for (const key of getRuleKeysForWord(level?.word)) bump(key);
 }
 
-for (const keys of Object.values(hintDictionary)) {
+for (const keys of Object.values(dictionary)) {
   for (const key of normalizeRuleKeys(keys)) bump(key);
 }
 

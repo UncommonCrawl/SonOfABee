@@ -1,0 +1,646 @@
+Rules with usageCount <= 5: 215
+
+AH_P (usageCount=0)
+  (no words found)
+
+EE_T (usageCount=0)
+  (no words found)
+
+EE_V (usageCount=0)
+  (no words found)
+
+EH_F (usageCount=0)
+  (no words found)
+
+EH_L (usageCount=0)
+  (no words found)
+
+EH_S (usageCount=0)
+  (no words found)
+
+EH_T (usageCount=0)
+  (no words found)
+
+EL_OL (usageCount=0)
+  (no words found)
+
+F_R (usageCount=0)
+  (no words found)
+
+G_GE (usageCount=0)
+  (no words found)
+
+G_GU (usageCount=0)
+  (no words found)
+
+IH_L (usageCount=0)
+  (no words found)
+
+IH_P (usageCount=0)
+  (no words found)
+
+IH_Z (usageCount=0)
+  (no words found)
+
+L_A (usageCount=0)
+  (no words found)
+
+L_W (usageCount=0)
+  (no words found)
+
+M_P (usageCount=0)
+  (no words found)
+
+M_S (usageCount=0)
+  (no words found)
+
+N_E (usageCount=0)
+  (no words found)
+
+N_S (usageCount=0)
+  (no words found)
+
+OH_EW (usageCount=0)
+  (no words found)
+
+P_A (usageCount=0)
+  (no words found)
+
+P_S (usageCount=0)
+  (no words found)
+
+R_A (usageCount=0)
+  (no words found)
+
+S_I (usageCount=0)
+  (no words found)
+
+S_ST (usageCount=0)
+  (no words found)
+
+S_T (usageCount=0)
+  (no words found)
+
+T_A (usageCount=0)
+  (no words found)
+
+T_O (usageCount=0)
+  (no words found)
+
+T_W (usageCount=0)
+  (no words found)
+
+UH_M (usageCount=0)
+  (no words found)
+
+UH_N (usageCount=0)
+  (no words found)
+
+UH_R (usageCount=0)
+  (no words found)
+
+UR_E (usageCount=0)
+  (no words found)
+
+UR_I (usageCount=0)
+  (no words found)
+
+UR_O (usageCount=0)
+  (no words found)
+
+UR_T (usageCount=0)
+  (no words found)
+
+UR_UR (usageCount=0)
+  (no words found)
+
+V_S (usageCount=0)
+  (no words found)
+
+W_A (usageCount=0)
+  (no words found)
+
+W_O (usageCount=0)
+  (no words found)
+
+AAH_AU (usageCount=1)
+  LAUGH
+
+AAH_I (usageCount=1)
+  MERINGUE
+
+AH_ACH (usageCount=1)
+  YACHT
+
+AY_AU (usageCount=1)
+  GAUGE
+
+AY_IGH (usageCount=1)
+  PLAYWRIGHTS
+
+B_BE (usageCount=1)
+  CUBE
+
+B_I (usageCount=1)
+  REBIRTH
+
+CH_CC (usageCount=1)
+  CAPPUCCINO
+
+EE_A (usageCount=1)
+  IDEAS
+
+EE_B (usageCount=1)
+  REBIRTH
+
+EE_EO (usageCount=1)
+  PEOPLE
+
+EE_H (usageCount=1)
+  VEHICLE
+
+EH_C (usageCount=1)
+  PROTECTS
+
+EH_EH (usageCount=1)
+  MEDICINES
+
+EH_EO (usageCount=1)
+  LEOPARD
+
+EH_IE (usageCount=1)
+  FRIEND
+
+EH_N (usageCount=1)
+  EVENTS
+
+EH_U (usageCount=1)
+  BURY
+
+EH_UE (usageCount=1)
+  GUEST
+
+EYE_AI (usageCount=1)
+  SAID
+
+EYE_AIS (usageCount=1)
+  AISLE
+
+EYE_IE (usageCount=1)
+  SCIENCE
+
+EYE_OI (usageCount=1)
+  CHOIR
+
+EYE_UY (usageCount=1)
+  BUY
+
+F_FT (usageCount=1)
+  OFTEN
+
+F_V (usageCount=1)
+  CHEKHOV
+
+G_GUE (usageCount=1)
+  DIALOGUE
+
+H_J (usageCount=1)
+  JALAPENO
+
+IH_C (usageCount=1)
+  PHYSICS
+
+IH_EE (usageCount=1)
+  BEEN
+
+IH_IE (usageCount=1)
+  SIEVE
+
+IL_LE (usageCount=1)
+  COMFORTABLE
+
+J_DI (usageCount=1)
+  SOLDIER
+
+J_GI (usageCount=1)
+  RELIGIOUS
+
+J_LL (usageCount=1)
+  TORTILLA
+
+J_Y (usageCount=1)
+  YACHT
+
+JH_GE (usageCount=1)
+  ARRANGEMENT
+
+K_CCH (usageCount=1)
+  GNOCCHI
+
+K_CQU (usageCount=1)
+  LACQUER
+
+K_G (usageCount=1)
+  LENGTH
+
+K_LK (usageCount=1)
+  TALK
+
+K_T (usageCount=1)
+  PROTECTS
+
+KS_S (usageCount=1)
+  PHYSICS
+
+KW_CH (usageCount=1)
+  CHOIR
+
+L_E (usageCount=1)
+  BELIEVABLE
+
+N_DNE (usageCount=1)
+  WEDNESDAY
+
+N_G (usageCount=1)
+  BOLOGNA
+
+N_MN (usageCount=1)
+  MNEMONIC
+
+N_PN (usageCount=1)
+  PNEUMONIA
+
+N_T (usageCount=1)
+  EVENTS
+
+NG_NGUE (usageCount=1)
+  MERINGUE
+
+OH_EAU (usageCount=1)
+  BUREAU
+
+OH_OAH (usageCount=1)
+  PHAROAH
+
+OH_OE (usageCount=1)
+  TOMATOES
+
+OO_IEU (usageCount=1)
+  LIEUTENANT
+
+OO_OUGH (usageCount=1)
+  THROUGH
+
+OO_OUP (usageCount=1)
+  COUP
+
+OO_OUS (usageCount=1)
+  RENDEZVOUS
+
+OO_UO (usageCount=1)
+  BUOY
+
+R_L (usageCount=1)
+  COLONEL
+
+S_SCE (usageCount=1)
+  ACQUIESCE
+
+S_Z (usageCount=1)
+  PIZZA
+
+SH_C (usageCount=1)
+  BENEFICIARY
+
+SH_S (usageCount=1)
+  SUGAR
+
+SH_SCH (usageCount=1)
+  SCHISM
+
+SH_SCI (usageCount=1)
+  CONSCIENCE
+
+SH_SI (usageCount=1)
+  COMPREHENSION
+
+T_CT (usageCount=1)
+  INDICT
+
+T_Z (usageCount=1)
+  PIZZA
+
+TH_TH_2 (usageCount=1)
+  THEYVE
+
+TH_THE (usageCount=1)
+  THEY
+
+UH_L (usageCount=1)
+  BELIEVABLE
+
+UH_O_W (usageCount=1)
+  SOMEONE
+
+UH_OE (usageCount=1)
+  DOES
+
+UH_S (usageCount=1)
+  IDEAS
+
+V_F (usageCount=1)
+  OF
+
+W_OU (usageCount=1)
+  OUIJA
+
+Y_J (usageCount=1)
+  FJORD
+
+Y_N (usageCount=1)
+  BOLOGNA
+
+YOU_EAU (usageCount=1)
+  BEAUTY
+
+YOU_IEW (usageCount=1)
+  REVIEW
+
+YOU_UE (usageCount=1)
+  VALUE
+
+YOU_UEUE (usageCount=1)
+  QUEUE
+
+Z_CZ (usageCount=1)
+  CZAR
+
+Z_SS (usageCount=1)
+  SCISSORS
+
+Z_STH (usageCount=1)
+  ASTHMA
+
+Z_TS (usageCount=1)
+  TSAR
+
+ZH_G (usageCount=1)
+  GENRE
+
+ZH_SU (usageCount=1)
+  MEASUREMENT
+
+AAH_AL (usageCount=2)
+  BEHALF, CALF
+
+AAH_O (usageCount=2)
+  ACCOUNTABILITY, UNDERGROUND
+
+AH_AU (usageCount=2)
+  CAUSING, RESTAURANT
+
+AL_AL (usageCount=2)
+  AMALGAM, LIMINAL
+
+AY_EI (usageCount=2)
+  DEIGN, THEIR
+
+AY_Y (usageCount=2)
+  HYACINTH, THEY
+
+EE_IS (usageCount=2)
+  CHASSIS, DEBRIS
+
+EYE_EI (usageCount=2)
+  HEIFER, SEISMIC
+
+EYE_EYE (usageCount=2)
+  EYE, EYES
+
+EYE_IO (usageCount=2)
+  BIOLOGICALLY, VIOLIN
+
+F_FE (usageCount=2)
+  KNIFE, LIFE
+
+H_WH (usageCount=2)
+  WHO, WHOLE
+
+IH_AI (usageCount=2)
+  CAPTAIN, UNCERTAINTY
+
+JH_G (usageCount=2)
+  IMAGINATION, REFRIGERATION
+
+K_KH (usageCount=2)
+  CHEKHOV, KHAKI
+
+K_QU (usageCount=2)
+  BOUQUET, SQUARES
+
+OH_OO (usageCount=2)
+  BROOCH, DOOR
+
+OH_OUGH (usageCount=2)
+  THOROUGH, THOUGH
+
+OO_EU (usageCount=2)
+  PNEUMONIA, PSEUDONYM
+
+OO_OE (usageCount=2)
+  SHOE, SHOES
+
+OO_UE (usageCount=2)
+  BLUE, TRUE
+
+OO_UI (usageCount=2)
+  FRUIT, FRUITS
+
+S_PS (usageCount=2)
+  PSEUDONYM, PSYCHIC
+
+SH_SSI (usageCount=2)
+  PROFESSIONALLY, RUSSIA
+
+SH_SU (usageCount=2)
+  RESULT, SUBSTANCES
+
+T_PT (usageCount=2)
+  PTERODACTYL, RECEIPT
+
+T_S (usageCount=2)
+  EVENTS, PROTECTS
+
+UH_AH (usageCount=2)
+  NOAHS, SAVANNAH
+
+UH_IA (usageCount=2)
+  PARLIAMENT, RUSSIAN
+
+UH_Y (usageCount=2)
+  LABYRINTHINE, ZEPHYR
+
+Z_X (usageCount=2)
+  XENOPHOBIA, XYLOPHONE
+
+ZH_SI (usageCount=2)
+  DIVISION, OCCASION
+
+AAH_E (usageCount=3)
+  CEREMONY, PTERODACTYL, VERY
+
+AW_OU (usageCount=3)
+  COUGH, THOUGHTFUL, YOUR
+
+AY_EIGH (usageCount=3)
+  EIGHT, NEIGHBOR, WEIGH
+
+EE_EI (usageCount=3)
+  RECEIPT, RECEIVES, SEIZE
+
+EL_EL (usageCount=3)
+  JEWELRY, LEVEL, PANEL
+
+EL_IL (usageCount=3)
+  BODILY, CIVIL, EASILY
+
+EL_L (usageCount=3)
+  PARTICULAR, PARTICULARLY, POPULAR
+
+G_GG (usageCount=3)
+  BRIGGS, EGG, EGGS
+
+IH_U (usageCount=3)
+  BUSINESS, BUSINESSMEN, BUSY
+
+JH_DU (usageCount=3)
+  GRADUATION, INDIVIDUALLY, PRODUCES
+
+JH_J (usageCount=3)
+  JOURNALISTS, JOYFUL, OUIJA
+
+K_CQ (usageCount=3)
+  ACQUAINTANCE, ACQUIESCE, ACQUIRE
+
+K_Q (usageCount=3)
+  MANNEQUIN, QUALIFICATION, QUEUE
+
+K_QUE (usageCount=3)
+  MOSQUE, QUESTIONS, UNIQUE
+
+M_GM (usageCount=3)
+  ACKNOWLEDGMENT, DIAPHRAGM, PHLEGM
+
+OH_HO (usageCount=3)
+  CHORUS, ECHO, GHOST
+
+P_PE (usageCount=3)
+  GRAPEVINE, PERSON, ROPE
+
+T_GHT (usageCount=3)
+  FIREFIGHT, NIGHTWEAR, THOUGHTFUL
+
+Z_ES (usageCount=3)
+  INFLAMES, MAKES, SQUARES
+
+Z_ZZ (usageCount=3)
+  BUZZARDS, FIZZY, PUZZLE
+
+AAH_AI (usageCount=4)
+  AIR, AIRPORTS, PLAID, QUESTIONNAIRE
+
+AH_E (usageCount=4)
+  CHECKS, GENRE, RENDEZVOUS, ULTIMATE
+
+AH_OW (usageCount=4)
+  KNOWLEDGEABLE, OWED, OWLS, ROWS
+
+AW_AW (usageCount=4)
+  DRAWERS, DRAWINGS, GNAW, RAW
+
+AY_E (usageCount=4)
+  CAFE, JALAPENO, RENDEZVOUS, SOUFFLE
+
+AY_EA (usageCount=4)
+  BREAK, BREAKING, GREAT, STEAK
+
+AY_EY (usageCount=4)
+  MEYERS, SURVEY, THEYRE, THEYVE
+
+CH_TI (usageCount=4)
+  QUESTION, QUESTIONNAIRE, SUGGESTION, UNQUESTIONABLY
+
+F_GH (usageCount=4)
+  COUGH, LAUGH, ROUGH, TOUGH
+
+IH_O (usageCount=4)
+  AUTHORIZATION, NEEDLEWORK, THOROUGH, WOMEN
+
+IH_UI (usageCount=4)
+  BUILD, BUILDING, BUILDINGS, MANNEQUIN
+
+J_D (usageCount=4)
+  ACKNOWLEDGMENT, POSTGRADUATE, SCHEDULE, SCHEDULED
+
+M_MN (usageCount=4)
+  AUTUMN, COLUMN, CONDEMN, HYMN
+
+OH_OU (usageCount=4)
+  BOUQUET, SHOULDER, SHOULDERS, SOUL
+
+R_RH (usageCount=4)
+  RHAPSODY, RHINO, RHYME, RHYTHM
+
+S_CES (usageCount=4)
+  APPLIANCES, PIECES, PRODUCES, SUBSTANCES
+
+T_BT (usageCount=4)
+  DEBT, DOUBT, INDEBTED, SUBTLE
+
+W_U (usageCount=4)
+  ACQUAINTANCE, ACQUIESCE, ACQUIRE, QUALIFICATION
+
+WUH_O (usageCount=4)
+  ONCE, ONE, ONES, ONESELF
+
+Y_U (usageCount=4)
+  FIGURATIVELY, PARTICULAR, PARTICULARLY, POPULAR
+
+ZH_S (usageCount=4)
+  MEASURES, UNUSUAL, USUALLY, VISUAL
+
+AR_EAR (usageCount=5)
+  EARNED, LEARNED, LEARNING, NIGHTWEAR, WEAR
+
+CH_TCH (usageCount=5)
+  KITCHEN, SKETCHES, STITCH, WATCH, WITCHCRAFT
+
+CH_TU (usageCount=5)
+  INFRASTRUCTURE, MIXTURE, NATURE, PICTURE, STRUCTURE
+
+D_DD (usageCount=5)
+  ADDICTION, ADDITION, BUDDY, MIDDLE, SUDDENLY
+
+J_DGE (usageCount=5)
+  BRIDGE, FUDGE, JUDGE, KNOWLEDGEABLE, WEDGE
+
+OO_OU (usageCount=5)
+  GROUP, GROUPS, SOUFFLE, WOUND, YOU
+
+OY_OY (usageCount=5)
+  EMPLOYER, ENJOYMENT, JOYFUL, ROYAL, UNEMPLOYMENT
+
+SH_CH (usageCount=5)
+  CHAMPAGNE, CHASSIS, CHEFS, CROCHET, MACHINERY
+
+SILENT_E (usageCount=5)
+  CHAMPAGNE, CLOTHES, COMMERCIAL, PREPARE, VEGETABLES
+
+UR_U (usageCount=5)
+  CURVED, MEASURES, PURSUING, SURFER, SURPRISING
+
+Y_I (usageCount=5)
+  FAMILIARLY, INCONVENIENCE, ITALIAN, RESILIENT, SENIOR
+
+Z_SI (usageCount=5)
+  BUSINESS, BUSINESSMEN, PHYSICS, SIR, WEBSITES

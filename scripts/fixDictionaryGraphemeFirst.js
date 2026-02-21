@@ -1,4 +1,4 @@
-import { hintDictionary } from "../src/data/hint_dictionary.js";
+import { dictionary } from "../src/data/dictionary.js";
 import { RULES } from "../src/data/rules.js";
 import fs from "fs";
 import path from "path";
@@ -6,7 +6,7 @@ import path from "path";
 const args = new Set(process.argv.slice(2));
 const shouldWrite = args.has("--write");
 
-const outputPath = path.join(process.cwd(), "src/data/hint_dictionary.js");
+const outputPath = path.join(process.cwd(), "src/data/dictionary.js");
 
 const normalizeRuleKeys = (ruleKey) => {
   if (!ruleKey) return [];
@@ -68,9 +68,9 @@ const pickKeyForSpelling = (spelling, desiredSoundId) => {
 
 const issues = [];
 const fixes = [];
-const nextDictionary = { ...hintDictionary };
+const nextDictionary = { ...dictionary };
 
-for (const [word, ruleKeys] of Object.entries(hintDictionary)) {
+for (const [word, ruleKeys] of Object.entries(dictionary)) {
   const keys = normalizeRuleKeys(ruleKeys);
   if (keys.length === 0) continue;
 
@@ -132,7 +132,7 @@ if (issues.length > 0) {
 if (shouldWrite && fixes.length > 0) {
   const sortedEntries = Object.entries(nextDictionary).sort(([a], [b]) => a.localeCompare(b));
   const body = sortedEntries.map(([w, rules]) => `  "${w}": ${JSON.stringify(rules)}`).join(",\n");
-  const output = `export const hintDictionary = {\n${body}\n};\n`;
+  const output = `export const dictionary = {\n${body}\n};\n`;
   fs.writeFileSync(outputPath, output, "utf-8");
   console.log(`Wrote fixes to ${outputPath}.`);
 }

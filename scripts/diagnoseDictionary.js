@@ -1,8 +1,8 @@
-import { collectHintWords } from "./hintDictionaryCore.js";
-import { hintDictionary } from "../src/data/hint_dictionary.js";
+import { collectHintWords } from "./dictionaryCore.js";
+import { dictionary } from "../src/data/dictionary.js";
 
 const hintWords = collectHintWords();
-const dictionaryWords = new Set(Object.keys(hintDictionary));
+const dictionaryWords = new Set(Object.keys(dictionary));
 
 const missingWords = hintWords
   .filter((word) => !dictionaryWords.has(word))

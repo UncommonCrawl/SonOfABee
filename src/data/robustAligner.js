@@ -1,60 +1,112 @@
+import { PHONEME_STANDARD_RULE_LABELS } from "../data/phonemeStandardRuleLabels.js";
+
 /**
- * SCORING MATRIX
- * Defines which graphemes are allowed match specific phonemes.
+ * SCORING MATRIX keyed by rule labels (matches PHONEME_STANDARD_RULE_LABELS values).
  * Scores: 10 = Perfect, 5 = Plausible, -10 = Mismatch
  */
 export const GRAPHEME_COSTS = {
   // --- BASICS (Missing in previous version) ---
-  "b": ["B", "BB"],
-  "d": ["D", "DD", "ED"],
-  "g": ["G", "GG", "GH", "GU"],
-  "h": ["H", "WH"],
-  "l": ["L", "LL", "LE"], // Handles BATTLE
-  "m": ["M", "MM", "MB", "MN", "ME"], // Handles BECOME (if E attaches)
-  "n": ["N", "NN", "KN", "GN", "PN", "NE"],
-  "p": ["P", "PP"],
-  "r": ["R", "RR", "WR", "RH", "RE"], // Handles BEFORE
-  "t": ["T", "TT", "BT", "ED", "TE"], // Handles BATTLE
-  "v": ["V", "VE", "F", "PH"], // 'Of'
-  "w": ["W", "WH", "U", "O"],
-  "j": ["Y", "J", "U"],
+  // --- STOP CONSONANTS ---
+  "B": ["B", "BB", "PB", "BE", "BH"], // Handles CUPBOARD, PROBE
+  "D": ["D", "DD", "ED", "DE", "LD"], // Handles PLAYED, RIDE, SHOULD
+  "G": ["G", "GG", "GH", "GU", "GUE", "GE"], // Handles GHOST, GUARD, PLAGUE
+  "P": ["P", "PP", "PH", "PE", "GH"], // Handles HICCUP (rare GH), SHEPHERD
+  "T": ["T", "TT", "BT", "ED", "TE", "PT", "TH", "CT"], // Handles DEBT, WALKED, RECEIPT, THYME, INDICT
+  "K": ["K", "C", "CK", "CH", "Q", "X", "CC", "LK", "CQ", "CQU", "QUE", "KH", "QU"], // Handles WALK, LIQUOR, CONQUER
 
-  // --- COMPLEX CONSONANTS ---
-  "f": ["F", "PH", "GH", "FF", "FE"],
-  "k": ["K", "C", "CK", "CH", "Q", "X", "CC", "LK", "CQ", "CQU", "QUE", "KH"],
-  "s": ["S", "C", "SC", "PS", "ST", "SS", "X", "Z", "SE", "CE"],
-  "z": ["Z", "S", "X", "ZZ", "ZE", "SE", "SS"], // Added SE for BECAUSE
-  "ʃ": ["SH", "TI", "CI", "CH", "SU", "SI", "SSI", "CE"],
-  "tʃ": ["CH", "TCH", "T", "C", "TU"],
-  "dʒ": ["J", "G", "DGE", "DI", "GG", "GE"],
-  "θ": ["TH"],
-  "ð": ["TH", "THE"],
-  "ŋ": ["NG", "N", "NGUE"],
+  // --- FRICATIVES ---
+  "F": ["F", "PH", "GH", "FF", "FE", "FT"], // Handles ROUGH, OFTEN
+  "V": ["V", "VE", "F", "PH", "LV"], // Handles OF, STEPHEN, HALVES
+  "TH": ["TH", "THE"], // THIN/THE/BREATHE
+  "S": ["S", "C", "SC", "PS", "ST", "SS", "X", "Z", "SE", "CE", "SW"], // Handles SCIENCE, PSYCHOLOGY, LISTEN, ANSWER
+  "Z": ["Z", "S", "X", "ZZ", "ZE", "SE", "SS", "SI", "ES"], // Handles NOISE, SCISSORS, DESSERT
+  "SH": ["SH", "TI", "CI", "CH", "SU", "SI", "SSI", "CE", "SCH", "SCI"], // Handles NATION, SUGAR, SCHWA, CONSCIENCE
+  "ZH": ["S", "SI", "GE", "Z", "J", "G", "SU"], // Handles TREASURE, VISION, BEIGE, AZURE
+  "H": ["H", "WH", "J"], // Handles WHO, FAJITA
 
-  // --- VOWELS ---
-  "i": ["E", "EE", "EA", "Y", "IE", "EI", "EO", "EY"],
-  "ɪ": ["I", "Y", "UI", "E", "IE", "EE"],
-  "eɪ": ["A", "AI", "AY", "EI", "EY", "EA", "A_E"],
-  "ɛ": ["E", "EA", "A", "AI", "IE"],
-  "æ": ["A", "AU", "AL"],
-  "ɑ": ["O", "A", "AH", "AL", "AU"],
-  "ɔ": ["O", "A", "AU", "AW", "OUGH", "AL", "ORE", "OAR", "OR"], // Added ORE for BEFORE
-  "oʊ": ["O", "OA", "OW", "OE", "OUGH", "EW", "OU"],
-  "u": ["U", "OO", "OU", "UE", "UI", "EW", "O", "WO"],
-  "ʊ": ["U", "OO", "OU", "O"],
-  "ʌ": ["U", "O", "OU", "OO", "OE"], // Added for BECOME, CUP, FLOOD
-  "aɪ": ["I", "Y", "IE", "UY", "IGH", "YE", "EI", "EYE"],
-  "aʊ": ["OU", "OW", "OUGH"],
-  "ɔɪ": ["OI", "OY"],
-  "ju": ["U", "YOU", "EW", "UE", "YU", "EAU"], // Fuse /j/+/u/ if tokenizer groups them
-  "ə": ["A", "E", "I", "O", "U", "Y", "ER", "AR", "OR", "OU", "RE"] // Schwa matches everything
+  // --- AFFRICATES ---
+  "CH": ["CH", "TCH", "T", "C", "TU", "TI", "TE", "CZ"], // Handles NATURE, QUESTION, CELLO, CZECH
+  "J": ["J", "G", "DGE", "DI", "GG", "GE", "D", "DJ", "GI"], // Handles SOLDIER, GRADUATE, ADJUST, REGION
+
+  // --- NASALS ---
+  "M": ["M", "MM", "MB", "MN", "ME", "LM", "GM"], // Handles LAMB, HYMN, CALM, DIAPHRAGM
+  "N": ["N", "NN", "KN", "GN", "PN", "NE", "MN", "MP"], // Handles KNEE, GNAT, PNEUMONIA, COMPTROLLER
+  "NG": ["NG", "N", "NGUE", "ND"], // Handles TONGUE, HANDKERCHIEF
+
+  // --- LIQUIDS & GLIDES ---
+  "L": ["L", "LL", "LE", "SL", "LN"], // Handles APPLE, ISLAND, KILN
+  "R": ["R", "RR", "WR", "RH", "RE", "L"], // Handles WRITE, RHYME, COLONEL
+  "W": ["W", "WH", "U", "O", "OU", "UI"], // Handles SUEDE, ONE, OUIJA, PENGUIN
+  "Y": ["Y", "J", "U", "I", "LL"], // Handles HALLELUJAH, ONION, TORTILLA
+
+  // --- SHORT VOWELS ---
+  "AAH": ["A", "AU", "AL", "AI"], // Handles LAUGH, PLAID
+  "EH": ["E", "EA", "A", "AI", "IE", "AY", "UE", "EO"], // Handles HEAD, ANY, SAID, SAYS, GUESS, LEOPARD
+  "IH": ["I", "Y", "UI", "E", "IE", "EE", "U", "IA", "O"], // Handles BUILD, PRETTY, BEEN, BUSY, WOMEN
+  "AH": ["O", "A", "AH", "AL", "AU", "HO"], // Handles FATHER, PALM, HONEST
+  "UH": ["U", "O", "OU", "OO", "OE"], // Handles LOVE, TOUCH, BLOOD, DOES
+  "UUH": ["U", "OO", "OU", "O", "OR"], // Handles BOOK, COULD, WOLF, WORSTED
+
+  // --- LONG VOWELS ---
+  "EE": ["E", "EE", "EA", "Y", "IE", "EI", "EO", "EY", "AE", "OE", "AY"],
+  "AR": ["AR", "EAR"],
+  "AW": ["A", "AU", "AW", "O", "OA", "OU"],
+  "AY": ["A", "AI", "AU", "AY", "E", "EA", "EI", "EIGH", "ET", "EY", "I", "IGH", "Y"],
+  "KS": ["X"],
+  "KW": ["CH", "QU"],
+  "OO": ["EU", "EW", "IEU", "O", "OE", "OO", "OU", "OUGH", "OUP", "OUS", "U", "UE", "UI", "UO"],
+  "OH": ["O", "OA", "OW", "OE", "OUGH", "EW", "OU", "OH", "HO"],
+  "OR": ["ORPS"],
+  "OW": ["OU", "OW"],
+  "OY": ["OI", "OY"],
+  "UR": ["UR"],
+  "WɅ": ["O"],
+  "YOU": ["EAU", "U", "UE", "UEUE", "UU"],
+  "ÆZ": ["AS", "ASTH"],
+  "EYE": ["I", "Y", "IE", "UY", "IGH", "YE", "EI", "EYE", "AI"],
+  "AIR": ["ER", "AIR", "AR", "AIRE"],
+  "ER": ["ER", "UR", "IR", "OR", "RE", "AR", "E"],
+  "EL": ["AL", "EL", "LE", "IL", "OL", "L"],
+};
+
+const toRuleLabel = (soundId) => {
+  if (soundId == null) return "SILENT";
+  if (PHONEME_STANDARD_RULE_LABELS[soundId]) return PHONEME_STANDARD_RULE_LABELS[soundId];
+  if (/^[a-z]+$/i.test(soundId)) return soundId.toUpperCase();
+  return String(soundId).toUpperCase();
+};
+
+const clamp01 = (value) => Math.max(0, Math.min(1, value));
+
+export const assessAlignmentQuality = ({ word, phonemes, score, skipCount, failed }) => {
+  const length = Math.max(1, String(word || "").length);
+  const phonemeCount = Math.max(1, Array.isArray(phonemes) ? phonemes.length : 0);
+  const normalizedScore = score / (phonemeCount * 10);
+  const skipRatio = skipCount / length;
+  const confidence = clamp01(normalizedScore - skipRatio * 0.6);
+  const reasons = [];
+
+  if (failed) reasons.push("alignment_failed");
+  if (skipCount >= 3) reasons.push("too_many_silent_letters");
+  if (skipRatio > 0.34) reasons.push("high_silent_ratio");
+  if (normalizedScore < 0.3) reasons.push("very_low_alignment_score");
+
+  return {
+    confidence,
+    normalizedScore,
+    skipCount,
+    skipRatio,
+    isGarbage: reasons.length > 0,
+    reasons
+  };
 };
 
 const getMatchScore = (sound, grapheme) => {
   if (!sound || !grapheme) return -50;
+  const label = toRuleLabel(sound);
 
   // 1. Check strict list
-  const valid = GRAPHEME_COSTS[sound];
+  const valid = GRAPHEME_COSTS[label];
   if (valid && valid.includes(grapheme)) return 10;
 
   // 2. Check literal identity (Case Insensitive)
@@ -73,7 +125,7 @@ const getMatchScore = (sound, grapheme) => {
  * THE ALIGNER (Needleman-Wunsch)
  * Finds the optimal alignment between Phonemes (P) and Graphemes (G).
  */
-export const alignPhonemesToGraphemes = (word, phonemes) => {
+export const alignPhonemesToGraphemesDetailed = (word, phonemes) => {
   const w = word.toUpperCase();
   const p = phonemes;
   const n = p.length;
@@ -179,6 +231,8 @@ export const alignPhonemesToGraphemes = (word, phonemes) => {
   let curJ = m;
   const result = [];
   let pendingSuffix = ""; // Stores silent letters to attach to previous phoneme
+  let skipCount = 0;
+  let failed = false;
 
   while (curI > 0 || curJ > 0) {
     const step = path[curI][curJ];
@@ -186,6 +240,7 @@ export const alignPhonemesToGraphemes = (word, phonemes) => {
     // Safety break for unreachable states
     if (!step) {
       console.warn(`Alignment failed for ${word}. Remaining: i=${curI}, j=${curJ}`);
+      failed = true;
       break;
     }
 
@@ -193,6 +248,7 @@ export const alignPhonemesToGraphemes = (word, phonemes) => {
       // Accumulate silent letters (e.g. 'E' in CAKE)
       // We attach them to the *preceding* phoneme (which is NEXT in the backtrack loop)
       pendingSuffix = step.g + pendingSuffix;
+      skipCount += 1;
       [curI, curJ] = step.prev;
     } else if (step.type === '2-1') {
       // Split X into two entries
@@ -215,5 +271,23 @@ export const alignPhonemesToGraphemes = (word, phonemes) => {
     }
   }
 
-  return result;
+  const score = scores[n][m];
+  const quality = assessAlignmentQuality({
+    word: w,
+    phonemes: p,
+    score,
+    skipCount,
+    failed
+  });
+
+  return {
+    alignment: result,
+    score,
+    skipCount,
+    failed,
+    quality
+  };
 };
+
+export const alignPhonemesToGraphemes = (word, phonemes) =>
+  alignPhonemesToGraphemesDetailed(word, phonemes).alignment;

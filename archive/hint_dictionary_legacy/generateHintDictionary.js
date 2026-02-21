@@ -5,10 +5,40 @@ import {
   buildRuleKeyMap,
   collectHintWords,
   toRuleKeys
-} from "./hintDictionaryCore.js";
+} from "./dictionaryCore.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const envCandidates = [
+  path.resolve(process.cwd(), ".env"),
+  path.resolve(__dirname, "../../.env")
+];
+
+const loadDotEnv = () => {
+  for (const envPath of envCandidates) {
+    if (!fs.existsSync(envPath)) continue;
+    const raw = fs.readFileSync(envPath, "utf-8");
+    raw.split(/\r?\n/g).forEach((line) => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) return;
+      const idx = trimmed.indexOf("=");
+      if (idx <= 0) return;
+      const key = trimmed.slice(0, idx).trim();
+      if (!key || process.env[key] !== undefined) return;
+      let value = trimmed.slice(idx + 1).trim();
+      if (
+        (value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'"))
+      ) {
+        value = value.slice(1, -1);
+      }
+      process.env[key] = value;
+    });
+    break;
+  }
+};
+
+loadDotEnv();
 
 const rawArgs = process.argv.slice(2);
 const args = new Set(rawArgs);
@@ -26,44 +56,51 @@ const offsetArg = getArgValue("--offset");
 const maxWords = limitArg ? Math.max(0, Number(limitArg)) : null;
 const startOffset = offsetArg ? Math.max(0, Number(offsetArg)) : 0;
 
-const outputPath = path.join(__dirname, "../src/data/hint_dictionary.js");
-const missingPath = path.join(__dirname, "../src/data/hint_dictionary_missing.txt");
-const queuePath = path.join(__dirname, "../src/data/hint_dictionary_queue.txt");
-const ipaPath = path.join(__dirname, "../src/data/hint_dictionary_ipa.json");
+const outputPath = path.join(__dirname, "../../src/data/dictionary.js");
+const missingPath = path.join(__dirname, "dictionary_missing.txt");
+const queuePath = path.join(__dirname, "dictionary_queue.txt");
+const ipaPath = path.join(__dirname, "dictionary_ipa.json");
 const existingPath = pathToFileURL(outputPath).href;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const BASE_DELAY_MS = 500;
 const MAX_RETRIES = 4;
+const WORDS_API_HOST = process.env.WORDS_API_HOST || "wordsapiv1.p.rapidapi.com";
+const WORDS_API_KEY = process.env.WORDS_API_KEY || "";
 
 const findIpaText = (data, word) => {
-  if (!Array.isArray(data)) return null;
+  if (!data || typeof data !== "object") return null;
+  const pronunciation = data.pronunciation;
+  if (!pronunciation) return null;
   const wantsRhotic = Boolean(word && word.toUpperCase().includes("R"));
-  if (wantsRhotic) {
-    for (const entry of data) {
-      if (entry?.phonetic && /r/.test(entry.phonetic)) return entry.phonetic;
-      if (Array.isArray(entry?.phonetics)) {
-        const match = entry.phonetics.find((p) => p?.text && /r/.test(p.text))?.text;
-        if (match) return match;
-      }
+  if (typeof pronunciation === "string") return pronunciation;
+  if (typeof pronunciation !== "object") return null;
+  const orderedKeys = wantsRhotic ? ["all", "us", "uk"] : ["us", "all", "uk"];
+  for (const key of orderedKeys) {
+    if (typeof pronunciation[key] === "string") {
+      return pronunciation[key];
     }
   }
-  for (const entry of data) {
-    if (entry?.phonetic) return entry.phonetic;
-    if (Array.isArray(entry?.phonetics)) {
-      const match = entry.phonetics.find((p) => p?.text)?.text;
-      if (match) return match;
-    }
-  }
-  return null;
+  const first = Object.values(pronunciation).find((value) => typeof value === "string");
+  return first || null;
 };
 
 const fetchIpa = async (word, attempt = 1) => {
+  if (!WORDS_API_KEY) return { ipa: null, errorType: "fetch" };
   try {
     const response = await fetch(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+      `https://${WORDS_API_HOST}/words/${encodeURIComponent(word)}/pronunciation`,
+      {
+        headers: {
+          "x-rapidapi-host": WORDS_API_HOST,
+          "x-rapidapi-key": WORDS_API_KEY
+        }
+      }
     );
     if (!response.ok) {
+      if (response.status === 404) {
+        return { ipa: null, errorType: "missing" };
+      }
       if (response.status === 429 && attempt <= MAX_RETRIES) {
         await sleep(BASE_DELAY_MS * (attempt + 2));
         return fetchIpa(word, attempt + 1);
@@ -79,7 +116,7 @@ const fetchIpa = async (word, attempt = 1) => {
       return { ipa: null, errorType: "fetch" };
     }
     const data = await response.json();
-    if (data?.title === "No Definitions Found") {
+    if (data?.success === false || data?.message === "word not found") {
       return { ipa: null, errorType: "missing" };
     }
     return { ipa: findIpaText(data, word), errorType: null };
@@ -96,11 +133,11 @@ const readExistingDictionary = async () => {
   if (!fs.existsSync(outputPath)) return {};
   try {
     const module = await import(existingPath);
-    if (module?.hintDictionary && typeof module.hintDictionary === "object") {
-      return module.hintDictionary;
+    if (module?.dictionary && typeof module.dictionary === "object") {
+      return module.dictionary;
     }
   } catch (error) {
-    console.warn("⚠️  Failed to load existing hint_dictionary.js:", error.message);
+    console.warn("⚠️  Failed to load existing dictionary.js:", error.message);
   }
   return {};
 };
@@ -110,7 +147,7 @@ const writeDictionary = (dictionary) => {
   const body = sortedEntries
     .map(([word, rules]) => `  "${word}": ${JSON.stringify(rules)}`)
     .join(",\n");
-  const output = `export const hintDictionary = {\n${body}\n};\n`;
+  const output = `export const dictionary = {\n${body}\n};\n`;
   fs.writeFileSync(outputPath, output, "utf-8");
 };
 
@@ -160,6 +197,11 @@ const writeMissingWords = (missingWords) => {
 };
 
 const run = async () => {
+  if (!WORDS_API_KEY) {
+    console.error("Missing WORDS_API_KEY in environment. Add it to local .env.");
+    process.exit(1);
+  }
+
   const existing = await readExistingDictionary();
   const existingWords = new Set(Object.keys(existing));
   const missingWordSet = readMissingWords();
@@ -190,6 +232,7 @@ const run = async () => {
   const ruleMap = buildRuleKeyMap();
   const unknownSymbols = new Set();
   const ipaMap = readIpaMap();
+  let ipaMapChanged = false;
 
   const nextDictionary = { ...existing };
   const missing = [];
@@ -198,9 +241,13 @@ const run = async () => {
 
   for (const word of words) {
     let status = "unprocessed";
-    let result = await fetchIpa(word);
-    await sleep(BASE_DELAY_MS);
-    if (!result.ipa) result = await fetchIpa(word.toLowerCase());
+    let result = ipaMap[word]
+      ? { ipa: ipaMap[word], errorType: null }
+      : await fetchIpa(word);
+    if (!result.ipa) {
+      await sleep(BASE_DELAY_MS);
+      result = await fetchIpa(word.toLowerCase());
+    }
     if (!result.ipa) {
       if (result.errorType === "fetch") {
         consecutiveFetchErrors += 1;
@@ -225,7 +272,10 @@ const run = async () => {
       continue;
     }
     consecutiveFetchErrors = 0;
-    ipaMap[word] = result.ipa;
+    if (ipaMap[word] !== result.ipa) {
+      ipaMap[word] = result.ipa;
+      ipaMapChanged = true;
+    }
     const ruleKeys = toRuleKeys(word, result.ipa, ruleMap, unknownSymbols);
     if (!ruleKeys) {
       missing.push({ word, issue: "Unmapped phoneme/grapheme pair" });
@@ -242,6 +292,10 @@ const run = async () => {
   }
 
   if (!shouldWrite) {
+    if (ipaMapChanged) {
+      writeIpaMap(ipaMap);
+      console.log("Updated IPA cache.");
+    }
     console.log(`Would add ${Object.keys(nextDictionary).length - Object.keys(existing).length} words.`);
     if (unknownSymbols.size > 0) {
       console.log(`Unknown IPA symbols encountered: ${Array.from(unknownSymbols).join(", ")}`);
@@ -252,16 +306,16 @@ const run = async () => {
         console.log(`- ${entry.word}: ${entry.issue}`);
       }
     }
-    console.log("Run with --write to update hint_dictionary.js.");
+    console.log("Run with --write to update dictionary.js.");
     return;
   }
 
   writeDictionary(nextDictionary);
-  writeIpaMap(ipaMap);
+  if (ipaMapChanged) writeIpaMap(ipaMap);
   if (!dictionarySource) writeMissingWords(missingWordSet);
   for (const word of processed) workingQueue.delete(word);
   if (!missingSource) writeQueueWords(workingQueue);
-  console.log(`Wrote ${Object.keys(nextDictionary).length} words to hint_dictionary.js.`);
+  console.log(`Wrote ${Object.keys(nextDictionary).length} words to dictionary.js.`);
   if (unknownSymbols.size > 0) {
     console.log(`Unknown IPA symbols encountered: ${Array.from(unknownSymbols).join(", ")}`);
   }
